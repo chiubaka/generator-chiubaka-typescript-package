@@ -1,5 +1,4 @@
 import assert from "node:assert";
-import path from "path";
 import Generator, { GeneratorOptions } from "yeoman-generator";
 
 interface PromptAnswers {
@@ -24,6 +23,10 @@ export class NodeModuleGenerator extends Generator {
   public writing() {
     assert(this.answers != null);
     console.log(this.answers);
-    this.fs.copyTpl(this.templatePath("package.json.ejs"), this.destinationPath("package.json"), { name: this.answers.packageName });
+    this.fs.copyTpl(
+      this.templatePath("package.json.ejs"),
+      this.destinationPath("package.json"),
+      { name: this.answers.packageName }
+    );
   }
 }
