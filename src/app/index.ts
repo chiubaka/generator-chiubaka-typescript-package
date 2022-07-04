@@ -1,7 +1,3 @@
-import Generator, { GeneratorOptions } from "yeoman-generator";
+import { TypeScriptPackageGenerator } from "./TypeScriptPackageGenerator";
 
-export default class extends Generator {
-  constructor(args: string | string[], opts: GeneratorOptions) {
-    super(args, opts);
-  }
-};
+export default TypeScriptPackageGenerator;

@@ -24,16 +24,50 @@
   },
   "homepage": "https://github.com/chiubaka/generator-typescript-package#readme",
   "scripts": {
-    "build": "tsc",
-    "start": "yarn run build && npm link && yo typescript-package",
-    "clean": "rimraf -rf ./generators"
+    "copy:templates": "copyfiles --up 1 'src/*/templates/**' generators",
+    "build": "tsc && yarn run copy:templates",
+    "pretest": "yarn run clean",
+    "test": "yarn run pretest && jest",
+    "prestart": "yarn run clean && yarn run build && npm link",
+    "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
+    "clean": "rimraf -rf ./generators ./generated-package"
   },
   "dependencies": {
     "yeoman-generator": "^5.6.1"
   },
+  "dependenciesComments": {
+    "yeoman-generator": "Core yeoman generator libraries"
+  },
   "devDependencies": {
+    "@types/jest": "^28.1.4",
+    "@types/yeoman-assert": "^3.1.1",
     "@types/yeoman-generator": "^5.2.10",
+    "@types/yeoman-test": "^4.0.3",
+    "copyfiles": "^2.4.1",
+    "isbinaryfile": "^5.0.0",
+    "jest": "^28.1.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.7.4"
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-environment": "^3.9.1",
+    "yeoman-test": "^6.3.0"
+  },
+  "devDependenciesComments": {
+    "@types/jest": "Types for jest",
+    "@types/yeoman-assert": "Types for yeoman-assert",
+    "@types/yeoman-generator": "Types for yeoman-generator",
+    "@types/yeoman-test": "Types for yeoman-test",
+    "copyfiles": "Portable copy script to support build process",
+    "isbinaryfile": "Unlisted dependency of yeoman-environment. https://github.com/chiubaka/generator-typescript-package/issues/4",
+    "jest": "Test runner from Meta",
+    "rimraf": "Portable rm script to support clean script",
+    "ts-jest": "TypeScript preprocessor with source map support for Jest",
+    "ts-node": "To enable TypeScript configuration files for Jest",
+    "typescript": "TypeScript support for this project",
+    "yeoman-assert": "Yeoman extensions for native assert module for utility in tests",
+    "yeoman-environment": "Peer dependency for yeoman-test",
+    "yeoman-test": "Test helpers for yeoman generators"
   }
 }
