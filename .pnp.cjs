@@ -34,12 +34,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@types/jest", "npm:28.1.4"],\
+            ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
             ["@types/yeoman-test", "npm:4.0.3"],\
             ["copyfiles", "npm:2.4.1"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
+            ["mem-fs", "npm:2.2.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["ts-jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.0.5"],\
             ["ts-node", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:10.8.2"],\
@@ -1906,6 +1908,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.0.0"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:18.0.1", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.0.1-35e22b3e26-be14b251c5.zip/node_modules/@types/node/",\
+          "packageDependencies": [\
+            ["@types/node", "npm:18.0.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@types/normalize-package-data", [\
@@ -3557,12 +3566,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["generator-typescript-package", "workspace:."],\
             ["@types/jest", "npm:28.1.4"],\
+            ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
             ["@types/yeoman-test", "npm:4.0.3"],\
             ["copyfiles", "npm:2.4.1"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
+            ["mem-fs", "npm:2.2.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["ts-jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.0.5"],\
             ["ts-node", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:10.8.2"],\
@@ -5077,29 +5088,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["globby", "npm:11.1.0"],\
             ["isbinaryfile", "npm:4.0.10"],\
             ["mem-fs", "npm:2.2.1"],\
-            ["minimatch", "npm:3.1.2"],\
-            ["multimatch", "npm:5.0.0"],\
-            ["normalize-path", "npm:3.0.0"],\
-            ["textextensions", "npm:5.15.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/mem-fs",\
-            "mem-fs"\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["virtual:d24845de57c01915710b05fc8173a0ff3cd0caeaae452ed366e13850293afe0c1b1c33c617b864261c2b27a421e02f9bca1eaad5a23db4115cab688f2cde3bc6#npm:9.4.0", {\
-          "packageLocation": "./.yarn/__virtual__/mem-fs-editor-virtual-4c45204ff4/0/cache/mem-fs-editor-npm-9.4.0-97c608fb01-427b71d59a.zip/node_modules/mem-fs-editor/",\
-          "packageDependencies": [\
-            ["mem-fs-editor", "virtual:d24845de57c01915710b05fc8173a0ff3cd0caeaae452ed366e13850293afe0c1b1c33c617b864261c2b27a421e02f9bca1eaad5a23db4115cab688f2cde3bc6#npm:9.4.0"],\
-            ["@types/mem-fs", null],\
-            ["binaryextensions", "npm:4.18.0"],\
-            ["commondir", "npm:1.0.1"],\
-            ["deep-extend", "npm:0.6.0"],\
-            ["ejs", "npm:3.1.8"],\
-            ["globby", "npm:11.1.0"],\
-            ["isbinaryfile", "npm:4.0.10"],\
-            ["mem-fs", null],\
             ["minimatch", "npm:3.1.2"],\
             ["multimatch", "npm:5.0.0"],\
             ["normalize-path", "npm:3.0.0"],\
@@ -6977,7 +6965,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node12", "npm:1.0.11"],\
             ["@tsconfig/node14", "npm:1.0.3"],\
             ["@tsconfig/node16", "npm:1.0.3"],\
-            ["@types/node", null],\
+            ["@types/node", "npm:18.0.1"],\
             ["@types/swc__core", null],\
             ["@types/swc__wasm", null],\
             ["@types/typescript", null],\
@@ -7448,7 +7436,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "packagePeers": [\
             "@types/mem-fs-editor",\
-            "@types/mem-fs"\
+            "@types/mem-fs",\
+            "mem-fs"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7505,8 +7494,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/yeoman-generator", "npm:5.2.10"],\
             ["inquirer", "npm:8.2.4"],\
             ["lodash", "npm:4.17.21"],\
-            ["mem-fs", null],\
-            ["mem-fs-editor", "virtual:d24845de57c01915710b05fc8173a0ff3cd0caeaae452ed366e13850293afe0c1b1c33c617b864261c2b27a421e02f9bca1eaad5a23db4115cab688f2cde3bc6#npm:9.4.0"],\
+            ["mem-fs", "npm:2.2.1"],\
+            ["mem-fs-editor", "virtual:159b0d0798007253ba5d7f205046d8302767f4d690c2cdfb83e1ae03afae55cbe8606615081d0a946fe7db3b459589c35c34e0e4634eed2ca6390855af9fdbcd#npm:9.4.0"],\
             ["sinon", "npm:10.0.0"],\
             ["temp-dir", "npm:2.0.0"],\
             ["yeoman-environment", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:3.9.1"],\

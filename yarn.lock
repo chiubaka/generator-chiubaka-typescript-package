@@ -1349,6 +1349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^18.0.1":
+  version: 18.0.1
+  resolution: "@types/node@npm:18.0.1"
+  checksum: be14b251c54cc2b4ca78ac6eadf2fe5e831e487f2e17848f21d576295945b538271dcc674d0bba582b3f8d95b84f6826e99b6ba4710c76f165a8bdd4d4f0618e
+  languageName: node
+  linkType: hard
+
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
@@ -2753,12 +2760,14 @@ __metadata:
   resolution: "generator-typescript-package@workspace:."
   dependencies:
     "@types/jest": ^28.1.4
+    "@types/node": ^18.0.1
     "@types/yeoman-assert": ^3.1.1
     "@types/yeoman-generator": ^5.2.10
     "@types/yeoman-test": ^4.0.3
     copyfiles: ^2.4.1
     isbinaryfile: ^5.0.0
     jest: ^28.1.2
+    mem-fs: ^2.2.1
     rimraf: ^3.0.2
     ts-jest: ^28.0.5
     ts-node: ^10.8.2
@@ -4054,7 +4063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mem-fs@npm:^1.2.0 || ^2.0.0":
+"mem-fs@npm:^1.2.0 || ^2.0.0, mem-fs@npm:^2.2.1":
   version: 2.2.1
   resolution: "mem-fs@npm:2.2.1"
   dependencies:
