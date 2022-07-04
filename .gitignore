@@ -1,5 +1,6 @@
 # Built files
 generators
+generated-package
 
 # yarn
 .yarn/*
