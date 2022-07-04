@@ -10,4 +10,4 @@ export class TypeScriptPackageGenerator extends Generator {
   public initializing() {
     this.composeWith("typescript-package:node-module");
   }
-};
+}

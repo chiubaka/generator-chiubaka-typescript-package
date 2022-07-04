@@ -12,7 +12,7 @@ describe("NodeModuleGenerator", () => {
     })
       .withPrompts({ packageName: "test-package" })
       .run();
-  })
+  });
 
   it("creates a package.json file", () => {
     result.assertFile("package.json");
@@ -20,5 +20,5 @@ describe("NodeModuleGenerator", () => {
 
   it("fills in the name of the package", () => {
     result.assertJsonFileContent("package.json", { name: "test-package" });
-  })
+  });
 });
