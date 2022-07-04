@@ -22,7 +22,6 @@ export class NodeModuleGenerator extends Generator {
 
   public writing() {
     assert(this.answers != null);
-    console.log(this.answers);
     this.fs.copyTpl(
       this.templatePath("package.json.ejs"),
       this.destinationPath("package.json"),
