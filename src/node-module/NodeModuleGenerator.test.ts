@@ -1,10 +1,11 @@
-import path from "path";
+import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
 import { NodeModuleGenerator } from "./NodeModuleGenerator";
 
 describe("NodeModuleGenerator", () => {
   let result: RunResult;
+
   beforeAll(async () => {
     result = await YeomanHelpers.create(NodeModuleGenerator, {
       resolved: path.join(__dirname, "./NodeModuleGenerator.ts"),
@@ -12,7 +13,7 @@ describe("NodeModuleGenerator", () => {
     })
       .withPrompts({ packageName: "test-package" })
       .run();
-  })
+  });
 
   it("creates a package.json file", () => {
     result.assertFile("package.json");
@@ -20,5 +21,5 @@ describe("NodeModuleGenerator", () => {
 
   it("fills in the name of the package", () => {
     result.assertJsonFileContent("package.json", { name: "test-package" });
-  })
+  });
 });
