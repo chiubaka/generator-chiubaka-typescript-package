@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:8.5.0"],\
             ["eslint-plugin-jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:26.5.3"],\
             ["eslint-plugin-prettier", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:4.2.1"],\
+            ["eslint-plugin-security", "npm:1.5.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:7.0.0"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
@@ -3808,6 +3809,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["eslint-plugin-security", [\
+        ["npm:1.5.0", {\
+          "packageLocation": "./.yarn/cache/eslint-plugin-security-npm-1.5.0-a3355aff62-c51c9d43d1.zip/node_modules/eslint-plugin-security/",\
+          "packageDependencies": [\
+            ["eslint-plugin-security", "npm:1.5.0"],\
+            ["safe-regex", "npm:2.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["eslint-plugin-simple-import-sort", [\
         ["npm:7.0.0", {\
           "packageLocation": "./.yarn/cache/eslint-plugin-simple-import-sort-npm-7.0.0-45d08a8927-6aacb7179c.zip/node_modules/eslint-plugin-simple-import-sort/",\
@@ -4301,6 +4312,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:8.5.0"],\
             ["eslint-plugin-jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:26.5.3"],\
             ["eslint-plugin-prettier", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:4.2.1"],\
+            ["eslint-plugin-security", "npm:1.5.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:7.0.0"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
@@ -7018,6 +7030,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["regexp-tree", [\
+        ["npm:0.1.24", {\
+          "packageLocation": "./.yarn/cache/regexp-tree-npm-0.1.24-b265ab7f23-5807013289.zip/node_modules/regexp-tree/",\
+          "packageDependencies": [\
+            ["regexp-tree", "npm:0.1.24"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["regexpp", [\
         ["npm:3.2.0", {\
           "packageLocation": "./.yarn/cache/regexpp-npm-3.2.0-2513f32cfc-a78dc5c715.zip/node_modules/regexpp/",\
@@ -7189,6 +7210,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/safe-buffer-npm-5.2.1-3481c8aa9b-b99c4b41fd.zip/node_modules/safe-buffer/",\
           "packageDependencies": [\
             ["safe-buffer", "npm:5.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["safe-regex", [\
+        ["npm:2.1.1", {\
+          "packageLocation": "./.yarn/cache/safe-regex-npm-2.1.1-4438cded67-5d734e2193.zip/node_modules/safe-regex/",\
+          "packageDependencies": [\
+            ["safe-regex", "npm:2.1.1"],\
+            ["regexp-tree", "npm:0.1.24"]\
           ],\
           "linkType": "HARD"\
         }]\
