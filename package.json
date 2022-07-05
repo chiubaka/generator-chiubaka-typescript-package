@@ -5,6 +5,16 @@
   "files": [
     "generators"
   ],
+  "scripts": {
+    "build": "tsc && yarn run copy:templates",
+    "clean": "rimraf -rf ./generators ./generated-package",
+    "copy:templates": "copyfiles --up 1 'src/*/templates/**' generators",
+    "lint": "yarn run eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
+    "prestart": "yarn run clean && yarn run build && npm link",
+    "pretest": "yarn run clean",
+    "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
+    "test": "yarn run pretest && jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chiubaka/generator-typescript-package.git"
@@ -23,21 +33,8 @@
     "url": "https://github.com/chiubaka/generator-typescript-package/issues"
   },
   "homepage": "https://github.com/chiubaka/generator-typescript-package#readme",
-  "scripts": {
-    "copy:templates": "copyfiles --up 1 'src/*/templates/**' generators",
-    "build": "tsc && yarn run copy:templates",
-    "pretest": "yarn run clean",
-    "test": "yarn run pretest && jest",
-    "lint": "yarn run eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
-    "prestart": "yarn run clean && yarn run build && npm link",
-    "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
-    "clean": "rimraf -rf ./generators ./generated-package"
-  },
   "dependencies": {
     "yeoman-generator": "^5.6.1"
-  },
-  "dependenciesComments": {
-    "yeoman-generator": "Core yeoman generator libraries"
   },
   "devDependencies": {
     "@types/jest": "^28.1.4",
@@ -54,6 +51,7 @@
     "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-jest-formatting": "^3.1.0",
     "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-package-json": "^0.1.4",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-security": "^1.5.0",
@@ -73,6 +71,9 @@
     "yeoman-environment": "^3.9.1",
     "yeoman-test": "^6.3.0"
   },
+  "dependenciesComments": {
+    "yeoman-generator": "Core yeoman generator libraries"
+  },
   "devDependenciesComments": {
     "@types/jest": "Types for jest",
     "@types/node": "Types for NodeJS. Peer dependency of ts-node.",
@@ -88,6 +89,7 @@
     "eslint-plugin-jest": "ESLint plugin for Jest best practices",
     "eslint-plugin-jest-formatting": "ESLint plugin for Jest formatting",
     "eslint-plugin-json": "ESLint plugin for JSON validation",
+    "eslint-plugin-package-json": "ESLint plugin for linting package.json files",
     "eslint-plugin-prettier": "ESLint plugin for compatibility with Prettier",
     "eslint-plugin-promise": "ESLint plugin for best practices with promise",
     "eslint-plugin-security": "ESLint plugin for security best practices",

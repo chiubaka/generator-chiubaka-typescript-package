@@ -70,8 +70,16 @@ overrides:
       json/json:
         - error
         - allowComments: true
+  - files:
+      - package.json
+    plugins:
+      - package-json
+    extends:
+      - plugin:package-json/recommended
+    rules:
+      prettier/prettier: off
+      unicorn/prefer-module: off
 plugins:
-  - "@typescript-eslint"
   - prettier
   - promise
   - simple-import-sort
