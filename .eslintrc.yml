@@ -6,6 +6,7 @@ extends:
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:prettier/recommended
   - plugin:security/recommended
+  - plugin:promise/recommended
 overrides:
   - files: "**/*.@(test|spec).@(t|j)s?(x)"
     plugins:
@@ -21,6 +22,7 @@ parserOptions:
 plugins:
   - "@typescript-eslint"
   - prettier
+  - promise
   - simple-import-sort
 rules:
   jest/expect-expect:

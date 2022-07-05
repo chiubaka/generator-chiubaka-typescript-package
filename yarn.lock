@@ -2794,6 +2794,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-promise@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "eslint-plugin-promise@npm:6.0.0"
+  peerDependencies:
+    eslint: ^7.0.0 || ^8.0.0
+  checksum: 7e761507c51267b77e4ad710e7c8938aa4f8f69b975886034e57497a1816e9527eda364e25aac03d1b4e0df2e738ba98e49ad075d028824fcfea533a1419751c
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-security@npm:^1.5.0":
   version: 1.5.0
   resolution: "eslint-plugin-security@npm:1.5.0"
@@ -3283,6 +3292,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-jest: ^26.5.3
     eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-promise: ^6.0.0
     eslint-plugin-security: ^1.5.0
     eslint-plugin-simple-import-sort: ^7.0.0
     isbinaryfile: ^5.0.0
