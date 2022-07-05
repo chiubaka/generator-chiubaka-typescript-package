@@ -35,6 +35,11 @@ export class NodeModuleGenerator extends Generator {
         name: "authorEmail",
         message: "What is the email address of the author of this new package?",
       },
+      {
+        type: "input",
+        name: "githubUrl",
+        message: "What is the full URL of the GitHub repo for the new package?",
+      },
     ];
 
     this.answers = await this.prompt(questions);
