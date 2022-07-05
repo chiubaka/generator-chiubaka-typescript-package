@@ -5,6 +5,7 @@ import { NodeModuleGenerator } from "./NodeModuleGenerator";
 
 describe("NodeModuleGenerator", () => {
   let result: RunResult;
+
   beforeAll(async () => {
     result = await YeomanHelpers.create(NodeModuleGenerator, {
       resolved: path.join(__dirname, "./NodeModuleGenerator.ts"),

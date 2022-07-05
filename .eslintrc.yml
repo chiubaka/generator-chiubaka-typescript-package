@@ -33,9 +33,11 @@ overrides:
   - files: "**/*.@(test|spec).@(t|j)s?(x)"
     plugins:
       - jest
+      - jest-formatting
     extends:
       - plugin:jest/recommended
       - plugin:jest/style
+      - plugin:jest-formatting/strict
   - files:
       - "*.yaml"
       - "*.yml"
