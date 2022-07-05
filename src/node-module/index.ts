@@ -1,1 +1,4 @@
-export { NodeModuleGenerator as default } from "./NodeModuleGenerator";
+export {
+  NodeModuleGenerator as default,
+  NodeModuleGenerator,
+} from "./NodeModuleGenerator";
