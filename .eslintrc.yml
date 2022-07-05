@@ -25,6 +25,22 @@ plugins:
   - promise
   - simple-import-sort
 rules:
+  "@typescript-eslint/interface-name-prefix": off
+  "@typescript-eslint/no-explicit-any": off
+  "@typescript-eslint/no-namespace":
+    - error
+    - allowDeclarations: true
+  "@typescript-eslint/no-unused-vars":
+    - error
+    - argsIgnorePattern: ^_
+      varsIgnorePattern: ^_
+  "@typescript-eslint/no-this-alias":
+    - error
+    - allowedNames:
+        - self
+  "@typescript-eslint/unbound-method":
+    - error
+    - ignoreStatic: true
   jest/expect-expect:
     - error
     - assertFunctionNames:
@@ -34,6 +50,11 @@ rules:
     - allow:
       - warn
       - error
+  promise/catch-or-return:
+    - error
+    - terminationMethod:
+        - catch
+        - finally
   simple-import-sort/exports: error
   simple-import-sort/imports:
     - error
