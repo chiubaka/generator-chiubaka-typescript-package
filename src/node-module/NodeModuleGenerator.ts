@@ -4,6 +4,10 @@ import Generator, { GeneratorOptions, Questions } from "yeoman-generator";
 interface PromptAnswers {
   name: string;
   description: string;
+  authorName: string;
+  authorEmail: string;
+  githubUrl: string;
+  keywords?: string;
 }
 
 export class NodeModuleGenerator extends Generator {
@@ -40,6 +44,12 @@ export class NodeModuleGenerator extends Generator {
         name: "githubUrl",
         message: "What is the full URL of the GitHub repo for the new package?",
       },
+      {
+        type: "input",
+        name: "keywords",
+        message:
+          "What keywords would you like to associate with this new package?",
+      },
     ];
 
     this.answers = await this.prompt(questions);
@@ -47,10 +57,17 @@ export class NodeModuleGenerator extends Generator {
 
   public writing() {
     assert(this.answers);
+
+    const keywordTokens = this.answers.keywords?.split(" ") || [];
+    const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
+
     this.fs.copyTpl(
       this.templatePath("package.json.ejs"),
       this.destinationPath("package.json"),
-      this.answers
+      {
+        ...this.answers,
+        keywords,
+      }
     );
   }
 }

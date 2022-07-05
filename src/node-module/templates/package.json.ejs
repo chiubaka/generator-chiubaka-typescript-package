@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git+<%= githubUrl %>.git"
   },
+  <%- include("partials/package.json/keywords.ejs", { keywords }) %>
   "author": "<%= authorName %> <<%= authorEmail %>>",
   "license": "UNLICENSED",
   "bugs": {
