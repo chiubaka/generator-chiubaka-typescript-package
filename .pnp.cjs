@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-promise", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:6.0.0"],\
             ["eslint-plugin-security", "npm:1.5.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:7.0.0"],\
+            ["eslint-plugin-unicorn", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:43.0.0"],\
             ["eslint-plugin-yml", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:1.0.0"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
@@ -2918,6 +2919,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["builtin-modules", [\
+        ["npm:3.3.0", {\
+          "packageLocation": "./.yarn/cache/builtin-modules-npm-3.3.0-db4f3d32de-db021755d7.zip/node_modules/builtin-modules/",\
+          "packageDependencies": [\
+            ["builtin-modules", "npm:3.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["builtins", [\
         ["npm:1.0.3", {\
           "packageLocation": "./.yarn/cache/builtins-npm-1.0.3-f09d2d57f2-47ce94f7ee.zip/node_modules/builtins/",\
@@ -3075,6 +3085,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/cjs-module-lexer-npm-1.2.2-473ce063ea-977f3f042b.zip/node_modules/cjs-module-lexer/",\
           "packageDependencies": [\
             ["cjs-module-lexer", "npm:1.2.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["clean-regexp", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/clean-regexp-npm-1.0.0-f349f98f15-0b1ce281b0.zip/node_modules/clean-regexp/",\
+          "packageDependencies": [\
+            ["clean-regexp", "npm:1.0.0"],\
+            ["escape-string-regexp", "npm:1.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3914,6 +3934,42 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["eslint-plugin-unicorn", [\
+        ["npm:43.0.0", {\
+          "packageLocation": "./.yarn/cache/eslint-plugin-unicorn-npm-43.0.0-aeab9d6ae6-5e9da1a379.zip/node_modules/eslint-plugin-unicorn/",\
+          "packageDependencies": [\
+            ["eslint-plugin-unicorn", "npm:43.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:43.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/eslint-plugin-unicorn-virtual-3117fa10ea/0/cache/eslint-plugin-unicorn-npm-43.0.0-aeab9d6ae6-5e9da1a379.zip/node_modules/eslint-plugin-unicorn/",\
+          "packageDependencies": [\
+            ["eslint-plugin-unicorn", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:43.0.0"],\
+            ["@babel/helper-validator-identifier", "npm:7.18.6"],\
+            ["@types/eslint", null],\
+            ["ci-info", "npm:3.3.2"],\
+            ["clean-regexp", "npm:1.0.0"],\
+            ["eslint", "npm:8.19.0"],\
+            ["eslint-utils", "virtual:147f1e0c86a84d48481240b8e403f896c0a34824f0fc1ec5f4df888495cb5f88fc2038bd76184debe0641b1891aeae2a4c3b5d4709f3d70958d507af9ee17e38#npm:3.0.0"],\
+            ["esquery", "npm:1.4.0"],\
+            ["indent-string", "npm:4.0.0"],\
+            ["is-builtin-module", "npm:3.1.0"],\
+            ["lodash", "npm:4.17.21"],\
+            ["pluralize", "npm:8.0.0"],\
+            ["read-pkg-up", "npm:7.0.1"],\
+            ["regexp-tree", "npm:0.1.24"],\
+            ["safe-regex", "npm:2.1.1"],\
+            ["semver", "npm:7.3.7"],\
+            ["strip-indent", "npm:3.0.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/eslint",\
+            "eslint"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["eslint-plugin-yml", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/eslint-plugin-yml-npm-1.0.0-f10c8dfed4-b345604d1e.zip/node_modules/eslint-plugin-yml/",\
@@ -4416,6 +4472,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-promise", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:6.0.0"],\
             ["eslint-plugin-security", "npm:1.5.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:7.0.0"],\
+            ["eslint-plugin-unicorn", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:43.0.0"],\
             ["eslint-plugin-yml", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:1.0.0"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
@@ -4874,6 +4931,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/is-arrayish-npm-0.2.1-23927dfb15-eef4417e3c.zip/node_modules/is-arrayish/",\
           "packageDependencies": [\
             ["is-arrayish", "npm:0.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["is-builtin-module", [\
+        ["npm:3.1.0", {\
+          "packageLocation": "./.yarn/cache/is-builtin-module-npm-3.1.0-8623ffacd0-f1e5dd2cd5.zip/node_modules/is-builtin-module/",\
+          "packageDependencies": [\
+            ["is-builtin-module", "npm:3.1.0"],\
+            ["builtin-modules", "npm:3.3.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6059,6 +6126,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["min-indent", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/min-indent-npm-1.0.1-77031f50e1-bfc6dd03c5.zip/node_modules/min-indent/",\
+          "packageDependencies": [\
+            ["min-indent", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["minimatch", [\
         ["npm:3.1.2", {\
           "packageLocation": "./.yarn/cache/minimatch-npm-3.1.2-9405269906-c154e56640.zip/node_modules/minimatch/",\
@@ -6844,6 +6920,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["pkg-dir", "npm:4.2.0"],\
             ["find-up", "npm:4.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["pluralize", [\
+        ["npm:8.0.0", {\
+          "packageLocation": "./.yarn/cache/pluralize-npm-8.0.0-f5f044ed52-08931d4a6a.zip/node_modules/pluralize/",\
+          "packageDependencies": [\
+            ["pluralize", "npm:8.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7709,6 +7794,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/strip-final-newline-npm-2.0.0-340c4f7c66-69412b5e25.zip/node_modules/strip-final-newline/",\
           "packageDependencies": [\
             ["strip-final-newline", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["strip-indent", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/strip-indent-npm-3.0.0-519e75a28d-18f045d57d.zip/node_modules/strip-indent/",\
+          "packageDependencies": [\
+            ["strip-indent", "npm:3.0.0"],\
+            ["min-indent", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\

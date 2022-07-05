@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import Generator, { GeneratorOptions } from "yeoman-generator";
 
 interface PromptAnswers {
@@ -8,8 +8,8 @@ interface PromptAnswers {
 export class NodeModuleGenerator extends Generator {
   private answers!: PromptAnswers;
 
-  constructor(args: string | string[], options: GeneratorOptions) {
-    super(args, options);
+  constructor(arguments_: string | string[], options: GeneratorOptions) {
+    super(arguments_, options);
   }
 
   public async prompting() {
@@ -21,7 +21,7 @@ export class NodeModuleGenerator extends Generator {
   }
 
   public writing() {
-    assert(this.answers != null);
+    assert(this.answers);
     this.fs.copyTpl(
       this.templatePath("package.json.ejs"),
       this.destinationPath("package.json"),

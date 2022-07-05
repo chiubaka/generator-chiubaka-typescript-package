@@ -1,3 +1,1 @@
-import { TypeScriptPackageGenerator } from "./TypeScriptPackageGenerator";
-
-export default TypeScriptPackageGenerator;
+export { TypeScriptPackageGenerator as default } from "./TypeScriptPackageGenerator";

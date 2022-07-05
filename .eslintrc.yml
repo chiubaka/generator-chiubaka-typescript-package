@@ -6,6 +6,7 @@ extends:
   - plugin:prettier/recommended
   - plugin:promise/recommended
   - plugin:security/recommended
+  - plugin:unicorn/recommended
 overrides:
   - files: "**/*.ts?(x)"
     plugins:
@@ -38,6 +39,11 @@ overrides:
       - plugin:jest/recommended
       - plugin:jest/style
       - plugin:jest-formatting/strict
+    rules:
+      # Disallowing __dirname in Jest files with ts-jest is rather complicated and
+      # requires use of experimental features
+      # https://github.com/kulshekhar/ts-jest/issues/1174
+      unicorn/prefer-module: off
   - files:
       - "*.yaml"
       - "*.yml"
@@ -55,6 +61,7 @@ plugins:
   - prettier
   - promise
   - simple-import-sort
+  - unicorn
 rules:
   jest/expect-expect:
     - error
@@ -83,3 +90,13 @@ rules:
           - ^\.
         - # Catch everything not covered by other rules
           - ^
+  unicorn/filename-case:
+    - error
+    - cases:
+        camelCase: true
+        pascalCase: true
+  unicorn/prevent-abbreviations:
+    - error
+    - replacements:
+        args:
+          arguments: false

@@ -1,3 +1,1 @@
-import { NodeModuleGenerator } from "./NodeModuleGenerator";
-
-export default NodeModuleGenerator;
+export { NodeModuleGenerator as default } from "./NodeModuleGenerator";
