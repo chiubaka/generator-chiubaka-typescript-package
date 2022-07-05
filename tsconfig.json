@@ -104,6 +104,8 @@
     "src"
   ],
   "exclude": [
-    "src/*/templates"
+    "src/*/templates",
+    "**/*.@(test|spec).@(t|j)s?(x)",
+    "**/__fixtures__/*"
   ]
 }

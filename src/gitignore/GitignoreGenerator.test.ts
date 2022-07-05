@@ -1,16 +1,10 @@
-import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
-
-import { GitignoreGenerator } from "./GitignoreGenerator";
 
 describe("GitignoreGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(GitignoreGenerator, {
-      resolved: path.join(__dirname, "./GitignoreGenerator.ts"),
-      namespace: "typescript-package:gitignore",
-    }).run();
+    result = await YeomanHelpers.create(__dirname).run();
   });
 
   it("creates a .gitignore file", () => {
