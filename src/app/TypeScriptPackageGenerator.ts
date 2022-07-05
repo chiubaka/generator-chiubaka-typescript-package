@@ -1,12 +1,6 @@
-import Generator, { GeneratorOptions } from "yeoman-generator";
+import { BaseGenerator } from "../shared";
 
-export class TypeScriptPackageGenerator extends Generator {
-  // private options: TypeScriptPackageGeneratorOptions;
-
-  constructor(args: string | string[], options: GeneratorOptions) {
-    super(args, options);
-  }
-
+export class TypeScriptPackageGenerator extends BaseGenerator {
   public initializing() {
     this.composeWith("typescript-package:node-module");
   }
