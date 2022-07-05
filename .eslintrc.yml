@@ -5,6 +5,13 @@ extends:
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:prettier/recommended
+overrides:
+  - files: "**/*.@(test|spec).@(t|j)s?(x)"
+    plugins:
+      - jest
+    extends:
+      - plugin:jest/recommended
+      - plugin:jest/style
 parser: "@typescript-eslint/parser"
 parserOptions:
   ecmaVersion: latest
@@ -15,6 +22,10 @@ plugins:
   - prettier
   - simple-import-sort
 rules:
+  jest/expect-expect:
+    - error
+    - assertFunctionNames:
+        - "*.assert*"
   no-console:
     - error
     - allow:
