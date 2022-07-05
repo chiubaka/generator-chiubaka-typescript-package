@@ -1,5 +1,7 @@
 import assert from "node:assert";
-import Generator, { GeneratorOptions, Questions } from "yeoman-generator";
+import { Questions } from "yeoman-generator";
+
+import { BaseGenerator } from "../shared";
 
 interface PromptAnswers {
   name: string;
@@ -10,12 +12,8 @@ interface PromptAnswers {
   keywords?: string;
 }
 
-export class NodeModuleGenerator extends Generator {
+export class NodeModuleGenerator extends BaseGenerator {
   private answers!: PromptAnswers;
-
-  constructor(arguments_: string | string[], options: GeneratorOptions) {
-    super(arguments_, options);
-  }
 
   public async prompting() {
     const questions: Questions<PromptAnswers> = [
@@ -61,13 +59,9 @@ export class NodeModuleGenerator extends Generator {
     const keywordTokens = this.answers.keywords?.split(" ") || [];
     const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
 
-    this.fs.copyTpl(
-      this.templatePath("package.json.ejs"),
-      this.destinationPath("package.json"),
-      {
-        ...this.answers,
-        keywords,
-      }
-    );
+    this.copyTemplate("package.json.ejs", "package.json", {
+      ...this.answers,
+      keywords,
+    });
   }
 }
