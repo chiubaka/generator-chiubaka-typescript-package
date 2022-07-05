@@ -28,7 +28,7 @@
     "chiubaka-technologies"
   ],
   "author": "Daniel Chiu <daniel@chiubaka.com>",
-  "license": "",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/chiubaka/generator-typescript-package/issues"
   },
