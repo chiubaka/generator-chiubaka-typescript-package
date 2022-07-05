@@ -28,7 +28,7 @@
     "build": "tsc && yarn run copy:templates",
     "pretest": "yarn run clean",
     "test": "yarn run pretest && jest",
-    "lint": "yarn run eslint src/",
+    "lint": "yarn run eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml .",
     "prestart": "yarn run clean && yarn run build && npm link",
     "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
     "clean": "rimraf -rf ./generators ./generated-package"
@@ -55,6 +55,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-security": "^1.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-yml": "^1.0.0",
     "isbinaryfile": "^5.0.0",
     "jest": "^28.1.2",
     "mem-fs": "^2.2.1",
@@ -63,6 +64,7 @@
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.2",
     "typescript": "^4.7.4",
+    "yaml-eslint-parser": "^1.0.1",
     "yeoman-assert": "^3.1.1",
     "yeoman-environment": "^3.9.1",
     "yeoman-test": "^6.3.0"
@@ -83,6 +85,7 @@
     "eslint-plugin-promise": "ESLint plugin for best practices with promise",
     "eslint-plugin-security": "ESLint plugin for security best practices",
     "eslint-plugin-simple-import-sort": "ESLint plugin for sorting and organizing imports",
+    "eslint-plugin-yml": "ESLint plugin for linting YAML files",
     "isbinaryfile": "Unlisted dependency of yeoman-environment. https://github.com/chiubaka/generator-typescript-package/issues/4",
     "jest": "Test runner from Meta",
     "mem-fs": "Peer dependency of yeoman-test",
@@ -91,6 +94,7 @@
     "ts-jest": "TypeScript preprocessor with source map support for Jest",
     "ts-node": "To enable TypeScript configuration files for Jest",
     "typescript": "TypeScript support for this project",
+    "yaml-eslint-parser": "Peer dependency of eslint-plugin-yml. ESLint parser for YAML files.",
     "yeoman-assert": "Yeoman extensions for native assert module for utility in tests",
     "yeoman-environment": "Peer dependency for yeoman-test",
     "yeoman-test": "Test helpers for yeoman generators"
