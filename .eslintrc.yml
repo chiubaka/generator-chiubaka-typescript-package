@@ -2,9 +2,10 @@ env:
   browser: true
   es2021: true
 extends:
+  - plugin:eslint-comments/recommended
   - plugin:prettier/recommended
-  - plugin:security/recommended
   - plugin:promise/recommended
+  - plugin:security/recommended
 overrides:
   - files: "**/*.ts?(x)"
     plugins:
