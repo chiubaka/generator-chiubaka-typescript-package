@@ -6,9 +6,10 @@
     "generators"
   ],
   "scripts": {
-    "build": "tsc && yarn run copy:templates",
+    "build": "tsc && yarn run build:copy",
+    "build:copy": "yarn run build:copy:templates",
+    "build:copy:templates": "copyfiles --up 1 --all 'src/*/templates/**' generators",
     "clean": "rimraf -rf ./generators ./generated-package",
-    "copy:templates": "copyfiles --up 1 'src/*/templates/**' generators",
     "lint": "eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
