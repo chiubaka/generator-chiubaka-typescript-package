@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="68" failures="0" errors="0" time="6.177">
+  <testsuite name="TsConfigGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:46" time="1.99" tests="3">
+    <testcase classname="TsConfigGenerator creates a tsconfig.json file" name="TsConfigGenerator creates a tsconfig.json file" time="0">
+    </testcase>
+    <testcase classname="TsConfigGenerator installs dependencies adds @chiubaka/tsconfig to package.json" name="TsConfigGenerator installs dependencies adds @chiubaka/tsconfig to package.json" time="0.001">
+    </testcase>
+    <testcase classname="TsConfigGenerator tsconfig.json extends from @chiubaka/tsconfig" name="TsConfigGenerator tsconfig.json extends from @chiubaka/tsconfig" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="TypeScriptPackageGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:48" time="0.882" tests="5">
+    <testcase classname="TypeScriptPackageGenerator package.json creates a package.json file" name="TypeScriptPackageGenerator package.json creates a package.json file" time="0">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator package.json installs required devDependencies installs @chiubaka/tsconfig" name="TypeScriptPackageGenerator package.json installs required devDependencies installs @chiubaka/tsconfig" time="0.001">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator creates a .gitignore file" name="TypeScriptPackageGenerator creates a .gitignore file" time="0">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator creates a tsconfig.json file" name="TypeScriptPackageGenerator creates a tsconfig.json file" time="0">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator creates a .circleci/config.yml file" name="TypeScriptPackageGenerator creates a .circleci/config.yml file" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="TsConfigGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:49" time="0.489" tests="3">
+    <testcase classname="TsConfigGenerator creates a tsconfig.json file" name="TsConfigGenerator creates a tsconfig.json file" time="0">
+    </testcase>
+    <testcase classname="TsConfigGenerator installs dependencies adds @chiubaka/tsconfig to package.json" name="TsConfigGenerator installs dependencies adds @chiubaka/tsconfig to package.json" time="0.001">
+    </testcase>
+    <testcase classname="TsConfigGenerator tsconfig.json extends from @chiubaka/tsconfig" name="TsConfigGenerator tsconfig.json extends from @chiubaka/tsconfig" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="TypeScriptPackageGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:49" time="0.516" tests="5">
+    <testcase classname="TypeScriptPackageGenerator package.json creates a package.json file" name="TypeScriptPackageGenerator package.json creates a package.json file" time="0">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator package.json installs required devDependencies installs @chiubaka/tsconfig" name="TypeScriptPackageGenerator package.json installs required devDependencies installs @chiubaka/tsconfig" time="0.001">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator creates a .gitignore file" name="TypeScriptPackageGenerator creates a .gitignore file" time="0">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator creates a tsconfig.json file" name="TypeScriptPackageGenerator creates a tsconfig.json file" time="0">
+    </testcase>
+    <testcase classname="TypeScriptPackageGenerator creates a .circleci/config.yml file" name="TypeScriptPackageGenerator creates a .circleci/config.yml file" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="NodeModuleGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:50" time="0.444" tests="17">
+    <testcase classname="NodeModuleGenerator package.json creates a package.json file" name="NodeModuleGenerator package.json creates a package.json file" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the name of the package" name="NodeModuleGenerator package.json fills in the name of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the version of the package" name="NodeModuleGenerator package.json fills in the version of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the description of the package" name="NodeModuleGenerator package.json fills in the description of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts fills in an scripts section for the package" name="NodeModuleGenerator package.json scripts fills in an scripts section for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a lint script for the package" name="NodeModuleGenerator package.json scripts stubs out a lint script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a build script for the package" name="NodeModuleGenerator package.json scripts stubs out a build script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a test script for the package" name="NodeModuleGenerator package.json scripts stubs out a test script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a publish script for the package" name="NodeModuleGenerator package.json scripts stubs out a publish script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the repository section of the package" name="NodeModuleGenerator package.json fills in the repository section of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json keywords when no keywords are provided does not include the keywords section" name="NodeModuleGenerator package.json keywords when no keywords are provided does not include the keywords section" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json keywords when keywords are provided fills in the keywords section of the package" name="NodeModuleGenerator package.json keywords when keywords are provided fills in the keywords section of the package" time="0.001">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json keywords when keywords are provided formats the keywords section properly" name="NodeModuleGenerator package.json keywords when keywords are provided formats the keywords section properly" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the author of the package" name="NodeModuleGenerator package.json fills in the author of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the license of the package" name="NodeModuleGenerator package.json fills in the license of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the bugs section of the package" name="NodeModuleGenerator package.json fills in the bugs section of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the homepage of the package" name="NodeModuleGenerator package.json fills in the homepage of the package" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="NodeModuleGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:50" time="0.346" tests="17">
+    <testcase classname="NodeModuleGenerator package.json creates a package.json file" name="NodeModuleGenerator package.json creates a package.json file" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the name of the package" name="NodeModuleGenerator package.json fills in the name of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the version of the package" name="NodeModuleGenerator package.json fills in the version of the package" time="0.001">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the description of the package" name="NodeModuleGenerator package.json fills in the description of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts fills in an scripts section for the package" name="NodeModuleGenerator package.json scripts fills in an scripts section for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a lint script for the package" name="NodeModuleGenerator package.json scripts stubs out a lint script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a build script for the package" name="NodeModuleGenerator package.json scripts stubs out a build script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a test script for the package" name="NodeModuleGenerator package.json scripts stubs out a test script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json scripts stubs out a publish script for the package" name="NodeModuleGenerator package.json scripts stubs out a publish script for the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the repository section of the package" name="NodeModuleGenerator package.json fills in the repository section of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json keywords when no keywords are provided does not include the keywords section" name="NodeModuleGenerator package.json keywords when no keywords are provided does not include the keywords section" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json keywords when keywords are provided fills in the keywords section of the package" name="NodeModuleGenerator package.json keywords when keywords are provided fills in the keywords section of the package" time="0.001">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json keywords when keywords are provided formats the keywords section properly" name="NodeModuleGenerator package.json keywords when keywords are provided formats the keywords section properly" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the author of the package" name="NodeModuleGenerator package.json fills in the author of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the license of the package" name="NodeModuleGenerator package.json fills in the license of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the bugs section of the package" name="NodeModuleGenerator package.json fills in the bugs section of the package" time="0">
+    </testcase>
+    <testcase classname="NodeModuleGenerator package.json fills in the homepage of the package" name="NodeModuleGenerator package.json fills in the homepage of the package" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="CircleCiGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:50" time="0.395" tests="5">
+    <testcase classname="CircleCiGenerator .circleci/ config.yml creates a config.yml file" name="CircleCiGenerator .circleci/ config.yml creates a config.yml file" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for running linters" name="CircleCiGenerator .circleci/ config.yml includes a job for running linters" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for building the project" name="CircleCiGenerator .circleci/ config.yml includes a job for building the project" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for running tests" name="CircleCiGenerator .circleci/ config.yml includes a job for running tests" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for publishing the package" name="CircleCiGenerator .circleci/ config.yml includes a job for publishing the package" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="CircleCiGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:51" time="0.321" tests="5">
+    <testcase classname="CircleCiGenerator .circleci/ config.yml creates a config.yml file" name="CircleCiGenerator .circleci/ config.yml creates a config.yml file" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for running linters" name="CircleCiGenerator .circleci/ config.yml includes a job for running linters" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for building the project" name="CircleCiGenerator .circleci/ config.yml includes a job for building the project" time="0.001">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for running tests" name="CircleCiGenerator .circleci/ config.yml includes a job for running tests" time="0">
+    </testcase>
+    <testcase classname="CircleCiGenerator .circleci/ config.yml includes a job for publishing the package" name="CircleCiGenerator .circleci/ config.yml includes a job for publishing the package" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="GitignoreGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:51" time="0.331" tests="4">
+    <testcase classname="GitignoreGenerator creates a .gitignore file" name="GitignoreGenerator creates a .gitignore file" time="0.001">
+    </testcase>
+    <testcase classname="GitignoreGenerator includes macOS gitignore rules" name="GitignoreGenerator includes macOS gitignore rules" time="0">
+    </testcase>
+    <testcase classname="GitignoreGenerator includes yarn gitignore rules" name="GitignoreGenerator includes yarn gitignore rules" time="0">
+    </testcase>
+    <testcase classname="GitignoreGenerator includes VSCode gitignore rules" name="GitignoreGenerator includes VSCode gitignore rules" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="GitignoreGenerator" errors="0" failures="0" skipped="0" timestamp="2022-07-06T22:53:51" time="0.394" tests="4">
+    <testcase classname="GitignoreGenerator creates a .gitignore file" name="GitignoreGenerator creates a .gitignore file" time="0">
+    </testcase>
+    <testcase classname="GitignoreGenerator includes macOS gitignore rules" name="GitignoreGenerator includes macOS gitignore rules" time="0">
+    </testcase>
+    <testcase classname="GitignoreGenerator includes yarn gitignore rules" name="GitignoreGenerator includes yarn gitignore rules" time="0">
+    </testcase>
+    <testcase classname="GitignoreGenerator includes VSCode gitignore rules" name="GitignoreGenerator includes VSCode gitignore rules" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -55,7 +55,11 @@ jobs:
       - setup
       - run:
           name: Run tests
-          command: yarn run test
+          command: yarn run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
   publish:
     executor: node-executor
     steps:
