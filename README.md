@@ -1,4 +1,6 @@
 # generator-typescript-package
+[![chiubaka](https://circleci.com/gh/chiubaka/generator-typescript-package.svg?style=shield)](https://app.circleci.com/pipelines/github/chiubaka/generator-typescript-package?filter=all)
+
 Yeoman generator for standard Chiubaka Technologies TypeScript packages for libraries and other such things.
 
 ## Motivation
