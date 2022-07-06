@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@chiubaka/tsconfig", "npm:0.0.1"],\
             ["@types/jest", "npm:28.1.4"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
@@ -817,6 +818,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@bcoe-v8-coverage-npm-0.2.3-9e27b3c57e-850f930553.zip/node_modules/@bcoe/v8-coverage/",\
           "packageDependencies": [\
             ["@bcoe/v8-coverage", "npm:0.2.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@chiubaka/tsconfig", [\
+        ["npm:0.0.1", {\
+          "packageLocation": "./.yarn/cache/@chiubaka-tsconfig-npm-0.0.1-172b2f0d84-a2262b05ac.zip/node_modules/@chiubaka/tsconfig/",\
+          "packageDependencies": [\
+            ["@chiubaka/tsconfig", "npm:0.0.1"],\
+            ["@tsconfig/recommended", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1741,6 +1752,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@tsconfig-node16-npm-1.0.3-6a4a30eda2-3a8b657dd0.zip/node_modules/@tsconfig/node16/",\
           "packageDependencies": [\
             ["@tsconfig/node16", "npm:1.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tsconfig/recommended", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/@tsconfig-recommended-npm-1.0.1-d9691faba9-5f781e6a26.zip/node_modules/@tsconfig/recommended/",\
+          "packageDependencies": [\
+            ["@tsconfig/recommended", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4590,6 +4610,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["generator-typescript-package", "workspace:."],\
+            ["@chiubaka/tsconfig", "npm:0.0.1"],\
             ["@types/jest", "npm:28.1.4"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
