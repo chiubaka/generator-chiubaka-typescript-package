@@ -11,6 +11,10 @@ describe("GitignoreGenerator", () => {
     result.assertFile(".gitignore");
   });
 
+  it("includes macOS gitignore rules", () => {
+    result.assertFileContent(".gitignore", "macOS");
+  });
+
   it("includes yarn gitignore rules", () => {
     result.assertFileContent(".gitignore", "yarn");
   });
