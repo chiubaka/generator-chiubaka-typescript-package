@@ -8,6 +8,7 @@ extends:
   - plugin:security/recommended
   - plugin:unicorn/recommended
 ignorePatterns:
+  - generators
   - jest.config.ts
 overrides:
   - files: "**/*.ts?(x)"
