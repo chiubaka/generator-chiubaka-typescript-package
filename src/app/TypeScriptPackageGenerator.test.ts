@@ -34,4 +34,8 @@ describe("TypeScriptPackageGenerator", () => {
   it("creates a tsconfig.json file", () => {
     result.assertFile("tsconfig.json");
   });
+
+  it("creates a .circleci/config.yml file", () => {
+    result.assertFile(".circleci/config.yml");
+  });
 });
