@@ -389,12 +389,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chiubaka/tsconfig@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "@chiubaka/tsconfig@npm:0.0.1"
+"@chiubaka/tsconfig@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@chiubaka/tsconfig@npm:0.0.2"
   dependencies:
     "@tsconfig/recommended": ^1.0.1
-  checksum: a2262b05ac8aec978899e46fa52ca04f59a12f6c4913ca771110269b8d593e1b92a4bbf662b8744f978d57d3d8c9d6f727d7cb90545a901387175120eeff660a
+  checksum: 894f3582b139cfa741663dd3da954a78d3b2f6d5d4044c114d22778be181026e462a8ac39e1f6357286f88ec12747d8defc743445d7d8ce88116e2a5936c9dc6
   languageName: node
   linkType: hard
 
@@ -3485,7 +3485,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "generator-typescript-package@workspace:."
   dependencies:
-    "@chiubaka/tsconfig": ^0.0.1
+    "@chiubaka/tsconfig": ^0.0.2
     "@types/jest": ^28.1.4
     "@types/node": ^18.0.1
     "@types/yeoman-assert": ^3.1.1
