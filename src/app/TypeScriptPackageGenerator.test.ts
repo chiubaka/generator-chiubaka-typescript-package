@@ -3,6 +3,8 @@ import YeomanHelpers, { RunResult } from "yeoman-test";
 import { DEV_DEPENDENCY_VERSIONS } from "../__tests__/__fixtures__";
 import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "../node-module/__fixtures__";
 
+jest.setTimeout(10_000);
+
 describe("TypeScriptPackageGenerator", () => {
   let result: RunResult;
 
