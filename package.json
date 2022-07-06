@@ -16,7 +16,8 @@
     "prestart": "yarn run clean && yarn run build && npm link",
     "pretest": "yarn run clean && yarn run build",
     "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
-    "test": "yarn run pretest && jest"
+    "test": "yarn run pretest && jest",
+    "test:typescript": "yarn run clean && jest"
   },
   "repository": {
     "type": "git",
