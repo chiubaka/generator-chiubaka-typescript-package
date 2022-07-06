@@ -54,6 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:7.0.0"],\
             ["eslint-plugin-unicorn", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:43.0.0"],\
             ["eslint-plugin-yml", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:1.0.0"],\
+            ["husky", "npm:8.0.1"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
             ["mem-fs", "npm:2.2.1"],\
@@ -4525,6 +4526,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:7.0.0"],\
             ["eslint-plugin-unicorn", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:43.0.0"],\
             ["eslint-plugin-yml", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:1.0.0"],\
+            ["husky", "npm:8.0.1"],\
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:6050e3644cc682c35fc49a157a8e11a65c8761b483af4b642bfd50e48f6107ef5e76f4b684ebd7af368a4e21ad311379963ffa16d2eeeae9f825b20302f3482d#npm:28.1.2"],\
             ["mem-fs", "npm:2.2.1"],\
@@ -4816,6 +4818,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["humanize-ms", "npm:1.2.1"],\
             ["ms", "npm:2.1.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["husky", [\
+        ["npm:8.0.1", {\
+          "packageLocation": "./.yarn/cache/husky-npm-8.0.1-85fede8470-943a73a13d.zip/node_modules/husky/",\
+          "packageDependencies": [\
+            ["husky", "npm:8.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
