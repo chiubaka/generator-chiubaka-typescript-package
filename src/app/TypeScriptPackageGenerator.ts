@@ -1,5 +1,6 @@
 import path from "node:path";
 
+import CircleCiGenerator from "../circleci";
 import { GitignoreGenerator } from "../gitignore";
 import { NodeModuleGenerator } from "../node-module";
 import { BaseGenerator } from "../shared";
@@ -19,6 +20,10 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
       {
         Generator: TsConfigGenerator,
         path: path.join(__dirname, "../tsconfig"),
+      },
+      {
+        Generator: CircleCiGenerator,
+        path: path.join(__dirname, "../circleci"),
       },
     ]);
   }

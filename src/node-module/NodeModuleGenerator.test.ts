@@ -29,9 +29,43 @@ describe("NodeModuleGenerator", () => {
       });
     });
 
-    it("fills in an empty scripts section for the package", () => {
-      result.assertJsonFileContent("package.json", {
-        scripts: {},
+    describe("scripts", () => {
+      it("fills in an scripts section for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {},
+        });
+      });
+
+      it("stubs out a lint script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            lint: "",
+          },
+        });
+      });
+
+      it("stubs out a build script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            build: "",
+          },
+        });
+      });
+
+      it("stubs out a test script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            test: "",
+          },
+        });
+      });
+
+      it("stubs out a publish script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            publish: "",
+          },
+        });
       });
     });
 
