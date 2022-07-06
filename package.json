@@ -13,7 +13,7 @@
     "lint:staged": "lint-staged",
     "prepare": "husky install",
     "prestart": "yarn run clean && yarn run build && npm link",
-    "pretest": "yarn run clean",
+    "pretest": "yarn run clean && yarn run build",
     "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
     "test": "yarn run pretest && jest"
   },
