@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./generators"
+    "outDir": "./generators",
+    "rootDir": "./src"
   },
-  "exclude": ["src/*/templates"],
   "extends": "@chiubaka/tsconfig/tsconfig.json",
-  "include": ["src"]
+  "include": ["src", "test"]
 }

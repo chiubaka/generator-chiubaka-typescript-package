@@ -89,6 +89,7 @@ rules:
   jest/expect-expect:
     - error
     - assertFunctionNames:
+        - expect
         - "*.assert*"
   no-console:
     - error
