@@ -40,7 +40,7 @@
     "yeoman-generator": "^5.6.1"
   },
   "devDependencies": {
-    "@chiubaka/tsconfig": "^0.0.1",
+    "@chiubaka/tsconfig": "^0.0.2",
     "@types/jest": "^28.1.4",
     "@types/node": "^18.0.1",
     "@types/yeoman-assert": "^3.1.1",

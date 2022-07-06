@@ -33,7 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@chiubaka/tsconfig", "npm:0.0.1"],\
+            ["@chiubaka/tsconfig", "npm:0.0.2"],\
             ["@types/jest", "npm:28.1.4"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
@@ -823,10 +823,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@chiubaka/tsconfig", [\
-        ["npm:0.0.1", {\
-          "packageLocation": "./.yarn/cache/@chiubaka-tsconfig-npm-0.0.1-172b2f0d84-a2262b05ac.zip/node_modules/@chiubaka/tsconfig/",\
+        ["npm:0.0.2", {\
+          "packageLocation": "./.yarn/cache/@chiubaka-tsconfig-npm-0.0.2-e355e85fdb-894f3582b1.zip/node_modules/@chiubaka/tsconfig/",\
           "packageDependencies": [\
-            ["@chiubaka/tsconfig", "npm:0.0.1"],\
+            ["@chiubaka/tsconfig", "npm:0.0.2"],\
             ["@tsconfig/recommended", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
@@ -4610,7 +4610,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["generator-typescript-package", "workspace:."],\
-            ["@chiubaka/tsconfig", "npm:0.0.1"],\
+            ["@chiubaka/tsconfig", "npm:0.0.2"],\
             ["@types/jest", "npm:28.1.4"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
