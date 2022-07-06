@@ -9,13 +9,14 @@ extends:
   - plugin:unicorn/recommended
 ignorePatterns:
   - generators
-  - jest.config.ts
 overrides:
-  - files: "**/*.ts?(x)"
+  - files:
+      - "*.ts"
+      - "*.tsx"
     parser: "@typescript-eslint/parser"
     parserOptions:
       ecmaVersion: latest
-      project: tsconfig.json
+      project: tsconfig.eslint.json
       sourceType: module
     plugins:
       - "@typescript-eslint"
