@@ -124,4 +124,6 @@ rules:
     - replacements:
         args:
           arguments: false
+        dev:
+          development: false
   unicorn/prefer-module: off
