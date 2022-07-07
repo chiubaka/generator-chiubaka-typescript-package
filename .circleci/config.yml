@@ -60,9 +60,9 @@ jobs:
           name: Move JUnit report to reports directory
           command: mkdir -p ./reports/junit && mv junit.xml ./reports/junit/
       - store_test_results:
-          path: ./reports
+          path: ./reports/
       - store_artifacts:
-          path: ./reports
+          path: ./reports/
   publish:
     executor: node-executor
     steps:
