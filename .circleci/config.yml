@@ -81,6 +81,8 @@ workflows:
           filters:
             <<: *semver-tags
       - publish:
+          context:
+            - npm-publishing
           requires:
             - lint
             - test
