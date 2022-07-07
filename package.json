@@ -12,7 +12,7 @@
     "clean": "rimraf -rf ./generators /tmp/generated-package",
     "deploy": "yarn run build && yarn run deploy:npm && yarn run deploy:generated",
     "deploy:generated": "",
-    "deploy:npm": "npm deploy --access public",
+    "deploy:npm": "npm publish --access public",
     "lint": "eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
