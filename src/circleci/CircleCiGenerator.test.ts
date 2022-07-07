@@ -21,8 +21,21 @@ describe("CircleCiGenerator", () => {
         result.assertFileContent(".circleci/config.yml", "yarn run build");
       });
 
-      it("includes a job for running tests", () => {
-        result.assertFileContent(".circleci/config.yml", "yarn run test");
+      describe("testing", () => {
+        it("includes a job for running tests", () => {
+          result.assertFileContent(".circleci/config.yml", "yarn run test");
+        });
+
+        it("stores test results", () => {
+          result.assertFileContent(
+            ".circleci/config.yml",
+            "store_test_results"
+          );
+        });
+
+        it("stores artifacts", () => {
+          result.assertFileContent(".circleci/config.yml", "store_artifacts");
+        });
       });
 
       it("includes a job for publishing the package", () => {
