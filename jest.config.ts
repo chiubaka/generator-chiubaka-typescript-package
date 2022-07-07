@@ -5,7 +5,7 @@ const config: Config = {
   preset: "ts-jest",
   setupFilesAfterEnv: ["./src/__tests__/__setup__/jest.setup.ts"],
   testEnvironment: "node",
-  testPathIgnorePatterns: ["/__tests__/(__setup__|__fixtures__)/*"],
+  testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)"],
 };
 
 export default config;

@@ -4,5 +4,5 @@
     "rootDir": "./src"
   },
   "extends": "@chiubaka/tsconfig/tsconfig.json",
-  "include": ["src", "test"]
+  "include": ["src"]
 }
