@@ -1,6 +1,5 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { DEV_DEPENDENCY_VERSIONS } from "../__tests__/__fixtures__";
 import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "../node-module/__tests__/__fixtures__/index";
 
 jest.setTimeout(10_000);
@@ -21,10 +20,7 @@ describe("TypeScriptPackageGenerator", () => {
 
     describe("installs required devDependencies", () => {
       it("installs @chiubaka/tsconfig", () => {
-        expect(result).toHaveDevDependency(
-          "@chiubaka/tsconfig",
-          DEV_DEPENDENCY_VERSIONS["@chiubaka/tsconfig"]
-        );
+        expect(result).toHaveDevDependency("@chiubaka/tsconfig");
       });
     });
   });

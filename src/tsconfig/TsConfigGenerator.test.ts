@@ -1,7 +1,5 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { DEV_DEPENDENCY_VERSIONS } from "../__tests__/__fixtures__";
-
 describe("TsConfigGenerator", () => {
   let result: RunResult;
 
@@ -15,10 +13,7 @@ describe("TsConfigGenerator", () => {
 
   describe("installs dependencies", () => {
     it("adds @chiubaka/tsconfig to package.json", () => {
-      expect(result).toHaveDevDependency(
-        "@chiubaka/tsconfig",
-        DEV_DEPENDENCY_VERSIONS["@chiubaka/tsconfig"]
-      );
+      expect(result).toHaveDevDependency("@chiubaka/tsconfig");
     });
   });
 
