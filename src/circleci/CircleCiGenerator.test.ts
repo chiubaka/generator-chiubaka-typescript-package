@@ -34,7 +34,7 @@ describe("CircleCiGenerator", () => {
         });
 
         it("stores artifacts", () => {
-          result.assertFileContent("./circleci/config.yml", "store_artifacts");
+          result.assertFileContent(".circleci/config.yml", "store_artifacts");
         });
       });
 
