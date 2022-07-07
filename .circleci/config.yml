@@ -68,6 +68,9 @@ jobs:
     steps:
       - setup
       - run:
+          name: Authenticate with NPM
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run:
           name: Publish to NPM
           command: yarn run publish
 
@@ -81,6 +84,8 @@ workflows:
           filters:
             <<: *semver-tags
       - publish:
+          context:
+            - npm-publishing
           requires:
             - lint
             - test
