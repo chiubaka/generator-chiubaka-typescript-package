@@ -60,10 +60,10 @@ describe("NodeModuleGenerator", () => {
         });
       });
 
-      it("stubs out a publish script for the package", () => {
+      it("stubs out a deploy script for the package", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {
-            publish: "",
+            deploy: "",
           },
         });
       });

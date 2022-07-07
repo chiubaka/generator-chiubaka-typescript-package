@@ -69,7 +69,7 @@ jobs:
       - setup
       - run:
           name: Publish to NPM
-          command: yarn run publish
+          command: yarn run deploy
 
 workflows:
   lint-build-test-publish:
