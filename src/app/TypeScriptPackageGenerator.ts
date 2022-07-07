@@ -4,7 +4,7 @@ import CircleCiGenerator from "../circleci";
 import { GitignoreGenerator } from "../gitignore";
 import { NodeModuleGenerator } from "../node-module";
 import { BaseGenerator } from "../shared";
-import { TsConfigGenerator } from "../tsconfig";
+import { TypeScriptGenerator } from "../typescript";
 
 export class TypeScriptPackageGenerator extends BaseGenerator {
   public initializing() {
@@ -18,8 +18,8 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
         path: path.join(__dirname, "../gitignore"),
       },
       {
-        Generator: TsConfigGenerator,
-        path: path.join(__dirname, "../tsconfig"),
+        Generator: TypeScriptGenerator,
+        path: path.join(__dirname, "../typescript"),
       },
       {
         Generator: CircleCiGenerator,

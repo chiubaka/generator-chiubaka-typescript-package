@@ -7,9 +7,13 @@ describe("TypeScriptGenerator", () => {
     result = await YeomanHelpers.create(__dirname).run();
   });
 
-  describe("installs necessary dependencies", () => {
+  describe("installs required devDependencies", () => {
     it("installs TypeScript", () => {
       expect(result).toHaveDevDependency("typescript");
     });
+  });
+
+  it("creates a tsconfig.json file", () => {
+    result.assertFile("tsconfig.json");
   });
 });

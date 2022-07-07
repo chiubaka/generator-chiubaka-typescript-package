@@ -1,4 +1,4 @@
-import { BaseGenerator } from "../shared";
+import { BaseGenerator } from "../../shared";
 
 export class TsConfigGenerator extends BaseGenerator {
   public configuring() {
