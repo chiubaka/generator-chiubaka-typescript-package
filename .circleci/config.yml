@@ -56,8 +56,6 @@ jobs:
       - run:
           name: Run tests
           command: yarn run test:ci
-          environment:
-            JEST_JUNIT_ADD_FILE_ATTRIBUTE: true
       - run:
           name: Move JUnit report to reports directory
           command: mkdir -p ./reports/junit && mv junit.xml ./reports/junit/
