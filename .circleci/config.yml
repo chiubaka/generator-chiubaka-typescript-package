@@ -75,9 +75,13 @@ workflows:
   lint-test-publish:
     jobs:
       - lint:
+          context:
+            - npm-publishing
           filters:
             <<: *semver-tags
       - test:
+          context:
+            - npm-publishing
           filters:
             <<: *semver-tags
       - publish:
