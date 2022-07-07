@@ -10,7 +10,7 @@
     "build:copy": "yarn run build:copy:templates",
     "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' generators",
     "clean": "rimraf -rf ./generators /tmp/generated-package",
-    "deploy": "yarn run deploy:npm && yarn run deploy:generated",
+    "deploy": "yarn run build && yarn run deploy:npm && yarn run deploy:generated",
     "deploy:generated": "",
     "deploy:npm": "npm deploy --access public",
     "lint": "eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
