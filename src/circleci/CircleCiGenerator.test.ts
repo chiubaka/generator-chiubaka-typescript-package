@@ -39,7 +39,7 @@ describe("CircleCiGenerator", () => {
       });
 
       it("includes a job for publishing the package", () => {
-        result.assertFileContent(".circleci/config.yml", "yarn run publish");
+        result.assertFileContent(".circleci/config.yml", "yarn run deploy");
       });
     });
   });
