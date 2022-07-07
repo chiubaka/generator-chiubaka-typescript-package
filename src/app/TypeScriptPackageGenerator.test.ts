@@ -1,7 +1,7 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
 import { DEV_DEPENDENCY_VERSIONS } from "../__tests__/__fixtures__";
-import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "../node-module/__fixtures__";
+import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "../node-module/__tests__/__fixtures__/index";
 
 jest.setTimeout(10_000);
 

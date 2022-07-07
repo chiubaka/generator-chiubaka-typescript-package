@@ -1,7 +1,7 @@
 import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "./__fixtures__";
+import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "./__tests__/__fixtures__/index";
 
 describe("NodeModuleGenerator", () => {
   let result: RunResult;
