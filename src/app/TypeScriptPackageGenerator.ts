@@ -34,7 +34,12 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
   }
 
   public install() {
-    this.spawnCommandSync("yarn", ["set", "version", "berry"]);
-    this.spawnCommandSync("yarn", ["install"]);
+    const yarnArgs = ["install"];
+    if (process.env.NODE_ENV === "test") {
+      yarnArgs.push("--no-immutable");
+    }
+
+    this.spawnCommandSync("yarn", ["set", "version", "3.2.1"]);
+    this.spawnCommandSync("yarn", yarnArgs);
   }
 }
