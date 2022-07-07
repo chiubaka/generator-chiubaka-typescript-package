@@ -3481,9 +3481,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"generator-typescript-package@workspace:.":
+"generator-chiubaka-typescript-package@workspace:.":
   version: 0.0.0-use.local
-  resolution: "generator-typescript-package@workspace:."
+  resolution: "generator-chiubaka-typescript-package@workspace:."
   dependencies:
     "@chiubaka/tsconfig": ^0.0.3
     "@types/jest": ^28.1.4
