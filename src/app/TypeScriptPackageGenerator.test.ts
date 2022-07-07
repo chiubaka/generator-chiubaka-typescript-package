@@ -23,6 +23,16 @@ describe("TypeScriptPackageGenerator", () => {
     });
   });
 
+  describe("installs dependencies with yarn", () => {
+    it("sets the yarn version to 3.2.1", () => {
+      result.assertFile(".yarn/releases/yarn-3.2.1.cjs");
+    });
+
+    it("creates a yarn.lock file", () => {
+      result.assertFile("yarn.lock");
+    });
+  });
+
   it("creates a .gitignore file", () => {
     result.assertFile(".gitignore");
   });
