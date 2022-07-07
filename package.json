@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc && yarn run build:copy",
     "build:copy": "yarn run build:copy:templates",
-    "build:copy:templates": "copyfiles --up 1 --all 'src/*/templates/**' generators",
+    "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' generators",
     "clean": "rimraf -rf ./generators ./generated-package",
     "lint": "eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
     "lint:staged": "lint-staged",

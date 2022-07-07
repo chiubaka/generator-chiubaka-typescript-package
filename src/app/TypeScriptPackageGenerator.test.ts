@@ -2,8 +2,6 @@ import YeomanHelpers, { RunResult } from "yeoman-test";
 
 import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "../node-module/__tests__/__fixtures__/index";
 
-jest.setTimeout(10_000);
-
 describe("TypeScriptPackageGenerator", () => {
   let result: RunResult;
 
