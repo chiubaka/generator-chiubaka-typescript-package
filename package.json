@@ -9,7 +9,7 @@
     "build": "tsc && yarn run build:copy",
     "build:copy": "yarn run build:copy:templates",
     "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' generators",
-    "clean": "rimraf -rf ./generators",
+    "clean": "rimraf -rf ./generators /tmp/generated-package",
     "deploy": "yarn run deploy:npm && yarn run deploy:generated",
     "deploy:generated": "",
     "deploy:npm": "npm deploy --access public",
@@ -18,7 +18,7 @@
     "prepare": "husky install",
     "prestart": "yarn run clean && yarn run build && npm link",
     "pretest": "yarn run clean && yarn run build",
-    "start": "yarn run prestart && yo typescript-package --destination-root /tmp/generated-package",
+    "start": "yarn run prestart && yo chiubaka-typescript-package --destination-root /tmp/generated-package",
     "test": "yarn run pretest && jest",
     "test:ci": "JEST_JUNIT_CLASSNAME='{suitename}' JEST_JUNIT_ADD_FILE_ATTRIBUTE=true yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
     "test:typescript": "yarn run clean && jest"
