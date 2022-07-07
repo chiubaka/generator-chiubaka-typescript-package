@@ -3,7 +3,7 @@ generators
 generated-package
 
 # Test Coverage
-coverage
+reports
 junit.xml
 
 # macOS

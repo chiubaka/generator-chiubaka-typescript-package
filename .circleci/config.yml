@@ -61,6 +61,8 @@ jobs:
           command: mkdir -p ./reports/junit && mv junit.xml ./reports/junit/
       - store_test_results:
           path: ./reports/junit/
+      - store_artifacts:
+          path: ./reports
   publish:
     executor: node-executor
     steps:
