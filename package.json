@@ -18,7 +18,7 @@
     "publish": "npm publish --access public",
     "start": "yarn run prestart && yo typescript-package --destination-root ./generated-package",
     "test": "yarn run pretest && jest",
-    "test:ci": "yarn run test --ci --runInBand --reporters=default --reporters=jest-junit",
+    "test:ci": "yarn run test --ci --maxConcurrency=1 --reporters=default --reporters=jest-junit",
     "test:typescript": "yarn run clean && jest"
   },
   "repository": {
