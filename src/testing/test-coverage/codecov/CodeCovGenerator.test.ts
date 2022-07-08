@@ -12,8 +12,8 @@ describe("CodeCovGenerator", () => {
       result.assertFile("codecov.yml");
     });
 
-    it("defines a testing threshold of 80%", () => {
-      result.assertJsonFileContent("codecov.yml", {
+    it("defines a global coverage target of 80%", () => {
+      expect(result).toHaveYaml("codecov.yml", {
         coverage: {
           status: {
             project: {
@@ -23,6 +23,27 @@ describe("CodeCovGenerator", () => {
             },
           },
         },
+      });
+    });
+
+    it("defines a patch coverage target of 100% with a 5% threshold", () => {
+      expect(result).toHaveYaml("codecov.yml", {
+        coverage: {
+          status: {
+            patch: {
+              default: {
+                target: "100%",
+                threshold: "5%",
+              },
+            },
+          },
+        },
+      });
+    });
+
+    it("ignores files in any .yarn directory in the project", () => {
+      expect(result).toHaveYaml("codecov.yml", {
+        ignore: ["**/.yarn"],
       });
     });
   });

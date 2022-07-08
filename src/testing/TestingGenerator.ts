@@ -13,7 +13,7 @@ export class TestingGenerator extends BaseGenerator {
 
     this.composeWith({
       Generator: TestCoverageGenerator,
-      path: path.join(__dirname, "./coverage"),
+      path: path.join(__dirname, "./test-coverage"),
     });
   }
 }
