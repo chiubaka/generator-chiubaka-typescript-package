@@ -4,7 +4,7 @@ describe("CodeCovGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    await YeomanHelpers.create(__dirname).run();
+    result = await YeomanHelpers.create(__dirname).run();
   });
 
   describe("codecov.yml", () => {
