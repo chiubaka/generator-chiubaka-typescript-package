@@ -10,11 +10,6 @@ orbs:
   chiubaka: chiubaka/circleci-orb@0.2.0
   node: circleci/node@5.0.2
 
-executors:
-  node-executor:
-    docker:
-      - image: cimg/node:16.10
-
 filters:
   semver-tags: &semver-tags
     tags:
