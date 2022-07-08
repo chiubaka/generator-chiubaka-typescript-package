@@ -10,6 +10,36 @@ describe("NodeModuleGenerator", () => {
     result = await runWithAnswers(NODE_MODULE_GENERATOR_TEST_ANSWERS);
   });
 
+  describe(".gitignore", () => {
+    it("ignores .yarn/*", () => {
+      result.assertFileContent(".gitignore", ".yarn/*");
+    });
+
+    it("does not ignore .yarn/cache", () => {
+      result.assertFileContent(".gitignore", "!.yarn/cache");
+    });
+
+    it("does not ignore .yarn/patches", () => {
+      result.assertFileContent(".gitignore", "!.yarn/patches");
+    });
+
+    it("does not ignore .yarn/plugins", () => {
+      result.assertFileContent(".gitignore", "!.yarn/plugins");
+    });
+
+    it("does not ignore .yarn/releases", () => {
+      result.assertFileContent(".gitignore", "!.yarn/releases");
+    });
+
+    it("does not ignore .yarn/sdks", () => {
+      result.assertFileContent(".gitignore", "!.yarn/sdks");
+    });
+
+    it("does not ignore .yarn/versions", () => {
+      result.assertFileContent(".gitignore", "!.yarn/versions");
+    });
+  });
+
   describe("package.json", () => {
     it("creates a package.json file", () => {
       result.assertFile("package.json");
@@ -144,6 +174,12 @@ describe("NodeModuleGenerator", () => {
       result.assertJsonFileContent("package.json", {
         homepage: "https://github.com/chiubaka/test-package#readme",
       });
+    });
+  });
+
+  describe("yarn", () => {
+    it("sets the yarn version to 3.2.1", () => {
+      result.assertFile(".yarn/releases/yarn-3.2.1.cjs");
     });
   });
 });

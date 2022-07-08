@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import { Questions } from "yeoman-generator";
+import { GeneratorOptions, Questions } from "yeoman-generator";
 
 import { BaseGenerator } from "../shared";
 
@@ -14,6 +14,10 @@ interface PromptAnswers {
 
 export class NodeModuleGenerator extends BaseGenerator {
   private answers!: PromptAnswers;
+
+  constructor(args: string | string[], options: GeneratorOptions) {
+    super(args, options, { customInstallTask: true });
+  }
 
   public async prompting() {
     const questions: Questions<PromptAnswers> = [
@@ -56,6 +60,15 @@ export class NodeModuleGenerator extends BaseGenerator {
   public writing() {
     assert(this.answers);
 
+    this.writeGitignore();
+    this.writePackageJson();
+  }
+
+  private writeGitignore() {
+    this.writeOrAppendGitignore(".gitignore.ejs");
+  }
+
+  private writePackageJson() {
     const keywordTokens = this.answers.keywords?.split(" ") || [];
     const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
 
@@ -63,5 +76,9 @@ export class NodeModuleGenerator extends BaseGenerator {
       ...this.answers,
       keywords,
     });
+  }
+
+  public install() {
+    this.spawnCommandSync("yarn", ["set", "version", "3.2.1"]);
   }
 }

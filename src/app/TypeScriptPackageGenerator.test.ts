@@ -11,6 +11,24 @@ describe("TypeScriptPackageGenerator", () => {
       .run();
   });
 
+  describe(".gitignore", () => {
+    it("creates a .gitignore file", () => {
+      result.assertFile(".gitignore");
+    });
+
+    it("includes .gitignore rules for yarn", () => {
+      result.assertFileContent(".gitignore", "# yarn");
+    });
+
+    it("includes .gitignore rules for tests", () => {
+      result.assertFileContent(".gitignore", "# Test Coverage");
+    });
+
+    it("separates appended section with a newline", () => {
+      result.assertFileContent(".gitignore", "\n\n# yarn");
+    });
+  });
+
   describe("package.json", () => {
     it("creates a package.json file", () => {
       result.assertFile("package.json");
@@ -31,10 +49,6 @@ describe("TypeScriptPackageGenerator", () => {
     it("creates a yarn.lock file", () => {
       result.assertFile("yarn.lock");
     });
-  });
-
-  it("creates a .gitignore file", () => {
-    result.assertFile(".gitignore");
   });
 
   describe("typescript", () => {

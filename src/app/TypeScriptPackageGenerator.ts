@@ -44,7 +44,6 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
       yarnArgs.push("--no-immutable");
     }
 
-    this.spawnCommandSync("yarn", ["set", "version", "3.2.1"]);
     this.spawnCommandSync("yarn", yarnArgs);
   }
 }

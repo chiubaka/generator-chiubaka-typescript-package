@@ -15,10 +15,6 @@ describe("GitignoreGenerator", () => {
     result.assertFileContent(".gitignore", "macOS");
   });
 
-  it("includes yarn gitignore rules", () => {
-    result.assertFileContent(".gitignore", "yarn");
-  });
-
   it("includes VSCode gitignore rules", () => {
     result.assertFileContent(".gitignore", "vscode");
   });
