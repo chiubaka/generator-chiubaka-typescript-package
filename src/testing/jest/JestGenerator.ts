@@ -20,10 +20,16 @@ export class JestGenerator extends BaseGenerator {
     const scripts = {
       test: "jest",
       "test:ci":
-        "JEST_JUNIT_OUTPUT_DIR='./reports/junit/' JEST_JUNIT_CLASSNAME='{suitename}' yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
+        "yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
     };
 
-    this.extendPackageJson({ scripts });
+    const jestJUnit = {
+      addFileAttribute: true,
+      classNameTemplate: "{suitename}",
+      outputDirectory: "reports/junit",
+    };
+
+    this.extendPackageJson({ scripts, "jest-junit": jestJUnit });
 
     await this.writeDependencies();
   }

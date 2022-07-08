@@ -62,7 +62,7 @@ describe("JestGenerator", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {
             "test:ci":
-              "JEST_JUNIT_OUTPUT_DIR='./reports/junit/' JEST_JUNIT_CLASSNAME='{suitename}' yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
+              "yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
           },
         });
       });
