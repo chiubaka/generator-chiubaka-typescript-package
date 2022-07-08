@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/generator-chiubaka-typescript-package)](https://www.npmjs.com/package/generator-chiubaka-typescript-package)
 [![circleci](https://circleci.com/gh/chiubaka/generator-chiubaka-typescript-package.svg?style=shield)](https://app.circleci.com/pipelines/github/chiubaka/generator-chiubaka-typescript-package?filter=all)
 [![codecov](https://codecov.io/gh/chiubaka/generator-chiubaka-typescript-package/branch/master/graph/badge.svg?token=J88MEW7PPZ)](https://codecov.io/gh/chiubaka/generator-chiubaka-typescript-package)
-[![CodeClimate Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/chiubaka/generator-chiubaka-typescript-package)](https://codeclimate.com/github/chiubaka/generator-chiubaka-typescript-package)
+[![Maintainability](https://api.codeclimate.com/v1/badges/07082bec99d8bd4c0b58/maintainability)](https://codeclimate.com/github/chiubaka/generator-chiubaka-typescript-package/maintainability)
 
 Yeoman generator for standard Chiubaka Technologies TypeScript packages for libraries and other such things.
 
