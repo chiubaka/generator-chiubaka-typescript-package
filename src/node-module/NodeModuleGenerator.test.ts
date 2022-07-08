@@ -60,6 +60,14 @@ describe("NodeModuleGenerator", () => {
         });
       });
 
+      it("stubs out a test:ci script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            "test:ci": "",
+          },
+        });
+      });
+
       it("stubs out a deploy script for the package", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {

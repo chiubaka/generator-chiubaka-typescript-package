@@ -16,4 +16,8 @@ describe("TypeScriptGenerator", () => {
   it("creates a tsconfig.json file", () => {
     result.assertFile("tsconfig.json");
   });
+
+  it("creates a sample TypeScript file", () => {
+    result.assertFile("src/hello.ts");
+  });
 });

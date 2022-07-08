@@ -37,11 +37,47 @@ describe("TypeScriptPackageGenerator", () => {
     result.assertFile(".gitignore");
   });
 
-  it("creates a tsconfig.json file", () => {
-    result.assertFile("tsconfig.json");
+  describe("typescript", () => {
+    it("creates a tsconfig.json file", () => {
+      result.assertFile("tsconfig.json");
+    });
   });
 
   it("creates a .circleci/config.yml file", () => {
     result.assertFile(".circleci/config.yml");
+  });
+
+  describe("testing", () => {
+    it("creates a jest.config.ts file", () => {
+      result.assertFile("jest.config.ts");
+    });
+
+    it("creates a working test harness", () => {
+      const yarnArgs = ["run", "test"];
+
+      if (process.env.NODE_ENV === "test") {
+        yarnArgs.push("--ci", "--runInBand");
+      }
+
+      expect(() => {
+        result.env.spawnCommandSync("yarn", yarnArgs, {});
+      }).not.toThrow();
+    });
+
+    describe("creates a working test:ci script", () => {
+      it("runs the test:ci script without errors", () => {
+        expect(() => {
+          result.env.spawnCommandSync("yarn", ["run", "test:ci"], {});
+        }).not.toThrow();
+      });
+
+      it("generates coverage reports", () => {
+        result.assertFile("reports/coverage/lcov-report/index.html");
+      });
+
+      it("generates a junit.xml file", () => {
+        result.assertFile("reports/junit/junit.xml");
+      });
+    });
   });
 });
