@@ -176,6 +176,12 @@ describe("NodeModuleGenerator", () => {
       });
     });
   });
+
+  describe("yarn", () => {
+    it("sets the yarn version to 3.2.1", () => {
+      result.assertFile(".yarn/releases/yarn-3.2.1.cjs");
+    });
+  });
 });
 
 const runWithAnswers = (answers: Record<string, any>): Promise<RunResult> => {
