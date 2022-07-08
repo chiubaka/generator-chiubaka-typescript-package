@@ -56,9 +56,6 @@ jobs:
       - run:
           name: Run tests
           command: yarn run test:ci
-      - run:
-          name: Move JUnit report to reports directory
-          command: mkdir -p ./reports/junit && mv junit.xml ./reports/junit/
       - store_test_results:
           path: ./reports/
       - store_artifacts:
