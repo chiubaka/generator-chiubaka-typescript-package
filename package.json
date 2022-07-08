@@ -51,6 +51,7 @@
   "devDependencies": {
     "@chiubaka/tsconfig": "^0.0.3",
     "@types/jest": "^28.1.4",
+    "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.0.1",
     "@types/yeoman-assert": "^3.1.1",
     "@types/yeoman-generator": "^5.2.10",
@@ -75,6 +76,7 @@
     "isbinaryfile": "^5.0.0",
     "jest": "^28.1.2",
     "jest-junit": "^14.0.0",
+    "js-yaml": "^4.1.0",
     "lint-staged": "^13.0.3",
     "mem-fs": "^2.2.1",
     "prettier": "^2.7.1",
@@ -93,6 +95,7 @@
   "devDependenciesComments": {
     "@chiubaka/tsconfig": "Shared TSConfig settings for the Chiubaka Technologies ecosystem",
     "@types/jest": "Types for jest",
+    "@types/js-yaml": "Types for js-yaml",
     "@types/node": "Types for NodeJS. Peer dependency of ts-node.",
     "@types/yeoman-assert": "Types for yeoman-assert",
     "@types/yeoman-generator": "Types for yeoman-generator",
@@ -117,6 +120,7 @@
     "isbinaryfile": "Unlisted dependency of yeoman-environment. https://github.com/chiubaka/generator-chiubaka-typescript-package/issues/4",
     "jest": "Test runner from Meta",
     "jest-junit": "JUnit report formatter for Jest for compatibility with CircleCI test results format",
+    "js-yaml": "For parsing of YAML documents and more advanced testing of YAML files",
     "lint-staged": "Linting of just staged files",
     "mem-fs": "Peer dependency of yeoman-test",
     "prettier": "Code formatting for consistent style",

@@ -1,10 +1,23 @@
-import Generator from "yeoman-generator";
+import Generator, {
+  GeneratorFeatures,
+  GeneratorOptions,
+} from "yeoman-generator";
 
 interface WriteOrAppendOptions {
   leadingNewlineOnAppend?: boolean;
 }
 
-export abstract class BaseGenerator extends Generator {
+export abstract class BaseGenerator<
+  T extends GeneratorOptions = GeneratorOptions
+> extends Generator<T> {
+  constructor(
+    args: string | string[],
+    options: T,
+    features?: GeneratorFeatures
+  ) {
+    super(args, options, features);
+  }
+
   public copyTemplate = (
     from: string,
     to: string,

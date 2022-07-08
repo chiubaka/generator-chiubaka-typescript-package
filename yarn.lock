@@ -1341,6 +1341,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-yaml@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "@types/js-yaml@npm:4.0.5"
+  checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -3487,6 +3494,7 @@ __metadata:
   dependencies:
     "@chiubaka/tsconfig": ^0.0.3
     "@types/jest": ^28.1.4
+    "@types/js-yaml": ^4.0.5
     "@types/node": ^18.0.1
     "@types/yeoman-assert": ^3.1.1
     "@types/yeoman-generator": ^5.2.10
@@ -3511,6 +3519,7 @@ __metadata:
     isbinaryfile: ^5.0.0
     jest: ^28.1.2
     jest-junit: ^14.0.0
+    js-yaml: ^4.1.0
     lint-staged: ^13.0.3
     mem-fs: ^2.2.1
     prettier: ^2.7.1
