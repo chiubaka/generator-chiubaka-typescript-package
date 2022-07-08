@@ -56,6 +56,16 @@ export class NodeModuleGenerator extends BaseGenerator {
   public writing() {
     assert(this.answers);
 
+    this.writeGitignore();
+    this.writePackageJson();
+  }
+
+  private writeGitignore() {
+    const gitignore = this.readTemplate(".gitignore.ejs");
+    this.writeOrAppend(".gitignore", gitignore);
+  }
+
+  private writePackageJson() {
     const keywordTokens = this.answers.keywords?.split(" ") || [];
     const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
 
