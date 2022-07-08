@@ -1,10 +1,11 @@
 import path from "node:path";
 import { GeneratorOptions } from "yeoman-generator";
 
-import CircleCiGenerator from "../circleci";
+import { CircleCiGenerator } from "../circleci";
 import { GitignoreGenerator } from "../gitignore";
 import { NodeModuleGenerator } from "../node-module";
 import { BaseGenerator } from "../shared";
+import { TestingGenerator } from "../testing";
 import { TypeScriptGenerator } from "../typescript";
 
 export class TypeScriptPackageGenerator extends BaseGenerator {
@@ -25,6 +26,10 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
       {
         Generator: TypeScriptGenerator,
         path: path.join(__dirname, "../typescript"),
+      },
+      {
+        Generator: TestingGenerator,
+        path: path.join(__dirname, "../testing"),
       },
       {
         Generator: CircleCiGenerator,

@@ -12,6 +12,8 @@ export class TypeScriptGenerator extends BaseGenerator {
   }
 
   public async writing() {
+    this.copyTemplate("hello.ts", "src/hello.ts");
+
     await this.addDevDependencies("typescript");
   }
 }
