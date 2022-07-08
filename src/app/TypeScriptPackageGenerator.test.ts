@@ -53,8 +53,14 @@ describe("TypeScriptPackageGenerator", () => {
     });
 
     it("creates a working test harness", () => {
+      const yarnArgs = ["run", "test"];
+
+      if (process.env.NODE_ENV === "test") {
+        yarnArgs.push("--ci", "--runInBand");
+      }
+
       expect(() => {
-        result.env.spawnCommandSync("yarn", ["run", "test"], {});
+        result.env.spawnCommandSync("yarn", yarnArgs, {});
       }).not.toThrow();
     });
 
