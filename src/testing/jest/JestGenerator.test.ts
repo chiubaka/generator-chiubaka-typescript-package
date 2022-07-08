@@ -8,6 +8,20 @@ describe("JestGenerator", () => {
     result = await YeomanHelpers.create(path.join(__dirname)).run();
   });
 
+  describe(".gitignore", () => {
+    it("ignores the reports directory", () => {
+      result.assertFileContent(".gitignore", "reports");
+    });
+
+    it("ignores the coverage directory", () => {
+      result.assertFileContent(".gitignore", "coverage");
+    });
+
+    it("ignores junit.xml", () => {
+      result.assertFileContent(".gitignore", "junit.xml");
+    });
+  });
+
   describe("package.json", () => {
     describe("installs the necessary devDependencies", () => {
       it("installs jest", () => {

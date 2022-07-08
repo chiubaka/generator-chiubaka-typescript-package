@@ -16,12 +16,12 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
   public initializing() {
     this.composeWith([
       {
-        Generator: NodeModuleGenerator,
-        path: path.join(__dirname, "../node-module"),
-      },
-      {
         Generator: GitignoreGenerator,
         path: path.join(__dirname, "../gitignore"),
+      },
+      {
+        Generator: NodeModuleGenerator,
+        path: path.join(__dirname, "../node-module"),
       },
       {
         Generator: TypeScriptGenerator,
