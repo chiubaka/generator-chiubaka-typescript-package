@@ -66,6 +66,10 @@ describe("TypeScriptPackageGenerator", () => {
       result.assertFile("jest.config.ts");
     });
 
+    it("creates a codecov.yml file", () => {
+      result.assertFile("codecov.yml");
+    });
+
     it("creates a working test harness", () => {
       const yarnArgs = ["run", "test"];
 
