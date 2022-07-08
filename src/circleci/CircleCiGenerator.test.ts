@@ -13,33 +13,38 @@ describe("CircleCiGenerator", () => {
         result.assertFile(".circleci/config.yml");
       });
 
-      it("includes a job for running linters", () => {
-        result.assertFileContent(".circleci/config.yml", "yarn run lint");
+      it("uses the chiubaka/circleci-orb", () => {
+        expect(result).toHaveYaml(".circleci/config.yml", {
+          orbs: {
+            chiubaka: "chiubaka/circleci-orb@0.2.0",
+          },
+        });
       });
 
-      it("includes a job for building the project", () => {
-        result.assertFileContent(".circleci/config.yml", "yarn run build");
-      });
+      describe("lint-build-test-publish workflow", () => {
+        it("includes a lint-build-test-publish workflow", () => {
+          expect(result).toHaveYaml(".circleci/config.yml", {
+            workflows: {
+              "lint-build-test-publish": {},
+            },
+          });
+        });
 
-      describe("testing", () => {
+        it("includes a job for running linters", () => {
+          result.assertFileContent(".circleci/config.yml", "chiubaka/lint");
+        });
+
+        it("includes a job for building the project", () => {
+          result.assertFileContent(".circleci/config.yml", "chiubaka/build");
+        });
+
         it("includes a job for running tests", () => {
-          result.assertFileContent(".circleci/config.yml", "yarn run test");
+          result.assertFileContent(".circleci/config.yml", "chiubaka/test");
         });
 
-        it("stores test results", () => {
-          result.assertFileContent(
-            ".circleci/config.yml",
-            "store_test_results"
-          );
+        it("includes a job for publishing the package", () => {
+          result.assertFileContent(".circleci/config.yml", "chiubaka/publish");
         });
-
-        it("stores artifacts", () => {
-          result.assertFileContent(".circleci/config.yml", "store_artifacts");
-        });
-      });
-
-      it("includes a job for publishing the package", () => {
-        result.assertFileContent(".circleci/config.yml", "yarn run deploy");
       });
     });
   });
