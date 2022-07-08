@@ -1,7 +1,8 @@
 # generator-chiubaka-typescript-package
 
 [![npm](https://img.shields.io/npm/v/generator-chiubaka-typescript-package)](https://www.npmjs.com/package/generator-chiubaka-typescript-package)
-[![chiubaka](https://circleci.com/gh/chiubaka/generator-chiubaka-typescript-package.svg?style=shield)](https://app.circleci.com/pipelines/github/chiubaka/generator-chiubaka-typescript-package?filter=all)
+[![circleci](https://circleci.com/gh/chiubaka/generator-chiubaka-typescript-package.svg?style=shield)](https://app.circleci.com/pipelines/github/chiubaka/generator-chiubaka-typescript-package?filter=all)
+[![CodeClimate Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/chiubaka/generator-chiubaka-typescript-package)](https://codeclimate.com/github/chiubaka/generator-chiubaka-typescript-package)
 
 Yeoman generator for standard Chiubaka Technologies TypeScript packages for libraries and other such things.
 
