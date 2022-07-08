@@ -1,43 +1,16 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { BaseGenerator } from "../../../../shared";
+import {
+  DevDependenciesTestGenerator,
+  EmptyTestGenerator,
+  NoDevDependenciesTestGenerator,
+} from "./testGenerators";
 
 describe("toHaveDevDependency", () => {
-  describe("when given something that isn't a YeomanTest.RunResult", () => {
-    it("fails on a number", () => {
-      expect(() => {
-        expect(2).toHaveDevDependency("node");
-      }).toThrow("Expected 2 to be a YeomanTest.RunResult");
-    });
-
-    it("fails on a boolean", () => {
-      expect(() => {
-        expect(true).toHaveDevDependency("node");
-      }).toThrow("Expected true to be a YeomanTest.RunResult");
-    });
-
-    it("fails on a string", () => {
-      expect(() => {
-        expect("foobar").toHaveDevDependency("node");
-      }).toThrow("Expected foobar to be a YeomanTest.RunResult");
-    });
-
-    it("fails on an empty object", () => {
-      expect(() => {
-        expect({}).toHaveDevDependency("node");
-      }).toThrow("Expected [object Object] to be a YeomanTest.RunResult");
-    });
-
-    it("fails on a function", () => {
-      // eslint-disable-next-line unicorn/consistent-function-scoping
-      const nullOp = () => {
-        return;
-      };
-
-      expect(() => {
-        expect(nullOp).toHaveDevDependency("node");
-      }).toThrow(`Expected ${nullOp.toString()} to be a YeomanTest.RunResult`);
-    });
+  it("fails ig given something other than a YeomanTest.RunResult", () => {
+    expect(() => {
+      expect(2).toHaveDevDependency("node");
+    }).toThrow("Expected 2 to be a YeomanTest.RunResult");
   });
 
   describe("when given a YeomanTest.RunResult", () => {
@@ -122,25 +95,3 @@ describe("toHaveDevDependency", () => {
     });
   });
 });
-
-class DevDependenciesTestGenerator extends BaseGenerator {
-  public async writing() {
-    await this.addDevDependencies({
-      typescript: "4.7.4",
-    });
-  }
-}
-
-class NoDevDependenciesTestGenerator extends BaseGenerator {
-  public async writing() {
-    await this.addDependencies({
-      "react-redux": "17.0.0",
-    });
-  }
-}
-
-class EmptyTestGenerator extends BaseGenerator {
-  public writing() {
-    return;
-  }
-}

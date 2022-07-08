@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@chiubaka/tsconfig", "npm:0.0.3"],\
             ["@types/jest", "npm:28.1.4"],\
+            ["@types/js-yaml", "npm:4.0.5"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
@@ -59,6 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:28.1.2"],\
             ["jest-junit", "npm:14.0.0"],\
+            ["js-yaml", "npm:4.1.0"],\
             ["lint-staged", "npm:13.0.3"],\
             ["mem-fs", "npm:2.2.1"],\
             ["prettier", "npm:2.7.1"],\
@@ -1916,6 +1918,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:28.1.4"],\
             ["jest-matcher-utils", "npm:28.1.1"],\
             ["pretty-format", "npm:28.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/js-yaml", [\
+        ["npm:4.0.5", {\
+          "packageLocation": "./.yarn/cache/@types-js-yaml-npm-4.0.5-bb64d71397-7dcac8c50f.zip/node_modules/@types/js-yaml/",\
+          "packageDependencies": [\
+            ["@types/js-yaml", "npm:4.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4613,6 +4624,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["generator-chiubaka-typescript-package", "workspace:."],\
             ["@chiubaka/tsconfig", "npm:0.0.3"],\
             ["@types/jest", "npm:28.1.4"],\
+            ["@types/js-yaml", "npm:4.0.5"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
@@ -4637,6 +4649,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["isbinaryfile", "npm:5.0.0"],\
             ["jest", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:28.1.2"],\
             ["jest-junit", "npm:14.0.0"],\
+            ["js-yaml", "npm:4.1.0"],\
             ["lint-staged", "npm:13.0.3"],\
             ["mem-fs", "npm:2.2.1"],\
             ["prettier", "npm:2.7.1"],\

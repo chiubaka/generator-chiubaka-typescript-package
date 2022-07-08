@@ -5,14 +5,7 @@ export const toHaveDevDependency = (
   dependencyName: string,
   dependencyVersion?: string
 ) => {
-  if (!result.assertJsonFileContent) {
-    return {
-      pass: false,
-      message: () => {
-        return `Expected ${result.toString()} to be a YeomanTest.RunResult`;
-      },
-    };
-  }
+  expect(result).toBeYeomanTestRunResult();
 
   const hasPackageJson = result.fs.exists("package.json");
 
