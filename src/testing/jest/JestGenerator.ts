@@ -12,8 +12,7 @@ export class JestGenerator extends BaseGenerator {
   }
 
   private writeGitignore() {
-    const jestGitignore = this.readTemplate(".gitignore.ejs");
-    this.writeOrAppend(".gitignore", jestGitignore);
+    this.writeOrAppendGitignore(".gitignore.ejs");
   }
 
   private async writePackageJson() {

@@ -65,8 +65,7 @@ export class NodeModuleGenerator extends BaseGenerator {
   }
 
   private writeGitignore() {
-    const gitignore = this.readTemplate(".gitignore.ejs");
-    this.writeOrAppend(".gitignore", gitignore);
+    this.writeOrAppendGitignore(".gitignore.ejs");
   }
 
   private writePackageJson() {
