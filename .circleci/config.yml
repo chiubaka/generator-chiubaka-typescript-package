@@ -8,7 +8,6 @@ constants:
 
 orbs:
   chiubaka: chiubaka/circleci-orb@0.2.0
-  node: circleci/node@5.0.2
 
 filters:
   semver-tags: &semver-tags
@@ -19,10 +18,14 @@ filters:
       ignore: /.*/
 
 workflows:
-  lint-test-publish:
+  lint-build-test-publish:
     jobs:
       - chiubaka/lint:
           name: lint
+          filters:
+            <<: *semver-tags
+      - chiubaka/build:
+          name: build
           filters:
             <<: *semver-tags
       - chiubaka/test:
@@ -34,6 +37,7 @@ workflows:
             - npm-publishing
           requires:
             - lint
+            - build
             - test
           filters:
             <<: *ignore-branches
