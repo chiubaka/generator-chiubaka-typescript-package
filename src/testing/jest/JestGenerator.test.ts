@@ -1,11 +1,10 @@
-import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
 describe("JestGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(path.join(__dirname)).run();
+    result = await YeomanHelpers.create(__dirname).run();
   });
 
   describe(".gitignore", () => {
