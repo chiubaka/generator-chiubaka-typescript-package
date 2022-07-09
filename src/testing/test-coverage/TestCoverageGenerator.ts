@@ -5,13 +5,9 @@ import { CodeCovGenerator } from "./codecov/index";
 
 export class TestCoverageGenerator extends BaseGenerator {
   public initializing() {
-    this.composeWith({
+    this.composeWithSubGenerator({
       Generator: CodeCovGenerator,
       path: path.join(__dirname, "./codecov"),
     });
-  }
-
-  public prompting() {
-    return;
   }
 }

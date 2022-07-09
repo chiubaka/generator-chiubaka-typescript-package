@@ -14,7 +14,7 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
   }
 
   public initializing() {
-    this.composeWith([
+    this.composeWithSubGenerators([
       {
         Generator: GitignoreGenerator,
         path: path.join(__dirname, "../gitignore"),
@@ -36,10 +36,6 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
         path: path.join(__dirname, "../circleci"),
       },
     ]);
-  }
-
-  public async prompting() {
-    await this.askQuestions();
   }
 
   public install() {

@@ -1,3 +1,5 @@
+import { Question } from "yeoman-generator";
+
 import { BaseGenerator } from "../../../shared";
 
 interface OptionsTestGeneratorOptions {
@@ -6,8 +8,8 @@ interface OptionsTestGeneratorOptions {
 }
 
 export class OptionsTestGenerator extends BaseGenerator<OptionsTestGeneratorOptions> {
-  public initializing() {
-    this.addQuestions([
+  public static getQuestions(): Question<OptionsTestGeneratorOptions>[] {
+    return [
       {
         type: "input",
         name: "name",
@@ -18,11 +20,7 @@ export class OptionsTestGenerator extends BaseGenerator<OptionsTestGeneratorOpti
         name: "description",
         message: "Give your test a description",
       },
-    ]);
-  }
-
-  public async prompting() {
-    await this.askQuestions();
+    ];
   }
 
   public writing() {

@@ -21,7 +21,7 @@ describe("ReadmeGenerator", () => {
     });
 
     it("includes the description of the project", () => {
-      result.assertFileContent("README.md", "A test package");
+      result.assertFileContent("README.md", "A package generated for tests");
     });
 
     describe("it leaves placeholder to insert shields", () => {

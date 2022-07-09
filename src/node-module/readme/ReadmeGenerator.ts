@@ -8,25 +8,19 @@ export interface ReadmeGeneratorOptions {
 }
 
 export class ReadmeGenerator extends BaseGenerator<ReadmeGeneratorOptions> {
-  public static QUESTIONS: Question<ReadmeGeneratorOptions>[] = [
-    {
-      type: "input",
-      name: "packageName",
-      message: "What is the name of this new package?",
-    },
-    {
-      type: "input",
-      name: "packageDescription",
-      message: "What is the description of this new package?",
-    },
-  ];
-
-  public initializing() {
-    this.addQuestions(ReadmeGenerator.QUESTIONS);
-  }
-
-  public async prompting() {
-    await this.askQuestions();
+  public static getQuestions(): Question<ReadmeGeneratorOptions>[] {
+    return [
+      {
+        type: "input",
+        name: "packageName",
+        message: "What is the name of this new package?",
+      },
+      {
+        type: "input",
+        name: "packageDescription",
+        message: "What is the description of this new package?",
+      },
+    ];
   }
 
   public write() {

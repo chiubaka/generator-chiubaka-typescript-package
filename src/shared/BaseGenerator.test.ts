@@ -3,7 +3,15 @@ import YeomanTest, { RunResult } from "yeoman-test";
 import { OptionsTestGenerator } from "../__tests__/__utils__";
 
 describe("BaseGenerator", () => {
-  describe("OptionsTestGenerator", () => {
+  describe("#composeWithSubGenerator", () => {
+    describe("subgenerator", () => {
+      it.todo("inherits options from the parent");
+
+      it.todo("inherits answers from the parent");
+    });
+  });
+
+  describe("interchangeably accepts options or prompt answers", () => {
     let result: RunResult;
 
     describe("when given options", () => {

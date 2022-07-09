@@ -4,12 +4,8 @@ import { BaseGenerator } from "../shared";
 import { TsConfigGenerator } from "./tsconfig";
 
 export class TypeScriptGenerator extends BaseGenerator {
-  public prompting() {
-    return;
-  }
-
   public configuring() {
-    this.composeWith({
+    this.composeWithSubGenerator({
       Generator: TsConfigGenerator,
       path: path.join(__dirname, "./tsconfig"),
     });

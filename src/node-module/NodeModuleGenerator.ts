@@ -14,30 +14,32 @@ export interface NodeModuleGeneratorOptions extends ReadmeGeneratorOptions {
 }
 
 export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOptions> {
-  public static QUESTIONS: Question<NodeModuleGeneratorOptions>[] = [
-    ...ReadmeGenerator.QUESTIONS,
-    {
-      type: "input",
-      name: "packageKeywords",
-      message:
-        "What keywords would you like to associate with this new package?",
-    },
-    {
-      type: "input",
-      name: "authorName",
-      message: "Who is the author of this new package?",
-    },
-    {
-      type: "input",
-      name: "authorEmail",
-      message: "What is the email address of the author of this new package?",
-    },
-    {
-      type: "input",
-      name: "githubUrl",
-      message: "What is the full URL of the GitHub repo for the new package?",
-    },
-  ];
+  public static getQuestions(): Question<NodeModuleGeneratorOptions>[] {
+    return [
+      ...ReadmeGenerator.getQuestions(),
+      {
+        type: "input",
+        name: "packageKeywords",
+        message:
+          "What keywords would you like to associate with this new package?",
+      },
+      {
+        type: "input",
+        name: "authorName",
+        message: "Who is the author of this new package?",
+      },
+      {
+        type: "input",
+        name: "authorEmail",
+        message: "What is the email address of the author of this new package?",
+      },
+      {
+        type: "input",
+        name: "githubUrl",
+        message: "What is the full URL of the GitHub repo for the new package?",
+      },
+    ];
+  }
 
   constructor(
     args: string | string[],
@@ -47,19 +49,10 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
   }
 
   public initializing() {
-    this.composeWith(
-      {
-        Generator: ReadmeGenerator,
-        path: path.join("./readme"),
-      },
-      this.options
-    );
-
-    this.addQuestions(NodeModuleGenerator.QUESTIONS);
-  }
-
-  public async prompting() {
-    await this.askQuestions();
+    this.composeWithSubGenerator({
+      Generator: ReadmeGenerator,
+      path: path.join(__dirname, "./readme"),
+    });
   }
 
   public writing() {
