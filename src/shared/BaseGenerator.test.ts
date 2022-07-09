@@ -1,19 +1,82 @@
 import YeomanTest, { RunResult } from "yeoman-test";
 
 import { OptionsTestGenerator } from "../__tests__/__utils__";
+import { ComposeWithSubGeneratorTestGenerator } from "../__tests__/__utils__";
 
 describe("BaseGenerator", () => {
+  let result: RunResult;
+
   describe("#composeWithSubGenerator", () => {
     describe("subgenerator", () => {
-      it.todo("inherits options from the parent");
+      describe("when parent is given options", () => {
+        beforeAll(async () => {
+          result = await YeomanTest.create(
+            ComposeWithSubGeneratorTestGenerator,
+            {
+              namespace: "test:compose-with-sub-generator",
+            }
+          )
+            .withOptions({
+              packageName: "test-package",
+              packageDescription: "Test package description",
+              packageKeywords: "test foo bar",
+            })
+            .run();
+        });
 
-      it.todo("inherits answers from the parent");
+        describe("inherits options from the parent", () => {
+          it("writes the child options to inheritedOptions.json", () => {
+            result.assertJsonFileContent("inheritedOptions.json", {
+              packageName: "test-package",
+              packageDescription: "Test package description",
+            });
+          });
+
+          it("writes parent options to parentOptions.json", () => {
+            result.assertJsonFileContent("parentOptions.json", {
+              packageName: "test-package",
+              packageDescription: "Test package description",
+              packageKeywords: "test foo bar",
+            });
+          });
+        });
+      });
+
+      describe("when parent is given prompt answers", () => {
+        beforeAll(async () => {
+          result = await YeomanTest.create(
+            ComposeWithSubGeneratorTestGenerator,
+            {
+              namespace: "test:compose-with-sub-generator",
+            }
+          )
+            .withPrompts({
+              packageName: "test-package",
+              packageDescription: "Test package description",
+              packageKeywords: "test foo bar",
+            })
+            .run();
+        });
+
+        it("writes the child options to inheritedOptions.json", () => {
+          result.assertJsonFileContent("inheritedOptions.json", {
+            packageName: "test-package",
+            packageDescription: "Test package description",
+          });
+        });
+
+        it("writes parent options to parentOptions.json", () => {
+          result.assertJsonFileContent("parentOptions.json", {
+            packageName: "test-package",
+            packageDescription: "Test package description",
+            packageKeywords: "test foo bar",
+          });
+        });
+      });
     });
   });
 
   describe("interchangeably accepts options or prompt answers", () => {
-    let result: RunResult;
-
     describe("when given options", () => {
       beforeAll(async () => {
         result = await YeomanTest.create(OptionsTestGenerator, {
