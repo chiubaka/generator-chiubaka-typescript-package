@@ -107,7 +107,8 @@ export abstract class BaseGenerator<
   }
 
   private async askQuestions() {
-    const answers = await this.prompt(this.questions);
+    const answers =
+      this.questions.length > 0 ? await this.prompt(this.questions) : {};
 
     this.answers = {
       ...this.answers,

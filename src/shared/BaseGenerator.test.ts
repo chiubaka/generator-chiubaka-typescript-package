@@ -1,3 +1,4 @@
+import Generator from "yeoman-generator";
 import YeomanTest, { RunResult } from "yeoman-test";
 
 import { OptionsTestGenerator } from "../__tests__/__utils__";
@@ -43,7 +44,10 @@ describe("BaseGenerator", () => {
       });
 
       describe("when parent is given prompt answers", () => {
+        let promptSpy: jest.SpyInstance;
+
         beforeAll(async () => {
+          promptSpy = jest.spyOn(Generator.prototype, "prompt");
           result = await YeomanTest.create(
             ComposeWithSubGeneratorTestGenerator,
             {
@@ -71,6 +75,10 @@ describe("BaseGenerator", () => {
             packageDescription: "Test package description",
             packageKeywords: "test foo bar",
           });
+        });
+
+        it("does not double prompt", () => {
+          expect(promptSpy).toHaveBeenCalledTimes(1);
         });
       });
     });
