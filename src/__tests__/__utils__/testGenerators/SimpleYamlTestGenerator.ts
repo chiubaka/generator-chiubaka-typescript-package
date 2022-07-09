@@ -1,15 +1,28 @@
 import yaml from "js-yaml";
 import assert from "node:assert";
-import { GeneratorOptions } from "yeoman-generator";
+import { Question } from "yeoman-generator";
 
-import { BaseGenerator } from "../../../../../shared";
+import { BaseGenerator } from "../../../shared/index";
 
-interface SimpleYamlTestGeneratorOptions extends GeneratorOptions {
-  yamlFilePath?: string;
-  yamlFileContents?: Record<string, any>;
+interface SimpleYamlTestGeneratorOptions {
+  yamlFilePath: string;
+  yamlFileContents: Record<string, any>;
 }
 
 export class SimpleYamlTestGenerator extends BaseGenerator<SimpleYamlTestGeneratorOptions> {
+  public static QUESTIONS: Question<SimpleYamlTestGeneratorOptions>[] = [
+    {
+      type: "input",
+      name: "yamlFilePath",
+      message: "Path to the YAML file to output",
+    },
+    {
+      type: "input",
+      name: "yamlFileContents",
+      message: "Contents to write to the YAML file",
+    },
+  ];
+
   private yamlFilePath?: string;
   private yamlFileContents?: Record<string, any>;
 
@@ -21,6 +34,14 @@ export class SimpleYamlTestGenerator extends BaseGenerator<SimpleYamlTestGenerat
 
     this.yamlFilePath = options.yamlFilePath;
     this.yamlFileContents = options.yamlFileContents;
+  }
+
+  public initializing() {
+    this.addQuestions(SimpleYamlTestGenerator.QUESTIONS);
+  }
+
+  public async prompting() {
+    await this.askQuestions();
   }
 
   public writing() {

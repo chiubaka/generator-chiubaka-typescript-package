@@ -1,13 +1,13 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "../node-module/__tests__/__fixtures__/index";
+import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../node-module/__tests__/__fixtures__/index";
 
 describe("TypeScriptPackageGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
     result = await YeomanHelpers.create(__dirname)
-      .withPrompts(NODE_MODULE_GENERATOR_TEST_ANSWERS)
+      .withPrompts(NODE_MODULE_GENERATOR_TEST_OPTIONS)
       .run();
   });
 

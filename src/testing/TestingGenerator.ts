@@ -16,4 +16,8 @@ export class TestingGenerator extends BaseGenerator {
       path: path.join(__dirname, "./test-coverage"),
     });
   }
+
+  public prompting() {
+    return;
+  }
 }

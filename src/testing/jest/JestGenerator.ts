@@ -1,6 +1,10 @@
 import { BaseGenerator } from "../../shared";
 
 export class JestGenerator extends BaseGenerator {
+  public prompting() {
+    return;
+  }
+
   public configuring() {
     this.copyTemplate("jest.config.ts", "jest.config.ts");
   }

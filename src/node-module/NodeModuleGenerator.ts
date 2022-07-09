@@ -1,60 +1,65 @@
 import assert from "node:assert";
-import { GeneratorOptions, Questions } from "yeoman-generator";
+import path from "node:path";
+import { GeneratorOptions, Question } from "yeoman-generator";
 
 import { BaseGenerator } from "../shared";
+import { ReadmeGenerator } from "./readme";
+import { ReadmeGeneratorOptions } from "./readme/ReadmeGenerator";
 
-interface PromptAnswers {
-  name: string;
-  description: string;
+export interface NodeModuleGeneratorOptions extends ReadmeGeneratorOptions {
+  packageKeywords: string;
   authorName: string;
   authorEmail: string;
   githubUrl: string;
-  keywords?: string;
 }
 
-export class NodeModuleGenerator extends BaseGenerator {
-  private answers!: PromptAnswers;
+export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOptions> {
+  public static QUESTIONS: Question<NodeModuleGeneratorOptions>[] = [
+    ...ReadmeGenerator.QUESTIONS,
+    {
+      type: "input",
+      name: "packageKeywords",
+      message:
+        "What keywords would you like to associate with this new package?",
+    },
+    {
+      type: "input",
+      name: "authorName",
+      message: "Who is the author of this new package?",
+    },
+    {
+      type: "input",
+      name: "authorEmail",
+      message: "What is the email address of the author of this new package?",
+    },
+    {
+      type: "input",
+      name: "githubUrl",
+      message: "What is the full URL of the GitHub repo for the new package?",
+    },
+  ];
 
-  constructor(args: string | string[], options: GeneratorOptions) {
+  constructor(
+    args: string | string[],
+    options: Partial<NodeModuleGeneratorOptions> & GeneratorOptions
+  ) {
     super(args, options, { customInstallTask: true });
   }
 
-  public async prompting() {
-    const questions: Questions<PromptAnswers> = [
+  public initializing() {
+    this.composeWith(
       {
-        type: "input",
-        name: "name",
-        message: "What is the name of this new package?",
+        Generator: ReadmeGenerator,
+        path: path.join("./readme"),
       },
-      {
-        type: "input",
-        name: "description",
-        message: "What is the description of this new package?",
-      },
-      {
-        type: "input",
-        name: "authorName",
-        message: "Who is the author of this new package?",
-      },
-      {
-        type: "input",
-        name: "authorEmail",
-        message: "What is the email address of the author of this new package?",
-      },
-      {
-        type: "input",
-        name: "githubUrl",
-        message: "What is the full URL of the GitHub repo for the new package?",
-      },
-      {
-        type: "input",
-        name: "keywords",
-        message:
-          "What keywords would you like to associate with this new package?",
-      },
-    ];
+      this.options
+    );
 
-    this.answers = await this.prompt(questions);
+    this.addQuestions(NodeModuleGenerator.QUESTIONS);
+  }
+
+  public async prompting() {
+    await this.askQuestions();
   }
 
   public writing() {
@@ -69,7 +74,7 @@ export class NodeModuleGenerator extends BaseGenerator {
   }
 
   private writePackageJson() {
-    const keywordTokens = this.answers.keywords?.split(" ") || [];
+    const keywordTokens = this.answers.packageKeywords?.split(" ") || [];
     const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
 
     this.copyTemplate("package.json.ejs", "package.json", {

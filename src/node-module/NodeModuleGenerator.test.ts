@@ -1,13 +1,13 @@
 import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { NODE_MODULE_GENERATOR_TEST_ANSWERS } from "./__tests__/__fixtures__/index";
+import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "./__tests__/__fixtures__/";
 
 describe("NodeModuleGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await runWithAnswers(NODE_MODULE_GENERATOR_TEST_ANSWERS);
+    result = await runWithAnswers(NODE_MODULE_GENERATOR_TEST_OPTIONS);
   });
 
   describe(".gitignore", () => {
@@ -122,7 +122,7 @@ describe("NodeModuleGenerator", () => {
 
         beforeAll(async () => {
           noKeywordsResult = await runWithAnswers({
-            ...NODE_MODULE_GENERATOR_TEST_ANSWERS,
+            ...NODE_MODULE_GENERATOR_TEST_OPTIONS,
             keywords: "",
           });
         });

@@ -38,6 +38,10 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
     ]);
   }
 
+  public async prompting() {
+    await this.askQuestions();
+  }
+
   public install() {
     const yarnArgs = ["install"];
     if (process.env.NODE_ENV === "test") {

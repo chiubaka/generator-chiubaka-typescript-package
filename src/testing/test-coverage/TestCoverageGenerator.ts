@@ -10,4 +10,8 @@ export class TestCoverageGenerator extends BaseGenerator {
       path: path.join(__dirname, "./codecov"),
     });
   }
+
+  public prompting() {
+    return;
+  }
 }

@@ -1,0 +1,18 @@
+# <%= packageName %>
+
+<%- include("partials/README.md/shields.ejs", { packageName }) %>
+
+<%= packageDescription %>
+
+## Generated project manual set up steps
+### CircleCI
+1. Enable builds for this project in the CircleCI UI.
+
+### Setting up CodeCov
+1. Enable CodeCov for this project in the CodeCov UI.
+2. Add the token for this project to CircleCI as the `CODECOV_TOKEN` environment variable
+3. Add the CodeCov shield from Settings > Badges to this README.
+
+### Setting up Code Climate
+1. Enable Code Climate for this project in the Code Climate UI
+2. Add the Code Climate shield to this README.
