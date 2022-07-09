@@ -44,7 +44,7 @@ export class ReadmeGenerator extends BaseGenerator<ReadmeGeneratorOptions> {
     ];
   }
 
-  public write() {
+  public writing() {
     this.copyTemplate("README.md.ejs", "README.md", this.answers);
   }
 }
