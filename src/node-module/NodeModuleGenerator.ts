@@ -48,18 +48,20 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
     super(args, options, { customInstallTask: true });
   }
 
-  public initializing() {
-    this.composeWithSubGenerator({
-      Generator: ReadmeGenerator,
-      path: path.join(__dirname, "./readme"),
-    });
-  }
-
   public writing() {
     assert(this.answers);
 
     this.writeGitignore();
     this.writePackageJson();
+  }
+
+  protected getSubGeneratorOptions() {
+    return [
+      {
+        Generator: ReadmeGenerator,
+        path: path.join(__dirname, "./readme"),
+      },
+    ];
   }
 
   private writeGitignore() {

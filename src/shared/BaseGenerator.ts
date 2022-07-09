@@ -48,23 +48,11 @@ export abstract class BaseGenerator<
       "initializing"
     );
     this.queueMethod(this.askQuestions.bind(this), "askQuestions", "prompting");
-  }
-
-  public composeWithSubGenerator<TSubGeneratorOptions>(
-    subGeneratorOptions: SubGeneratorCompositionOptions<TSubGeneratorOptions>
-  ): BaseGenerator<TSubGeneratorOptions> {
-    const generators = this.composeWithSubGenerators([subGeneratorOptions]);
-    return generators[0] as BaseGenerator<TSubGeneratorOptions>;
-  }
-
-  public composeWithSubGenerators(
-    subGeneratorOptions: SubGeneratorCompositionOptions<any>[]
-  ): BaseGenerator<any>[] {
-    return super.composeWith(
-      subGeneratorOptions,
-      this.options,
-      true
-    ) as BaseGenerator<any>[];
+    this.queueMethod(
+      this.initializeSubGenerators.bind(this),
+      "initializeSubGenerators",
+      "prompting"
+    );
   }
 
   /**
@@ -101,6 +89,10 @@ export abstract class BaseGenerator<
     });
   }
 
+  protected getSubGeneratorOptions(): SubGeneratorCompositionOptions<any>[] {
+    return [];
+  }
+
   /**
    * Initializes questions based on optionally provided `getQuestions` static method
    */
@@ -123,6 +115,11 @@ export abstract class BaseGenerator<
     };
   }
 
+  private initializeSubGenerators() {
+    const subGeneratorOptions = this.getSubGeneratorOptions();
+    this.composeWithSubGenerators(subGeneratorOptions);
+  }
+
   private addQuestions(questions: Question<T>[]) {
     for (const question of questions) {
       this.addQuestionOrCopyOption(question);
@@ -140,6 +137,23 @@ export abstract class BaseGenerator<
       // eslint-disable-next-line security/detect-object-injection
       (this.answers as Record<string, any>)[name] = option;
     }
+  }
+
+  private composeWithSubGenerator<TSubGeneratorOptions>(
+    subGeneratorOptions: SubGeneratorCompositionOptions<TSubGeneratorOptions>
+  ): BaseGenerator<TSubGeneratorOptions> {
+    const generators = this.composeWithSubGenerators([subGeneratorOptions]);
+    return generators[0] as BaseGenerator<TSubGeneratorOptions>;
+  }
+
+  private composeWithSubGenerators(
+    subGeneratorOptions: SubGeneratorCompositionOptions<any>[]
+  ): BaseGenerator<any>[] {
+    return super.composeWith(
+      subGeneratorOptions,
+      this.answers,
+      true
+    ) as BaseGenerator<any>[];
   }
 
   private writeOrAppendDestination(

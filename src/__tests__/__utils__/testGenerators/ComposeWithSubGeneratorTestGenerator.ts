@@ -24,14 +24,19 @@ export class ComposeWithSubGeneratorTestGenerator extends BaseGenerator<ComposeW
     ] as Question<ComposeWithSubGeneratorTestGeneratorOptions>[];
   }
 
-  public initializing() {
-    this.composeWithSubGenerator({
-      Generator: InheritedOptionsSubGeneratorTestGenerator,
-      path: path.join(__dirname, "./InheritedOptionsSubGeneratorTestGenerator"),
-    });
-  }
-
   public writing() {
     this.writeDestinationJSON("parentOptions.json", this.answers);
+  }
+
+  protected getSubGeneratorOptions() {
+    return [
+      {
+        Generator: InheritedOptionsSubGeneratorTestGenerator,
+        path: path.join(
+          __dirname,
+          "./InheritedOptionsSubGeneratorTestGenerator"
+        ),
+      },
+    ];
   }
 }

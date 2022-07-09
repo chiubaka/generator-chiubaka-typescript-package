@@ -5,8 +5,8 @@ import { JestGenerator } from "./jest";
 import { TestCoverageGenerator } from "./test-coverage";
 
 export class TestingGenerator extends BaseGenerator {
-  public initializing() {
-    this.composeWithSubGenerators([
+  protected getSubGeneratorOptions() {
+    return [
       {
         Generator: JestGenerator,
         path: path.join(__dirname, "./jest"),
@@ -15,6 +15,6 @@ export class TestingGenerator extends BaseGenerator {
         Generator: TestCoverageGenerator,
         path: path.join(__dirname, "./test-coverage"),
       },
-    ]);
+    ];
   }
 }
