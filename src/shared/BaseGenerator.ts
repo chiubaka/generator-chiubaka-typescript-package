@@ -137,13 +137,6 @@ export abstract class BaseGenerator<
     }
   }
 
-  private composeWithSubGenerator<TSubGeneratorOptions>(
-    subGeneratorOptions: SubGeneratorCompositionOptions<TSubGeneratorOptions>
-  ): BaseGenerator<TSubGeneratorOptions> {
-    const generators = this.composeWithSubGenerators([subGeneratorOptions]);
-    return generators[0] as BaseGenerator<TSubGeneratorOptions>;
-  }
-
   private composeWithSubGenerators(
     subGeneratorOptions: SubGeneratorCompositionOptions<any>[]
   ): BaseGenerator<any>[] {
