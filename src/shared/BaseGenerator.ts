@@ -32,15 +32,12 @@ export abstract class BaseGenerator<
   constructor(
     args: string | string[],
     options: Partial<T> & GeneratorOptions,
-    features?: GeneratorFeatures,
-    questions: Question<T>[] = []
+    features?: GeneratorFeatures
   ) {
     super(args, options, features);
 
     this.questions = [];
     this.answers = {} as T;
-
-    this.addQuestions(questions);
 
     this.queueMethod(
       this.initializeQuestions.bind(this),
