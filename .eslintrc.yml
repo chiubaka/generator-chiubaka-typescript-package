@@ -9,6 +9,7 @@ extends:
   - plugin:unicorn/recommended
 ignorePatterns:
   - generators
+  - reports
 overrides:
   - files:
       - "*.ts"
