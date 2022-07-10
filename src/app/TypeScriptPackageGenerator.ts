@@ -13,8 +13,17 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
     super(args, options, { customInstallTask: true });
   }
 
-  public initializing() {
-    this.composeWith([
+  public install() {
+    const yarnArgs = ["install"];
+    if (process.env.NODE_ENV === "test") {
+      yarnArgs.push("--no-immutable");
+    }
+
+    this.spawnCommandSync("yarn", yarnArgs);
+  }
+
+  protected getSubGeneratorOptions() {
+    return [
       {
         Generator: GitignoreGenerator,
         path: path.join(__dirname, "../gitignore"),
@@ -35,15 +44,6 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
         Generator: CircleCiGenerator,
         path: path.join(__dirname, "../circleci"),
       },
-    ]);
-  }
-
-  public install() {
-    const yarnArgs = ["install"];
-    if (process.env.NODE_ENV === "test") {
-      yarnArgs.push("--no-immutable");
-    }
-
-    this.spawnCommandSync("yarn", yarnArgs);
+    ];
   }
 }

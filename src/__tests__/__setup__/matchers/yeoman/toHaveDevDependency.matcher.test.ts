@@ -4,7 +4,7 @@ import {
   DevDependenciesTestGenerator,
   EmptyTestGenerator,
   NoDevDependenciesTestGenerator,
-} from "./testGenerators";
+} from "../../../__utils__";
 
 describe("toHaveDevDependency", () => {
   it("fails ig given something other than a YeomanTest.RunResult", () => {

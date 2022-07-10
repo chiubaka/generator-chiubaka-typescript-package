@@ -1,6 +1,6 @@
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import { EmptyTestGenerator } from "./testGenerators";
+import { EmptyTestGenerator } from "../../../__utils__";
 
 describe("toBeYeomanTestRunResult", () => {
   describe("when given something that isn't a YeomanTest.RunResult", () => {
