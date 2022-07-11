@@ -2,6 +2,8 @@ import YeomanHelpers, { RunResult } from "yeoman-test";
 
 import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../node-module/__tests__/__fixtures__/index";
 
+jest.setTimeout(120_000);
+
 describe("TypeScriptPackageGenerator", () => {
   let result: RunResult;
 
@@ -114,6 +116,12 @@ describe("TypeScriptPackageGenerator", () => {
 
     it("creates a tsconfig.eslint.json file", () => {
       result.assertFile("tsconfig.eslint.json");
+    });
+
+    it("creates a project with no linting errors", () => {
+      expect(() => {
+        result.env.spawnCommandSync("yarn", ["run", "lint"], {});
+      }).not.toThrow();
     });
   });
 });

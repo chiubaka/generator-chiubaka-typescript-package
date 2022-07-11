@@ -35,4 +35,16 @@ export class EsLintGenerator extends BaseGenerator {
       "yaml-eslint-parser",
     ]);
   }
+
+  public install() {
+    if (this.options.yarnInstall === true) {
+      this.spawnCommandSync("yarn", ["install"]);
+    }
+  }
+
+  public end() {
+    if (this.options.skipLintFix !== true) {
+      this.spawnCommandSync("yarn", ["run", "lint:fix"]);
+    }
+  }
 }

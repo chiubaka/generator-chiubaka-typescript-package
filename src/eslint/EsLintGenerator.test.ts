@@ -4,7 +4,12 @@ describe("EsLintGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(__dirname).run();
+    result = await YeomanHelpers.create(__dirname)
+      .withOptions({
+        skipLintFix: true,
+        yarnInstall: true,
+      })
+      .run();
   });
 
   it("creates a .eslintrc.yml file", () => {

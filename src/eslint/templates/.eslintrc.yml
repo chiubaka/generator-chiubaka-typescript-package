@@ -61,6 +61,7 @@ overrides:
       - json
     rules:
       json/json: error
+      unicorn/prefer-module: off
   - files:
       - tsconfig.json
     rules:

@@ -142,7 +142,10 @@ export abstract class BaseGenerator<
   ): BaseGenerator<any>[] {
     return super.composeWith(
       subGeneratorOptions,
-      this.answers,
+      {
+        yarnInstall: this.options.yarnInstall as boolean,
+        ...this.answers,
+      },
       true
     ) as BaseGenerator<any>[];
   }
