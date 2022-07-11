@@ -1,5 +1,6 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
+import { RunResultUtils } from "../__tests__/__utils__";
 import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../node-module/__tests__/__fixtures__/index";
 
 describe("TypeScriptPackageGenerator", () => {
@@ -129,13 +130,44 @@ describe("TypeScriptPackageGenerator", () => {
 
   describe("creates a working git hooks set up", () => {
     describe("pre-commit", () => {
-      it.todo("rejects commits with linting errors that are not auto-fixable");
+      it("rejects commits with linting errors that are not auto-fixable", async () => {
+        await RunResultUtils.write(
+          result,
+          "src/unfixable.ts",
+          'console.log("Fix this!")'
+        );
 
-      it.todo(
-        "automatically fixes linting errors in staged files before committing"
-      );
+        result.env.spawnCommandSync("git", ["add", "src/unfixable.ts"], {});
+
+        expect(() => {
+          result.env.spawnCommandSync(
+            "git",
+            ["commit", "-m", "Unfixable linting errors"],
+            {}
+          );
+        }).toThrow();
+      });
+
+      it("automatically fixes linting errors in staged files before committing", async () => {
+        await RunResultUtils.write(
+          result,
+          "src/fixable.ts",
+          "export const test = () => { return 'Hello, world!'; }"
+        );
+
+        result.env.spawnCommandSync("git", ["add", "src/fixable.ts"], {});
+
+        expect(() => {
+          result.env.spawnCommandSync(
+            "git",
+            ["commit", "-m", "Fixable linting errors"],
+            {}
+          );
+        }).not.toThrow();
+      });
     });
 
+    // Not test-able until we've added a remote to the generated git repo
     describe("pre-push", () => {
       it.todo("runs tests");
 
