@@ -2,6 +2,8 @@ import yaml from "js-yaml";
 import micromatch from "micromatch";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
+import { RunResultUtils } from "../__tests__/__utils__";
+
 describe("EsLintGenerator", () => {
   let result: RunResult;
 
@@ -298,11 +300,9 @@ const writeFileWithLintErrors = (
   result: RunResult,
   filePath: string
 ): Promise<void> => {
-  result.fs.write(filePath, "console.warn('Hello, world!')");
-
-  return new Promise<void>((resolve) => {
-    result.fs.commit(() => {
-      resolve();
-    });
-  });
+  return RunResultUtils.write(
+    result,
+    filePath,
+    "console.warn('Hello, world!')"
+  );
 };
