@@ -7,7 +7,7 @@ describe("GitGenerator", () => {
 
   beforeAll(async () => {
     result = await YeomanTest.create(__dirname)
-      .withOptions({ yarnInstall: true })
+      .withOptions({ yarnInstall: true, configGitUser: true })
       .run();
   });
 
