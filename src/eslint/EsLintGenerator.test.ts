@@ -222,12 +222,12 @@ describe("EsLintGenerator", () => {
     });
 
     describe("when there are linting problems", () => {
-      beforeEach(async () => {
+      beforeAll(async () => {
         await writeFileWithLintErrors(result, "src/lintingErrors.ts");
       });
 
-      afterEach(() => {
-        result.fs.delete("src/lintingErrors.ts");
+      afterAll(async () => {
+        await RunResultUtils.delete(result, "src/lintingErrors.ts");
       });
 
       describe("yarn lint", () => {

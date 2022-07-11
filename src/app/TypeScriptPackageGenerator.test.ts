@@ -130,40 +130,64 @@ describe("TypeScriptPackageGenerator", () => {
 
   describe("creates a working git hooks set up", () => {
     describe("pre-commit", () => {
-      it("rejects commits with linting errors that are not auto-fixable", async () => {
-        await RunResultUtils.write(
-          result,
-          "src/unfixable.ts",
-          'console.log("Fix this!")'
-        );
-
-        result.env.spawnCommandSync("git", ["add", "src/unfixable.ts"], {});
-
-        expect(() => {
-          result.env.spawnCommandSync(
-            "git",
-            ["commit", "-m", "Unfixable linting errors"],
-            {}
+      describe("when there are non-auto-fixable linting errors", () => {
+        beforeAll(async () => {
+          await RunResultUtils.write(
+            result,
+            "src/unfixable.ts",
+            'console.log("Fix this!")'
           );
-        }).toThrow();
+        });
+
+        afterAll(async () => {
+          await RunResultUtils.delete(result, "src/unfixable.ts");
+        });
+
+        afterEach(() => {
+          RunResultUtils.gitRestoreStaged(result);
+        });
+
+        it("rejects commits with linting errors that are not auto-fixable", () => {
+          result.env.spawnCommandSync("git", ["add", "src/unfixable.ts"], {});
+
+          expect(() => {
+            result.env.spawnCommandSync(
+              "git",
+              ["commit", "-m", "Unfixable linting errors"],
+              {}
+            );
+          }).toThrow();
+        });
       });
 
-      it("automatically fixes linting errors in staged files before committing", async () => {
-        await RunResultUtils.write(
-          result,
-          "src/fixable.ts",
-          "export const test = () => { return 'Hello, world!'; }"
-        );
-
-        result.env.spawnCommandSync("git", ["add", "src/fixable.ts"], {});
-
-        expect(() => {
-          result.env.spawnCommandSync(
-            "git",
-            ["commit", "-m", "Fixable linting errors"],
-            {}
+      describe("when there are auto-fixable linting errors", () => {
+        beforeAll(async () => {
+          await RunResultUtils.write(
+            result,
+            "src/fixable.ts",
+            "export const test = () => { return 'Hello, world!'; }"
           );
-        }).not.toThrow();
+        });
+
+        afterEach(() => {
+          RunResultUtils.gitRestoreStaged(result);
+        });
+
+        afterAll(async () => {
+          await RunResultUtils.delete(result, "src/fixable.ts");
+        });
+
+        it("automatically fixes linting errors in staged files before committing", () => {
+          result.env.spawnCommandSync("git", ["add", "src/fixable.ts"], {});
+
+          expect(() => {
+            result.env.spawnCommandSync(
+              "git",
+              ["commit", "-m", "Fixable linting errors"],
+              {}
+            );
+          }).not.toThrow();
+        });
       });
     });
 

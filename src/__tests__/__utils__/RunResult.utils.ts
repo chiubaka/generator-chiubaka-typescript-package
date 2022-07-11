@@ -7,10 +7,23 @@ export class RunResultUtils {
     contents: string | Buffer
   ): Promise<void> {
     runResult.fs.write(to, contents);
+    return this.commit(runResult);
+  }
+
+  public static delete(runResult: RunResult, filePath: string): Promise<void> {
+    runResult.fs.delete(filePath);
+    return this.commit(runResult);
+  }
+
+  private static commit(runResult: RunResult): Promise<void> {
     return new Promise((resolve) => {
       runResult.fs.commit(() => {
         resolve();
       });
     });
+  }
+
+  public static gitRestoreStaged(runResult: RunResult) {
+    runResult.env.spawnCommandSync("git", ["restore", "--staged", "."], {});
   }
 }
