@@ -1,6 +1,11 @@
 import { RunResult } from "yeoman-test";
 
 export class RunResultUtils {
+  public static readPackageJson(runResult: RunResult) {
+    const packageJsonString = runResult.fs.read("package.json");
+    return JSON.parse(packageJsonString) as Record<string, any>;
+  }
+
   public static write(
     runResult: RunResult,
     to: string,
@@ -31,14 +36,10 @@ export class RunResultUtils {
   public static gitConfigUser(runResult: RunResult) {
     runResult.env.spawnCommandSync(
       "git",
-      ["config", "user.email", '"testing@jest.io"'],
+      ["config", "user.email", "testing@jest.io"],
       {}
     );
-    runResult.env.spawnCommandSync(
-      "git",
-      ["config", "user.name", '"Jest"'],
-      {}
-    );
+    runResult.env.spawnCommandSync("git", ["config", "user.name", "Jest"], {});
   }
 
   public static gitRestoreStaged(runResult: RunResult) {
