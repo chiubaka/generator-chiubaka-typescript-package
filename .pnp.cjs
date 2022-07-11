@@ -36,6 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chiubaka/tsconfig", "npm:0.0.3"],\
             ["@types/jest", "npm:28.1.4"],\
             ["@types/js-yaml", "npm:4.0.5"],\
+            ["@types/micromatch", "npm:4.0.2"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
@@ -63,6 +64,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:4.1.0"],\
             ["lint-staged", "npm:13.0.3"],\
             ["mem-fs", "npm:2.2.1"],\
+            ["micromatch", "npm:4.0.5"],\
             ["prettier", "npm:2.7.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["ts-jest", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:28.0.5"],\
@@ -1813,6 +1815,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/braces", [\
+        ["npm:3.0.1", {\
+          "packageLocation": "./.yarn/cache/@types-braces-npm-3.0.1-0c7465c9fb-3749f7673a.zip/node_modules/@types/braces/",\
+          "packageDependencies": [\
+            ["@types/braces", "npm:3.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/debug", [\
         ["npm:4.1.7", {\
           "packageLocation": "./.yarn/cache/@types-debug-npm-4.1.7-f54c81f8db-0a7b89d8ed.zip/node_modules/@types/debug/",\
@@ -1962,6 +1973,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/mem-fs", "npm:1.1.2"],\
             ["@types/node", "npm:18.0.0"],\
             ["@types/vinyl", "npm:2.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/micromatch", [\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-micromatch-npm-4.0.2-f1717d74e1-6c678e9c62.zip/node_modules/@types/micromatch/",\
+          "packageDependencies": [\
+            ["@types/micromatch", "npm:4.0.2"],\
+            ["@types/braces", "npm:3.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4625,6 +4646,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chiubaka/tsconfig", "npm:0.0.3"],\
             ["@types/jest", "npm:28.1.4"],\
             ["@types/js-yaml", "npm:4.0.5"],\
+            ["@types/micromatch", "npm:4.0.2"],\
             ["@types/node", "npm:18.0.1"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
@@ -4652,6 +4674,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:4.1.0"],\
             ["lint-staged", "npm:13.0.3"],\
             ["mem-fs", "npm:2.2.1"],\
+            ["micromatch", "npm:4.0.5"],\
             ["prettier", "npm:2.7.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["ts-jest", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:28.0.5"],\

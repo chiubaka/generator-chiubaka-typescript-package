@@ -9,12 +9,14 @@ export class EsLintGenerator extends BaseGenerator {
 
     this.copyTemplate(".eslintrc.yml", ".eslintrc.yml");
     this.copyTemplate("tsconfig.eslint.json", "tsconfig.eslint.json");
+    this.copyTemplate(".lintstagedrc.yml", ".lintstagedrc.yml");
   }
 
   public async writing() {
     const scripts = {
       lint: "eslint --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
       "lint:fix": "yarn run lint --fix",
+      "lint:staged": "lint-staged",
     };
     this.extendPackageJson({ scripts });
 
@@ -35,6 +37,7 @@ export class EsLintGenerator extends BaseGenerator {
       "eslint-plugin-simple-import-sort",
       "eslint-plugin-unicorn",
       "eslint-plugin-yml",
+      "lint-staged",
       "prettier",
       "typescript",
       "yaml-eslint-parser",
