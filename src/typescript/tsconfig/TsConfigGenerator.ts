@@ -6,6 +6,10 @@ export class TsConfigGenerator extends BaseGenerator {
   }
 
   public async writing() {
-    await this.addDevDependencies("@chiubaka/tsconfig");
+    await this.addDevDependencyWithComment({
+      name: "@chiubaka/tsconfig",
+      comment:
+        "Shared TSConfig settings for the Chiubaka Technologies ecosystem",
+    });
   }
 }

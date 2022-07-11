@@ -13,7 +13,7 @@ describe("GitHooksGenerator", () => {
   describe("installs necessary dependencies", () => {
     describe("husky", () => {
       it("adds husky to package.json", () => {
-        expect(result).toHaveDevDependency("husky");
+        expect(result).toHaveDevDependencyWithComment("husky");
       });
 
       it.todo("adds a comment describing why husky was installed");

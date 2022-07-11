@@ -38,13 +38,32 @@ export class JestGenerator extends BaseGenerator {
   }
 
   private async writeDependencies() {
-    await this.addDevDependencies([
-      "jest",
-      "@types/jest",
-      "ts-node",
-      "@types/node",
-      "ts-jest",
-      "jest-junit",
+    await this.addDevDependenciesWithComments([
+      {
+        name: "jest",
+        comment: "Test runner from Meta",
+      },
+      {
+        name: "@types/jest",
+        comment: "Types for jest",
+      },
+      {
+        name: "ts-node",
+        comment: "To enable TypeScript configuration files for Jest",
+      },
+      {
+        name: "@types/node",
+        comment: "Types for NodeJS. Peer dependency of ts-node.",
+      },
+      {
+        name: "ts-jest",
+        comment: "TypeScript preprocessor with source map support for Jest",
+      },
+      {
+        name: "jest-junit",
+        comment:
+          "JUnit report formatter for Jest for compatibility with CircleCI test results format",
+      },
     ]);
   }
 }

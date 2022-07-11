@@ -4,6 +4,12 @@ import Generator, {
   Question,
 } from "yeoman-generator";
 
+interface DependencyDefinition {
+  name: string;
+  comment: string;
+  version?: string;
+}
+
 interface WriteOrAppendOptions {
   leadingNewlineOnAppend?: boolean;
 }
@@ -77,6 +83,45 @@ export abstract class BaseGenerator<
   ) => {
     this.fs.copyTpl(this.templatePath(from), this.destinationPath(to), context);
   };
+
+  public async addDevDependencyWithComment(dependency: DependencyDefinition) {
+    return this.addDevDependenciesWithComments([dependency]);
+  }
+
+  public async addDevDependenciesWithComments(
+    dependencies: DependencyDefinition[]
+  ) {
+    const dependenciesWithVersions: Record<string, string> = {};
+    const dependenciesWithoutVersions: string[] = [];
+    const dependencyComments: Record<string, string> = {};
+
+    for (const { name, comment, version } of dependencies) {
+      if (version) {
+        // eslint-disable-next-line security/detect-object-injection
+        dependenciesWithVersions[name] = version;
+      } else {
+        dependenciesWithoutVersions.push(name);
+      }
+      // eslint-disable-next-line security/detect-object-injection
+      dependencyComments[name] = comment;
+    }
+
+    this.extendPackageJson({ devDependenciesComments: dependencyComments });
+
+    await this.addDevDependencies(dependenciesWithVersions);
+    await this.addDevDependencies(dependenciesWithoutVersions);
+  }
+
+  /**
+   * @deprecated Use BaseGenerator#addDevDependencyWithComment instead.
+   * @param dependencies
+   * @returns a promise of a map of dependencies and versions installed
+   */
+  public addDevDependencies(
+    dependencies: string | string[] | Record<string, string>
+  ) {
+    return super.addDevDependencies(dependencies);
+  }
 
   public extendPackageJson(json: Record<string, any>) {
     this.fs.extendJSON(this.destinationPath("package.json"), json);
