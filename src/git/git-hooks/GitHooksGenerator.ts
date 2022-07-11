@@ -16,14 +16,14 @@ export class GitHooksGenerator extends BaseGenerator {
       "husky",
       "add",
       ".husky/pre-commit",
-      '"yarn run lint:staged"',
+      "yarn run lint:staged",
     ]);
 
     this.spawnCommandSync("yarn", [
       "husky",
       "add",
       ".husky/pre-push",
-      '"yarn run test"',
+      "yarn run test",
     ]);
   }
 
