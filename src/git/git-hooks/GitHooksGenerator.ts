@@ -11,9 +11,7 @@ export class GitHooksGenerator extends BaseGenerator {
     if (this.options.yarnInstall === true) {
       this.spawnCommandSync("yarn", ["install"]);
     }
-  }
 
-  public end() {
     this.spawnCommandSync("yarn", ["run", "prepare"]);
 
     this.spawnCommandSync("yarn", [
