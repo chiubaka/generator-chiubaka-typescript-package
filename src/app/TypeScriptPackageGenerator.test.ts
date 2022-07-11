@@ -38,6 +38,14 @@ describe("TypeScriptPackageGenerator", () => {
       it("installs @chiubaka/tsconfig", () => {
         expect(result).toHaveDevDependency("@chiubaka/tsconfig");
       });
+
+      it("installs eslint", () => {
+        expect(result).toHaveDevDependency("eslint");
+      });
+
+      it("installs typescript", () => {
+        expect(result).toHaveDevDependency("typescript");
+      });
     });
   });
 
@@ -96,6 +104,22 @@ describe("TypeScriptPackageGenerator", () => {
       it("generates a junit.xml file", () => {
         result.assertFile("reports/junit/junit.xml");
       });
+    });
+  });
+
+  describe("linting", () => {
+    it("creates a .eslintrc.yml file", () => {
+      result.assertFile(".eslintrc.yml");
+    });
+
+    it("creates a tsconfig.eslint.json file", () => {
+      result.assertFile("tsconfig.eslint.json");
+    });
+
+    it("creates a project with no linting errors", () => {
+      expect(() => {
+        result.env.spawnCommandSync("yarn", ["run", "lint"], {});
+      }).not.toThrow();
     });
   });
 });

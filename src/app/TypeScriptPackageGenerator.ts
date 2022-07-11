@@ -2,6 +2,7 @@ import path from "node:path";
 import { GeneratorOptions } from "yeoman-generator";
 
 import { CircleCiGenerator } from "../circleci";
+import { EsLintGenerator } from "../eslint";
 import { GitignoreGenerator } from "../gitignore";
 import { NodeModuleGenerator } from "../node-module";
 import { BaseGenerator } from "../shared";
@@ -35,6 +36,10 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
       {
         Generator: TypeScriptGenerator,
         path: path.join(__dirname, "../typescript"),
+      },
+      {
+        Generator: EsLintGenerator,
+        path: path.join(__dirname, "../eslint"),
       },
       {
         Generator: TestingGenerator,
