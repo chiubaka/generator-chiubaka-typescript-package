@@ -25,7 +25,11 @@ export class ComposeWithSubGeneratorTestGenerator extends BaseGenerator<ComposeW
   }
 
   public writing() {
-    this.writeDestinationJSON("parentOptions.json", this.answers);
+    const options = { ...this.options };
+    delete options.env;
+
+    this.writeDestinationJSON("parentAnswers.json", this.answers);
+    this.writeDestinationJSON("parentOptions.json", options);
   }
 
   protected getSubGeneratorOptions() {
