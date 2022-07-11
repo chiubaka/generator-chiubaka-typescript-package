@@ -2,8 +2,6 @@ import { BaseGenerator } from "../../shared/index";
 
 export class GitHooksGenerator extends BaseGenerator {
   public async writing() {
-    this.copyTemplate(".lintstagedrc.yml.ejs", ".lintstagedrc.yml");
-
     await this.writePackageJson();
   }
 
@@ -31,12 +29,11 @@ export class GitHooksGenerator extends BaseGenerator {
 
   private async writePackageJson() {
     const scripts = {
-      "lint:staged": "lint-staged",
       prepare: "husky install",
     };
 
     this.extendPackageJson({ scripts });
 
-    await this.addDevDependencies(["husky", "lint-staged"]);
+    await this.addDevDependencies("husky");
   }
 }
