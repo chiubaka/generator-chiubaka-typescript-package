@@ -265,7 +265,13 @@ describe("EsLintGenerator", () => {
         result.env.spawnCommandSync("git", ["add", "package.json"], {});
         result.env.spawnCommandSync(
           "git",
-          ["commit", "-m", '"Initial commit"'],
+          [
+            "commit",
+            "--author",
+            "Jest <testing@jest.io>",
+            "-m",
+            '"Initial commit"',
+          ],
           {}
         );
 
