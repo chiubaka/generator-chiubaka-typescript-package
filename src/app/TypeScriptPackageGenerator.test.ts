@@ -116,6 +116,10 @@ describe("TypeScriptPackageGenerator", () => {
       result.assertFile("tsconfig.eslint.json");
     });
 
+    it("creates a .lintstagedrc.yml", () => {
+      result.assertFile(".lintstagedrc.yml");
+    });
+
     it("creates a project with no linting errors", () => {
       expect(() => {
         result.env.spawnCommandSync("yarn", ["run", "lint"], {});
