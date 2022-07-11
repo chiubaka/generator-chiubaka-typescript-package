@@ -2,6 +2,11 @@ import { BaseGenerator } from "../shared";
 
 export class EsLintGenerator extends BaseGenerator {
   public configuring() {
+    if (process.env.NODE_ENV === "test") {
+      // Required to disable immutable installs for the generated package in tests
+      this.copyTemplate(".yarnrc.yml", ".yarnrc.yml");
+    }
+
     this.copyTemplate(".eslintrc.yml", ".eslintrc.yml");
     this.copyTemplate("tsconfig.eslint.json", "tsconfig.eslint.json");
   }
