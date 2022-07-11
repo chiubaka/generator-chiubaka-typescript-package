@@ -1,5 +1,6 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
+import { RunResultUtils } from "../__tests__/__utils__";
 import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../node-module/__tests__/__fixtures__/index";
 
 describe("TypeScriptPackageGenerator", () => {
@@ -8,6 +9,9 @@ describe("TypeScriptPackageGenerator", () => {
   beforeAll(async () => {
     result = await YeomanHelpers.create(__dirname)
       .withPrompts(NODE_MODULE_GENERATOR_TEST_OPTIONS)
+      .withOptions({
+        configGitUser: true,
+      })
       .run();
   });
 
@@ -124,6 +128,77 @@ describe("TypeScriptPackageGenerator", () => {
       expect(() => {
         result.env.spawnCommandSync("yarn", ["run", "lint"], {});
       }).not.toThrow();
+    });
+  });
+
+  describe("creates a working git hooks set up", () => {
+    describe("pre-commit", () => {
+      describe("when there are non-auto-fixable linting errors", () => {
+        beforeAll(async () => {
+          await RunResultUtils.write(
+            result,
+            "src/unfixable.ts",
+            'console.log("Fix this!")'
+          );
+        });
+
+        afterAll(async () => {
+          await RunResultUtils.delete(result, "src/unfixable.ts");
+        });
+
+        afterEach(() => {
+          RunResultUtils.gitRestoreStaged(result);
+        });
+
+        it("rejects commits with linting errors that are not auto-fixable", () => {
+          result.env.spawnCommandSync("git", ["add", "src/unfixable.ts"], {});
+
+          expect(() => {
+            result.env.spawnCommandSync(
+              "git",
+              ["commit", "-m", "Unfixable linting errors"],
+              {}
+            );
+          }).toThrow();
+        });
+      });
+
+      describe("when there are auto-fixable linting errors", () => {
+        beforeAll(async () => {
+          await RunResultUtils.write(
+            result,
+            "src/fixable.ts",
+            "export const test = () => { return 'Hello, world!'; }"
+          );
+        });
+
+        afterEach(() => {
+          RunResultUtils.gitRestoreStaged(result);
+        });
+
+        afterAll(async () => {
+          await RunResultUtils.delete(result, "src/fixable.ts");
+        });
+
+        it("automatically fixes linting errors in staged files before committing", () => {
+          result.env.spawnCommandSync("git", ["add", "src/fixable.ts"], {});
+
+          expect(() => {
+            result.env.spawnCommandSync(
+              "git",
+              ["commit", "-m", "Fixable linting errors"],
+              {}
+            );
+          }).not.toThrow();
+        });
+      });
+    });
+
+    // Not test-able until we've added a remote to the generated git repo
+    describe("pre-push", () => {
+      it.todo("runs tests");
+
+      it.todo("rejects push when tests fail");
     });
   });
 });

@@ -2,6 +2,8 @@ import yaml from "js-yaml";
 import micromatch from "micromatch";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
+import { RunResultUtils } from "../__tests__/__utils__";
+
 describe("EsLintGenerator", () => {
   let result: RunResult;
 
@@ -220,12 +222,12 @@ describe("EsLintGenerator", () => {
     });
 
     describe("when there are linting problems", () => {
-      beforeEach(async () => {
+      beforeAll(async () => {
         await writeFileWithLintErrors(result, "src/lintingErrors.ts");
       });
 
-      afterEach(() => {
-        result.fs.delete("src/lintingErrors.ts");
+      afterAll(async () => {
+        await RunResultUtils.delete(result, "src/lintingErrors.ts");
       });
 
       describe("yarn lint", () => {
@@ -261,17 +263,7 @@ describe("EsLintGenerator", () => {
 
     describe("yarn lint:staged", () => {
       beforeAll(async () => {
-        result.env.spawnCommandSync("git", ["init"], {});
-        result.env.spawnCommandSync(
-          "git",
-          ["config", "user.email", '"testing@jest.io"'],
-          {}
-        );
-        result.env.spawnCommandSync(
-          "git",
-          ["config", "user.name", '"Jest"'],
-          {}
-        );
+        RunResultUtils.gitInit(result);
 
         result.env.spawnCommandSync("git", ["add", "package.json"], {});
         result.env.spawnCommandSync(
@@ -298,11 +290,9 @@ const writeFileWithLintErrors = (
   result: RunResult,
   filePath: string
 ): Promise<void> => {
-  result.fs.write(filePath, "console.warn('Hello, world!')");
-
-  return new Promise<void>((resolve) => {
-    result.fs.commit(() => {
-      resolve();
-    });
-  });
+  return RunResultUtils.write(
+    result,
+    filePath,
+    "console.warn('Hello, world!')"
+  );
 };

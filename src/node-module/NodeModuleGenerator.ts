@@ -22,21 +22,25 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
         name: "packageKeywords",
         message:
           "What keywords would you like to associate with this new package?",
+        default: "generated yeoman typescript",
       },
       {
         type: "input",
         name: "authorName",
         message: "Who is the author of this new package?",
+        default: "Daniel Chiu",
       },
       {
         type: "input",
         name: "authorEmail",
         message: "What is the email address of the author of this new package?",
+        default: "daniel@chiubaka.com",
       },
       {
         type: "input",
         name: "githubUrl",
         message: "What is the full URL of the GitHub repo for the new package?",
+        default: "https://github.com/chiubaka/generated-typescript-package",
       },
     ];
   }

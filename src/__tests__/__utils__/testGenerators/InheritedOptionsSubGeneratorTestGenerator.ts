@@ -24,7 +24,11 @@ export class InheritedOptionsSubGeneratorTestGenerator extends BaseGenerator<Inh
   }
 
   public writing() {
-    this.writeDestinationJSON("inheritedOptions.json", this.answers);
+    const options = { ...this.options };
+    delete options.env;
+
+    this.writeDestinationJSON("inheritedAnswers.json", this.answers);
+    this.writeDestinationJSON("inheritedOptions.json", options);
   }
 }
 

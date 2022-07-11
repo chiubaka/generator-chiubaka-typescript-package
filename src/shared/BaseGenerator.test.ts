@@ -21,8 +21,26 @@ describe("BaseGenerator", () => {
               packageName: "test-package",
               packageDescription: "Test package description",
               packageKeywords: "test foo bar",
+              yarnInstall: true,
             })
             .run();
+        });
+
+        describe("inherits answers from the parent", () => {
+          it("writes the child answers to inheritedAnswers.json", () => {
+            result.assertJsonFileContent("inheritedAnswers.json", {
+              packageName: "test-package",
+              packageDescription: "Test package description",
+            });
+          });
+
+          it("writes parent answers to parentAnswers.json", () => {
+            result.assertJsonFileContent("parentAnswers.json", {
+              packageName: "test-package",
+              packageDescription: "Test package description",
+              packageKeywords: "test foo bar",
+            });
+          });
         });
 
         describe("inherits options from the parent", () => {
@@ -30,14 +48,17 @@ describe("BaseGenerator", () => {
             result.assertJsonFileContent("inheritedOptions.json", {
               packageName: "test-package",
               packageDescription: "Test package description",
+              packageKeywords: "test foo bar",
+              yarnInstall: true,
             });
           });
 
-          it("writes parent options to parentOptions.json", () => {
+          it("writes the parent options to inheritedOptions.json", () => {
             result.assertJsonFileContent("parentOptions.json", {
               packageName: "test-package",
               packageDescription: "Test package description",
               packageKeywords: "test foo bar",
+              yarnInstall: true,
             });
           });
         });
@@ -59,21 +80,30 @@ describe("BaseGenerator", () => {
               packageDescription: "Test package description",
               packageKeywords: "test foo bar",
             })
+            .withOptions({
+              yarnInstall: true,
+            })
             .run();
         });
 
-        it("writes the child options to inheritedOptions.json", () => {
-          result.assertJsonFileContent("inheritedOptions.json", {
+        it("writes the child answers to inheritedAnswers.json", () => {
+          result.assertJsonFileContent("inheritedAnswers.json", {
             packageName: "test-package",
             packageDescription: "Test package description",
           });
         });
 
-        it("writes parent options to parentOptions.json", () => {
-          result.assertJsonFileContent("parentOptions.json", {
+        it("writes parent answers to parentAnswers.json", () => {
+          result.assertJsonFileContent("parentAnswers.json", {
             packageName: "test-package",
             packageDescription: "Test package description",
             packageKeywords: "test foo bar",
+          });
+        });
+
+        it("still inherits options", () => {
+          result.assertJsonFileContent("inheritedOptions.json", {
+            yarnInstall: true,
           });
         });
 

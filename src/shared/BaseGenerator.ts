@@ -34,7 +34,10 @@ export abstract class BaseGenerator<
     options: Partial<T> & GeneratorOptions,
     features?: GeneratorFeatures
   ) {
-    super(args, options, features);
+    super(args, options, {
+      customInstallTask: true,
+      ...features,
+    });
 
     this.questions = [];
     this.answers = {} as T;
@@ -143,7 +146,7 @@ export abstract class BaseGenerator<
     return super.composeWith(
       subGeneratorOptions,
       {
-        yarnInstall: this.options.yarnInstall as boolean,
+        ...this.options,
         ...this.answers,
       },
       true
