@@ -126,4 +126,20 @@ describe("TypeScriptPackageGenerator", () => {
       }).not.toThrow();
     });
   });
+
+  describe("creates a working git hooks set up", () => {
+    describe("pre-commit", () => {
+      it.todo("rejects commits with linting errors that are not auto-fixable");
+
+      it.todo(
+        "automatically fixes linting errors in staged files before committing"
+      );
+    });
+
+    describe("pre-push", () => {
+      it.todo("runs tests");
+
+      it.todo("rejects push when tests fail");
+    });
+  });
 });
