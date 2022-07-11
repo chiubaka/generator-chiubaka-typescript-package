@@ -7,7 +7,7 @@ import {
 } from "../../../__utils__";
 
 describe("toHaveDevDependency", () => {
-  it("fails ig given something other than a YeomanTest.RunResult", () => {
+  it("fails if given something other than a YeomanTest.RunResult", () => {
     expect(() => {
       expect(2).toHaveDevDependency("node");
     }).toThrow("Expected 2 to be a YeomanTest.RunResult");
