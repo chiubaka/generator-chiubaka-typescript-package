@@ -262,16 +262,21 @@ describe("EsLintGenerator", () => {
     describe("yarn lint:staged", () => {
       beforeAll(async () => {
         result.env.spawnCommandSync("git", ["init"], {});
+        result.env.spawnCommandSync(
+          "git",
+          ["config", "user.email", '"testing@jest.io"'],
+          {}
+        );
+        result.env.spawnCommandSync(
+          "git",
+          ["config", "user.name", '"Jest"'],
+          {}
+        );
+
         result.env.spawnCommandSync("git", ["add", "package.json"], {});
         result.env.spawnCommandSync(
           "git",
-          [
-            "commit",
-            "--author",
-            "Jest <testing@jest.io>",
-            "-m",
-            '"Initial commit"',
-          ],
+          ["commit", "-m", '"Initial commit"'],
           {}
         );
 
