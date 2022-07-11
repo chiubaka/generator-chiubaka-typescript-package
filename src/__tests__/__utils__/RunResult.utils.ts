@@ -23,6 +23,24 @@ export class RunResultUtils {
     });
   }
 
+  public static gitInit(runResult: RunResult) {
+    runResult.env.spawnCommandSync("git", ["init"], {});
+    this.gitConfigUser(runResult);
+  }
+
+  public static gitConfigUser(runResult: RunResult) {
+    runResult.env.spawnCommandSync(
+      "git",
+      ["config", "user.email", '"testing@jest.io"'],
+      {}
+    );
+    runResult.env.spawnCommandSync(
+      "git",
+      ["config", "user.name", '"Jest"'],
+      {}
+    );
+  }
+
   public static gitRestoreStaged(runResult: RunResult) {
     runResult.env.spawnCommandSync("git", ["restore", "--staged", "."], {});
   }

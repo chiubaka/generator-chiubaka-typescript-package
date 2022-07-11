@@ -129,6 +129,10 @@ describe("TypeScriptPackageGenerator", () => {
   });
 
   describe("creates a working git hooks set up", () => {
+    beforeAll(() => {
+      RunResultUtils.gitConfigUser(result);
+    });
+
     describe("pre-commit", () => {
       describe("when there are non-auto-fixable linting errors", () => {
         beforeAll(async () => {
