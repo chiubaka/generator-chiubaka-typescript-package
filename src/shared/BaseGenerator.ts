@@ -146,7 +146,7 @@ export abstract class BaseGenerator<
     return super.composeWith(
       subGeneratorOptions,
       {
-        yarnInstall: this.options.yarnInstall as boolean,
+        ...this.options,
         ...this.answers,
       },
       true

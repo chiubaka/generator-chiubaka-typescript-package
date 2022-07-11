@@ -7,6 +7,13 @@ import GitHooksGenerator from "./git-hooks";
 export class GitGenerator extends BaseGenerator {
   public writing() {
     this.spawnCommandSync("git", ["init"]);
+    if (
+      process.env.NODE_ENV === "test" &&
+      this.options.configGitUser === true
+    ) {
+      this.spawnCommandSync("git", ["config", "user.email", "testing@jest.io"]);
+      this.spawnCommandSync("git", ["config", "user.name", "Jest"]);
+    }
   }
 
   public end() {
