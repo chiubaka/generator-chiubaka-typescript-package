@@ -1,1 +1,2 @@
-export { GitHubGenerator as default, GitHubGenerator } from "./GitHubGenerator";
+export { GitHubGenerator as default } from "./GitHubGenerator";
+export * from "./GitHubGenerator";
