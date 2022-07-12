@@ -174,18 +174,18 @@ export class GitHubApiAdapter {
   }
 
   private async updateRepo(options: RepoOptions) {
-    const gitHubRepoOptions = this.repoOptionstoGitHubRepoOptions(options);
+    const gitHubRepoOptions = this.repoOptionsToGitHubRepoOptions(options);
     return this.octokit.rest.repos.update(gitHubRepoOptions);
   }
 
   private async createRepo(options: RepoOptions) {
-    const gitHubRepoOptions = this.repoOptionstoGitHubRepoOptions(options);
+    const gitHubRepoOptions = this.repoOptionsToGitHubRepoOptions(options);
     return this.octokit.rest.repos.createForAuthenticatedUser(
       gitHubRepoOptions
     );
   }
 
-  private repoOptionstoGitHubRepoOptions(options: RepoOptions) {
+  private repoOptionsToGitHubRepoOptions(options: RepoOptions) {
     return {
       owner: options.owner,
       repo: options.name,
