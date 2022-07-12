@@ -8,7 +8,7 @@ import { BaseGenerator } from "../shared";
 import { GitHubApiAdapter } from "./GitHubApiAdapter";
 
 export interface GitHubGeneratorOptions {
-  repoOrganization: string;
+  repoOwner: string;
   repoName: string;
   packageDescription: string;
   isPrivateRepo: boolean;
@@ -27,8 +27,8 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     return [
       {
         type: "input",
-        name: "repoOrganization",
-        message: "What organization does this repository belong to?",
+        name: "repoOwner",
+        message: "Who owns this repository?",
         default: "chiubaka",
       },
       {
@@ -65,6 +65,8 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
 
   public async writing() {
     await this.createOrUpdateRepository();
+    await this.protectMasterBranch();
+    await this.enableVulnerabilityAlerts();
     await this.createOrUpdateLabels();
   }
 
@@ -73,7 +75,7 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
       isPrivateRepo,
       packageDescription: description,
       repoName: name,
-      repoOrganization: owner,
+      repoOwner: owner,
     } = this.answers;
 
     await this.github.createOrUpdateRepo({
@@ -92,6 +94,40 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     });
   };
 
+  private protectMasterBranch = async () => {
+    const { repoOwner, repoName } = this.answers;
+
+    await this.github.updateBranchProtection({
+      repoOwner,
+      repoName,
+      branch: "master",
+      requiredStatusChecks: [
+        "codecov/patch",
+        "codecov/project",
+        "lint-build-test-publish",
+      ],
+      requiredStatusChecksStrict: true,
+      requiredApprovingReviewCount: 0,
+      requiredLinearHistory: true,
+      allowForcePushes: false,
+      allowDeletions: false,
+      requiredConversationResolution: true,
+      enforceAdmins: false,
+    });
+
+    await this.github.createCommitSignatureProtection(
+      repoOwner,
+      repoName,
+      "master"
+    );
+  };
+
+  private enableVulnerabilityAlerts = async () => {
+    const { repoOwner, repoName } = this.answers;
+
+    await this.github.enableVulnerabilityAlerts(repoOwner, repoName);
+  };
+
   private createOrUpdateLabels = async () => {
     await this.createOrUpdatePriorityLabels();
     await this.createOrUpdateIssueTypeLabels();
@@ -99,7 +135,7 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
   };
 
   private createOrUpdateLabel = async (options: LabelOptions) => {
-    const { repoOrganization: repoOwner, repoName } = this.answers;
+    const { repoOwner: repoOwner, repoName } = this.answers;
 
     await this.github.createOrUpdateLabel({
       repoOwner,

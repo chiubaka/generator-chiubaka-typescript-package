@@ -37,35 +37,43 @@ class Repos {
   }
 
   public createForAuthenticatedUser(): Promise<Response> {
-    return Promise.resolve({
-      status: 200,
-    });
+    return createSuccessResponse();
   }
 
   public update(): Promise<Response> {
-    return Promise.resolve({
-      status: 200,
-    });
+    return createSuccessResponse();
+  }
+
+  public updateBranchProtection(): Promise<Response> {
+    return createSuccessResponse();
+  }
+
+  public createCommitSignatureProtection(): Promise<Response> {
+    return createSuccessResponse();
+  }
+
+  public enableVulnerabilityAlerts(): Promise<Response> {
+    return createSuccessResponse();
   }
 }
 
 class Issues {
   public listLabelsForRepo(): Promise<Response<Label[]>> {
-    return Promise.resolve({
-      status: 200,
-      data: [],
-    });
+    return createSuccessResponse([]);
   }
 
   public createLabel(): Promise<Response> {
-    return Promise.resolve({
-      status: 200,
-    });
+    return createSuccessResponse();
   }
 
   public updateLabel(): Promise<Response> {
-    return Promise.resolve({
-      status: 200,
-    });
+    return createSuccessResponse();
   }
 }
+
+const createSuccessResponse = <T>(data?: T): Promise<Response<T>> => {
+  return Promise.resolve({
+    status: 200,
+    data,
+  });
+};

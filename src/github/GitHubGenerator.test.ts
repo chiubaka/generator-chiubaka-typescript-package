@@ -1,6 +1,10 @@
 import YeomanTest from "yeoman-test";
 
-import { GitHubApiAdapter, RepoOptions } from "./GitHubApiAdapter";
+import {
+  BranchProtectionOptions,
+  GitHubApiAdapter,
+  RepoOptions,
+} from "./GitHubApiAdapter";
 
 const DEFAULT_REPO_OPTIONS = {
   repoOwner: "chiubaka",
@@ -8,7 +12,7 @@ const DEFAULT_REPO_OPTIONS = {
 };
 
 describe("GitHubGenerator", () => {
-  describe("options", () => {
+  describe("generator options", () => {
     let repoExistsSpy: jest.SpyInstance;
     let createRepoSpy: jest.SpyInstance;
     let repoOptions: RepoOptions;
@@ -23,7 +27,7 @@ describe("GitHubGenerator", () => {
       );
       await YeomanTest.create(__dirname)
         .withOptions({
-          repoOrganization: "example-org",
+          repoOwner: "example-org",
           repoName: "example-repo",
           packageDescription: "Example description",
           isPrivateRepo: true,
@@ -55,10 +59,15 @@ describe("GitHubGenerator", () => {
     });
   });
 
-  describe("repo settings", () => {
+  describe("settings", () => {
     let repoExistsSpy: jest.SpyInstance;
     let createRepoSpy: jest.SpyInstance;
+    let updateBranchProtectionSpy: jest.SpyInstance;
+    let createCommitSignatureProtectionSpy: jest.SpyInstance;
+    let enableVulnerabilityAlertsSpy: jest.SpyInstance;
+
     let repoOptions: RepoOptions;
+    let branchProtectionOptions: BranchProtectionOptions;
 
     beforeAll(async () => {
       repoExistsSpy = jest
@@ -68,9 +77,25 @@ describe("GitHubGenerator", () => {
         GitHubApiAdapter.prototype as any,
         "createRepo"
       );
+      updateBranchProtectionSpy = jest.spyOn(
+        GitHubApiAdapter.prototype as any,
+        "updateBranchProtection"
+      );
+      createCommitSignatureProtectionSpy = jest.spyOn(
+        GitHubApiAdapter.prototype as any,
+        "createCommitSignatureProtection"
+      );
+      enableVulnerabilityAlertsSpy = jest.spyOn(
+        GitHubApiAdapter.prototype as any,
+        "enableVulnerabilityAlerts"
+      );
+
       await YeomanTest.create(__dirname).run();
 
       repoOptions = (createRepoSpy.mock.calls[0] as any[])[0] as RepoOptions;
+      branchProtectionOptions = (
+        updateBranchProtectionSpy.mock.calls[0] as any[]
+      )[0] as BranchProtectionOptions;
     });
 
     afterAll(() => {
@@ -78,36 +103,93 @@ describe("GitHubGenerator", () => {
       createRepoSpy.mockReset();
     });
 
-    it("enables auto merge", () => {
-      expect(repoOptions.allowAutoMerge).toBe(true);
+    describe("repo", () => {
+      it("enables auto merge", () => {
+        expect(repoOptions.allowAutoMerge).toBe(true);
+      });
+
+      it("disables merge commits", () => {
+        expect(repoOptions.allowMergeCommit).toBe(false);
+      });
+
+      it("enables rebase merges", () => {
+        expect(repoOptions.allowRebaseMerge).toBe(true);
+      });
+
+      it("enables squash merges", () => {
+        expect(repoOptions.allowSquashMerge).toBe(true);
+      });
+
+      it("enables branch updates", () => {
+        expect(repoOptions.allowUpdateBranch).toBe(true);
+      });
+
+      it("enables deleting branches after merge", () => {
+        expect(repoOptions.deleteBranchOnMerge).toBe(true);
+      });
+
+      it("enables issue tracking", () => {
+        expect(repoOptions.hasIssues).toBe(true);
+      });
+
+      it("enables using squash PR title as default", () => {
+        expect(repoOptions.useSquashPrTitleAsDefault).toBe(true);
+      });
+
+      it("enables vulnerability alerts", () => {
+        expect(enableVulnerabilityAlertsSpy).toHaveBeenLastCalledWith(
+          "chiubaka",
+          "generated-typescript-package"
+        );
+      });
     });
 
-    it("disables merge commits", () => {
-      expect(repoOptions.allowMergeCommit).toBe(false);
-    });
+    describe("master branch protection", () => {
+      it("enables required status checks", () => {
+        expect(branchProtectionOptions.requiredStatusChecks).toEqual([
+          "codecov/patch",
+          "codecov/project",
+          "lint-build-test-publish",
+        ]);
+      });
 
-    it("enables rebase merges", () => {
-      expect(repoOptions.allowRebaseMerge).toBe(true);
-    });
+      it("enables strict status checks", () => {
+        expect(branchProtectionOptions.requiredStatusChecksStrict).toBe(true);
+      });
 
-    it("enables squash merges", () => {
-      expect(repoOptions.allowSquashMerge).toBe(true);
-    });
+      it("requires an approving review count of 0", () => {
+        expect(branchProtectionOptions.requiredApprovingReviewCount).toBe(0);
+      });
 
-    it("enables branch updates", () => {
-      expect(repoOptions.allowUpdateBranch).toBe(true);
-    });
+      it("enables requiring a linear history", () => {
+        expect(branchProtectionOptions.requiredLinearHistory).toBe(true);
+      });
 
-    it("enables deleting branches after merge", () => {
-      expect(repoOptions.deleteBranchOnMerge).toBe(true);
-    });
+      it("disallows force pushes", () => {
+        expect(branchProtectionOptions.allowForcePushes).toBe(false);
+      });
 
-    it("enables issue tracking", () => {
-      expect(repoOptions.hasIssues).toBe(true);
-    });
+      it("disallows deletions", () => {
+        expect(branchProtectionOptions.allowDeletions).toBe(false);
+      });
 
-    it("enables using squash PR title as default", () => {
-      expect(repoOptions.useSquashPrTitleAsDefault).toBe(true);
+      it("requires conversation resolution", () => {
+        expect(branchProtectionOptions.requiredConversationResolution).toBe(
+          true
+        );
+      });
+
+      it("disables enforcement of checks for admins", () => {
+        expect(branchProtectionOptions.enforceAdmins).toBe(false);
+      });
+
+      it("enables commit signature protection", () => {
+        expect(createCommitSignatureProtectionSpy).toHaveBeenCalledWith(
+          "chiubaka",
+          "generated-typescript-package",
+          "master"
+        );
+      });
     });
   });
 

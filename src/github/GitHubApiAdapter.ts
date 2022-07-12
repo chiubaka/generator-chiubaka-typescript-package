@@ -19,6 +19,23 @@ export interface RepoOptions {
   useSquashPrTitleAsDefault?: boolean;
 }
 
+export interface BranchProtectionOptions extends BranchOptions {
+  requiredStatusChecks?: string[];
+  requiredStatusChecksStrict?: boolean;
+  requiredApprovingReviewCount?: number;
+  requiredLinearHistory?: boolean;
+  allowForcePushes?: boolean;
+  allowDeletions?: boolean;
+  requiredConversationResolution?: boolean;
+  enforceAdmins?: boolean;
+}
+
+interface BranchOptions {
+  repoOwner: string;
+  repoName: string;
+  branch: string;
+}
+
 interface LabelOptions {
   repoOwner: string;
   repoName: string;
@@ -56,6 +73,72 @@ export class GitHubApiAdapter {
     }
 
     return this.createLabel(options);
+  }
+
+  public async updateBranchProtection(options: BranchProtectionOptions) {
+    const {
+      requiredStatusChecks,
+      requiredStatusChecksStrict,
+      requiredApprovingReviewCount,
+      repoOwner,
+      repoName,
+      branch,
+      enforceAdmins,
+      requiredConversationResolution,
+      allowDeletions,
+      allowForcePushes,
+      requiredLinearHistory,
+    } = options;
+
+    const enableRequiredStatusChecks =
+      requiredStatusChecks && requiredStatusChecks.length > 0;
+
+    const required_status_checks = enableRequiredStatusChecks
+      ? {
+          strict: requiredStatusChecksStrict || false,
+          contexts: requiredStatusChecks,
+        }
+      : // eslint-disable-next-line unicorn/no-null
+        null;
+
+    const required_pull_request_reviews = {
+      required_approving_review_count: requiredApprovingReviewCount,
+    };
+
+    return this.octokit.rest.repos.updateBranchProtection({
+      owner: repoOwner,
+      repo: repoName,
+      branch,
+      required_status_checks,
+      // eslint-disable-next-line unicorn/no-null
+      enforce_admins: enforceAdmins || null,
+      required_pull_request_reviews,
+      required_linear_history: requiredLinearHistory,
+      allow_force_pushes: allowForcePushes,
+      allow_deletions: allowDeletions,
+      required_conversation_resolution: requiredConversationResolution,
+      // eslint-disable-next-line unicorn/no-null
+      restrictions: null,
+    });
+  }
+
+  public async createCommitSignatureProtection(
+    repoOwner: string,
+    repoName: string,
+    branch: string
+  ) {
+    return this.octokit.rest.repos.createCommitSignatureProtection({
+      owner: repoOwner,
+      repo: repoName,
+      branch: branch,
+    });
+  }
+
+  public async enableVulnerabilityAlerts(repoOwner: string, repoName: string) {
+    return this.octokit.rest.repos.enableVulnerabilityAlerts({
+      owner: repoOwner,
+      repo: repoName,
+    });
   }
 
   private async repoExists(owner: string, name: string): Promise<boolean> {
