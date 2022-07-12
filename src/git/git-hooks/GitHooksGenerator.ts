@@ -41,6 +41,9 @@ export class GitHooksGenerator extends BaseGenerator {
 
     this.extendPackageJson({ scripts });
 
-    await this.addDevDependencies("husky");
+    await this.addDevDependencyWithComment({
+      name: "husky",
+      comment: "Modern native Git hooks made easy",
+    });
   }
 }

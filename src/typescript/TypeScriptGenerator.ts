@@ -7,7 +7,10 @@ export class TypeScriptGenerator extends BaseGenerator {
   public async writing() {
     this.copyTemplate("hello.ts", "src/hello.ts");
 
-    await this.addDevDependencies("typescript");
+    await this.addDevDependencyWithComment({
+      name: "typescript",
+      comment: "TypeScript support for this project",
+    });
   }
 
   protected getSubGeneratorOptions() {

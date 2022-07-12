@@ -20,27 +20,88 @@ export class EsLintGenerator extends BaseGenerator {
     };
     this.extendPackageJson({ scripts });
 
-    await this.addDevDependencies([
-      "@chiubaka/tsconfig",
-      "@typescript-eslint/eslint-plugin",
-      "@typescript-eslint/parser",
-      "eslint",
-      "eslint-config-prettier",
-      "eslint-plugin-eslint-comments",
-      "eslint-plugin-jest",
-      "eslint-plugin-jest-formatting",
-      "eslint-plugin-json",
-      "eslint-plugin-package-json",
-      "eslint-plugin-prettier",
-      "eslint-plugin-promise",
-      "eslint-plugin-security",
-      "eslint-plugin-simple-import-sort",
-      "eslint-plugin-unicorn",
-      "eslint-plugin-yml",
-      "lint-staged",
-      "prettier",
-      "typescript",
-      "yaml-eslint-parser",
+    await this.addDevDependenciesWithComments([
+      {
+        name: "@chiubaka/tsconfig",
+        comment:
+          "Shared TSConfig settings for the Chiubaka Technologies ecosystem",
+      },
+      {
+        name: "@typescript-eslint/eslint-plugin",
+        comment: "TypeScript support for ESLint",
+      },
+      {
+        name: "@typescript-eslint/parser",
+        comment: "Typescript support for ESLint",
+      },
+      { name: "eslint", comment: "Linting and code quality checks" },
+      {
+        name: "eslint-config-prettier",
+        comment:
+          "Peer dependency of eslint-plugin-prettier to disable all formatting-related ESLint rules",
+      },
+      {
+        name: "eslint-plugin-eslint-comments",
+        comment:
+          "ESLint plugin for enforcing best practices around eslint-comments",
+      },
+      {
+        name: "eslint-plugin-jest",
+        comment: "ESLint plugin for Jest best practices",
+      },
+      {
+        name: "eslint-plugin-jest-formatting",
+        comment: "ESLint plugin for Jest formatting",
+      },
+      {
+        name: "eslint-plugin-json",
+        comment: "ESLint plugin for JSON validation",
+      },
+      {
+        name: "eslint-plugin-package-json",
+        comment: "ESLint plugin for linting package.json files",
+      },
+      {
+        name: "eslint-plugin-prettier",
+        comment: "ESLint plugin for compatibility with Prettier",
+      },
+      {
+        name: "eslint-plugin-promise",
+        comment: "ESLint plugin for best practices with promise",
+      },
+      {
+        name: "eslint-plugin-security",
+        comment: "ESLint plugin for security best practices",
+      },
+      {
+        name: "eslint-plugin-simple-import-sort",
+        comment: "ESLint plugin for sorting and organizing imports",
+      },
+      {
+        name: "eslint-plugin-unicorn",
+        comment: "ESLint plugin with an amalgamation of best practices for JS",
+      },
+      {
+        name: "eslint-plugin-yml",
+        comment: "ESLint plugin for linting YAML files",
+      },
+      {
+        name: "lint-staged",
+        comment: "Linting of just staged files",
+      },
+      {
+        name: "prettier",
+        comment: "Code formatting for consistent style",
+      },
+      {
+        name: "typescript",
+        comment: "TypeScript support for this project",
+      },
+      {
+        name: "yaml-eslint-parser",
+        comment:
+          "Peer dependency of eslint-plugin-yml. ESLint parser for YAML files.",
+      },
     ]);
   }
 

@@ -1,24 +1,15 @@
 import { RunResult } from "yeoman-test";
 
+import { RunResultUtils } from "../../../__utils__";
+
 export const toHaveDevDependency = (
   result: RunResult,
   dependencyName: string,
   dependencyVersion?: string
 ) => {
-  expect(result).toBeYeomanTestRunResult();
+  expect(result).toHavePackageJson();
 
-  const hasPackageJson = result.fs.exists("package.json");
-
-  if (!hasPackageJson) {
-    return {
-      pass: false,
-      message: () => "Expected run result to contain a package.json file",
-    };
-  }
-
-  const packageJsonString = result.fs.read("package.json");
-
-  const packageJson = JSON.parse(packageJsonString) as Record<string, any>;
+  const packageJson = RunResultUtils.readPackageJson(result);
 
   if (packageJson.devDependencies === undefined) {
     return {

@@ -76,6 +76,16 @@ overrides:
       - plugin:package-json/recommended
     rules:
       prettier/prettier: off
+      package-json/sort-collections:
+        - error
+        - - config
+          - dependencies
+          - dependenciesComments
+          - devDependencies
+          - devDependenciesComments
+          - peerDependencies
+          - peerDependenciesComments
+          - scripts
 plugins:
   - prettier
   - promise

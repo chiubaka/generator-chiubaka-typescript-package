@@ -13,7 +13,7 @@ describe("TsConfigGenerator", () => {
 
   describe("installs dependencies", () => {
     it("adds @chiubaka/tsconfig to package.json", () => {
-      expect(result).toHaveDevDependency("@chiubaka/tsconfig");
+      expect(result).toHaveDevDependencyWithComment("@chiubaka/tsconfig");
     });
   });
 

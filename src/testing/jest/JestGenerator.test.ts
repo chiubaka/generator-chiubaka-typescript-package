@@ -24,27 +24,27 @@ describe("JestGenerator", () => {
   describe("package.json", () => {
     describe("installs the necessary devDependencies", () => {
       it("installs jest", () => {
-        expect(result).toHaveDevDependency("jest");
+        expect(result).toHaveDevDependencyWithComment("jest");
       });
 
       it("installs @types/jest", () => {
-        expect(result).toHaveDevDependency("@types/jest");
+        expect(result).toHaveDevDependencyWithComment("@types/jest");
       });
 
       it("installs ts-jest", () => {
-        expect(result).toHaveDevDependency("ts-jest");
+        expect(result).toHaveDevDependencyWithComment("ts-jest");
       });
 
       it("installs jest-junit", () => {
-        expect(result).toHaveDevDependency("jest-junit");
+        expect(result).toHaveDevDependencyWithComment("jest-junit");
       });
 
       it("installs ts-node", () => {
-        expect(result).toHaveDevDependency("ts-node");
+        expect(result).toHaveDevDependencyWithComment("ts-node");
       });
 
       it("installs @types/node", () => {
-        expect(result).toHaveDevDependency("@types/node");
+        expect(result).toHaveDevDependencyWithComment("@types/node");
       });
     });
 

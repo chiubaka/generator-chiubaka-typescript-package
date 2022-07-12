@@ -9,7 +9,7 @@ describe("TypeScriptGenerator", () => {
 
   describe("installs required devDependencies", () => {
     it("installs TypeScript", () => {
-      expect(result).toHaveDevDependency("typescript");
+      expect(result).toHaveDevDependencyWithComment("typescript");
     });
   });
 
