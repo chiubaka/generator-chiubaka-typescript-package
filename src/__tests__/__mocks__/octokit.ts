@@ -69,6 +69,10 @@ class Issues {
   public updateLabel(): Promise<Response> {
     return createSuccessResponse();
   }
+
+  public deleteLabel(): Promise<Response> {
+    return createSuccessResponse();
+  }
 }
 
 const createSuccessResponse = <T>(data?: T): Promise<Response<T>> => {
