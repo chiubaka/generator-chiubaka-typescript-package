@@ -14,6 +14,7 @@
     "deploy:generated": "",
     "deploy:npm": "npm publish --access public",
     "lint": "eslint -c .eslintrc.yml --ext .js,.jsx,.ts,.tsx,.yml,.yaml,.json .",
+    "lint:fix": "yarn run lint --fix",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
     "prestart": "yarn run clean && yarn run build && npm link",
