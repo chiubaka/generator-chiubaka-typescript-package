@@ -19,7 +19,7 @@
     "prepare": "husky install",
     "prestart": "yarn run clean && yarn run build && npm link",
     "pretest": "yarn run clean && yarn run build",
-    "start": "yarn run prestart && yo chiubaka-typescript-package --destination-root /tmp/generated-package",
+    "start": "yarn run prestart && yo chiubaka-typescript-package:github --destination-root /tmp/generated-package",
     "test": "yarn run pretest && jest",
     "test:ci": "yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit && mkdir -p reports/junit && mv junit.xml reports/junit/junit.xml",
     "test:typescript": "yarn run clean && jest"
@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/chiubaka/generator-chiubaka-typescript-package#readme",
   "dependencies": {
+    "octokit": "^2.0.3",
     "yeoman-generator": "^5.6.1"
   },
   "devDependencies": {
@@ -89,6 +90,7 @@
     "yeoman-test": "^6.3.0"
   },
   "dependenciesComments": {
+    "octokit": "Official lib for interacting with GitHub APIs",
     "yeoman-generator": "Core yeoman generator libraries"
   },
   "devDependenciesComments": {

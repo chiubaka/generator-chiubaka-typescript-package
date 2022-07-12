@@ -1,6 +1,9 @@
 # Built files
 generators
 
+# Secrets
+.env
+
 # Test Coverage
 reports
 coverage
