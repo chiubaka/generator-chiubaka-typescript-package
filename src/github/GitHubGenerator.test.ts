@@ -101,6 +101,9 @@ describe("GitHubGenerator", () => {
     afterAll(() => {
       repoExistsSpy.mockReset();
       createRepoSpy.mockReset();
+      updateBranchProtectionSpy.mockReset();
+      createCommitSignatureProtectionSpy.mockReset();
+      enableVulnerabilityAlertsSpy.mockReset();
     });
 
     describe("repo", () => {
@@ -251,6 +254,7 @@ describe("GitHubGenerator", () => {
     let labelExistsSpy: jest.SpyInstance;
     let createLabelSpy: jest.SpyInstance;
     let updateLabelSpy: jest.SpyInstance;
+    let deleteLabelSpy: jest.SpyInstance;
 
     beforeEach(() => {
       labelExistsSpy = jest.spyOn(
@@ -265,12 +269,17 @@ describe("GitHubGenerator", () => {
         GitHubApiAdapter.prototype as any,
         "updateLabel"
       );
+      deleteLabelSpy = jest.spyOn(
+        GitHubApiAdapter.prototype as any,
+        "deleteLabel"
+      );
     });
 
     afterEach(() => {
       labelExistsSpy.mockReset();
       createLabelSpy.mockReset();
       updateLabelSpy.mockReset();
+      deleteLabelSpy.mockReset();
     });
 
     describe("when no labels exist", () => {
@@ -322,6 +331,24 @@ describe("GitHubGenerator", () => {
 
       it("never attempts to create a label", () => {
         expect(createLabelSpy).not.toHaveBeenCalled();
+      });
+
+      describe("deletes default labels", () => {
+        it("deletes the default bug label", () => {
+          expect(deleteLabelSpy).toHaveBeenCalledWith(
+            "chiubaka",
+            "generated-typescript-package",
+            "bug"
+          );
+        });
+
+        it("deletes the default enhancement label", () => {
+          expect(deleteLabelSpy).toHaveBeenCalledWith(
+            "chiubaka",
+            "generated-typescript-package",
+            "enhancement"
+          );
+        });
       });
 
       it("updates the P1 label", () => {

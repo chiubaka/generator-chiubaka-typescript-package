@@ -129,19 +129,15 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
   };
 
   private createOrUpdateLabels = async () => {
+    await this.deleteDefaultLabels();
     await this.createOrUpdatePriorityLabels();
     await this.createOrUpdateIssueTypeLabels();
     await this.createOrUpdateStateLabels();
   };
 
-  private createOrUpdateLabel = async (options: LabelOptions) => {
-    const { repoOwner: repoOwner, repoName } = this.answers;
-
-    await this.github.createOrUpdateLabel({
-      repoOwner,
-      repoName,
-      ...options,
-    });
+  private deleteDefaultLabels = async () => {
+    await this.deleteLabel("bug");
+    await this.deleteLabel("enhancement");
   };
 
   private createOrUpdatePriorityLabels = async () => {
@@ -215,6 +211,22 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
       name: ":eyes: awaiting review",
       description: "Requires review before proceeding.",
       color: "FBCA04",
+    });
+  };
+
+  private deleteLabel = async (name: string) => {
+    const { repoOwner, repoName } = this.answers;
+
+    await this.github.deleteLabel(repoOwner, repoName, name);
+  };
+
+  private createOrUpdateLabel = async (options: LabelOptions) => {
+    const { repoOwner, repoName } = this.answers;
+
+    await this.github.createOrUpdateLabel({
+      repoOwner,
+      repoName,
+      ...options,
     });
   };
 }

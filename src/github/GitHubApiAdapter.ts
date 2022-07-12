@@ -75,6 +75,20 @@ export class GitHubApiAdapter {
     return this.createLabel(options);
   }
 
+  public async deleteLabel(repoOwner: string, repoName: string, name: string) {
+    const labelExists = await this.labelExists(repoOwner, repoName, name);
+
+    if (!labelExists) {
+      return;
+    }
+
+    return this.octokit.rest.issues.deleteLabel({
+      owner: repoOwner,
+      repo: repoName,
+      name,
+    });
+  }
+
   public async updateBranchProtection(options: BranchProtectionOptions) {
     const {
       requiredStatusChecks,
