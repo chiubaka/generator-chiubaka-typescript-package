@@ -46,7 +46,5 @@ describe("GitHooksGenerator", () => {
         });
       });
     });
-
-    it.todo("keeps package.json's devDependencies sorted alphabetically");
   });
 });
