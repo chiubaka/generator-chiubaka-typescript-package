@@ -4,6 +4,7 @@ import { BaseGenerator } from "../../shared";
 
 export interface ReadmeGeneratorOptions {
   repoOwner: string;
+  repoName: string;
   packageName: string;
   packageDescription: string;
   includeNpmShield: boolean;
@@ -18,6 +19,12 @@ export class ReadmeGenerator extends BaseGenerator<ReadmeGeneratorOptions> {
         name: "repoOwner",
         message: "Who owns this repository?",
         default: "chiubaka",
+      },
+      {
+        type: "input",
+        name: "repoName",
+        message: "What is the name of this new repo?",
+        default: "generated-typescript-package",
       },
       {
         type: "input",

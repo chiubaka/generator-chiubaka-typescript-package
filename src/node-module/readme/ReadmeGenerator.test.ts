@@ -35,11 +35,11 @@ describe("ReadmeGenerator", () => {
         });
 
         it("includes the CircleCI shield", () => {
-          const { repoOwner, packageName } = README_GENERATOR_TEST_OPTIONS;
+          const { repoOwner, repoName } = README_GENERATOR_TEST_OPTIONS;
 
           result.assertFileContent(
             "README.md",
-            `[![circleci](https://circleci.com/gh/${repoOwner}/${packageName}.svg?style=shield)](https://app.circleci.com/pipelines/github/${repoOwner}/${packageName}?filter=all`
+            `[![circleci](https://circleci.com/gh/${repoOwner}/${repoName}.svg?style=shield)](https://app.circleci.com/pipelines/github/${repoOwner}/${repoName}?filter=all`
           );
         });
       });

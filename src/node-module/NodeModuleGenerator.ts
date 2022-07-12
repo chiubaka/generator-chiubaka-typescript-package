@@ -10,7 +10,6 @@ export interface NodeModuleGeneratorOptions extends ReadmeGeneratorOptions {
   packageKeywords: string;
   authorName: string;
   authorEmail: string;
-  githubUrl: string;
 }
 
 export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOptions> {
@@ -35,12 +34,6 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
         name: "authorEmail",
         message: "What is the email address of the author of this new package?",
         default: "daniel@chiubaka.com",
-      },
-      {
-        type: "input",
-        name: "githubUrl",
-        message: "What is the full URL of the GitHub repo for the new package?",
-        default: "https://github.com/chiubaka/generated-typescript-package",
       },
     ];
   }
@@ -76,9 +69,12 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
     const keywordTokens = this.answers.packageKeywords?.split(" ") || [];
     const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
 
+    const githubUrl = `https://github.com/${this.answers.repoOwner}/${this.answers.repoName}`;
+
     this.copyTemplate("package.json.ejs", "package.json", {
       ...this.answers,
       keywords,
+      githubUrl,
     });
   }
 
