@@ -3,7 +3,7 @@ import { Question } from "yeoman-generator";
 import { BaseGenerator } from "../../shared";
 
 export interface ReadmeGeneratorOptions {
-  repoOrganization: string;
+  repoOwner: string;
   packageName: string;
   packageDescription: string;
   includeNpmShield: boolean;
@@ -15,8 +15,8 @@ export class ReadmeGenerator extends BaseGenerator<ReadmeGeneratorOptions> {
     return [
       {
         type: "input",
-        name: "repoOrganization",
-        message: "What organization does this repository belong to?",
+        name: "repoOwner",
+        message: "Who owns this repository?",
         default: "chiubaka",
       },
       {
