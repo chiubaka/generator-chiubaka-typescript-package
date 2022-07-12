@@ -4,7 +4,7 @@ import {
   Question,
 } from "yeoman-generator";
 
-import { BaseGenerator } from "../shared";
+import { BaseGenerator } from "../shared/index";
 import { GitHubApiAdapter } from "./GitHubApiAdapter";
 
 export interface GitHubGeneratorOptions {
@@ -12,6 +12,7 @@ export interface GitHubGeneratorOptions {
   repoName: string;
   packageDescription: string;
   isPrivateRepo: boolean;
+  gitPushDryRun?: boolean;
 }
 
 interface LabelOptions {
@@ -68,6 +69,13 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     await this.protectMasterBranch();
     await this.enableVulnerabilityAlerts();
     await this.createOrUpdateLabels();
+  }
+
+  public end() {
+    const { repoOwner, repoName } = this.answers;
+    const githubUrl = `git@github.com:${repoOwner}/${repoName}.git`;
+
+    this.spawnCommandSync("git", ["remote", "add", "origin", githubUrl]);
   }
 
   private createOrUpdateRepository = async () => {

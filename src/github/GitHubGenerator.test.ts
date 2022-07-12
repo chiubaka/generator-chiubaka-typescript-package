@@ -1,10 +1,12 @@
 import YeomanTest from "yeoman-test";
 
+import { BaseGenerator } from "../shared";
 import {
   BranchProtectionOptions,
   GitHubApiAdapter,
   RepoOptions,
 } from "./GitHubApiAdapter";
+import { GitHubGenerator, GitHubGeneratorOptions } from "./GitHubGenerator";
 
 const DEFAULT_REPO_OPTIONS = {
   repoOwner: "chiubaka",
@@ -25,14 +27,12 @@ describe("GitHubGenerator", () => {
         GitHubApiAdapter.prototype as any,
         "createRepo"
       );
-      await YeomanTest.create(__dirname)
-        .withOptions({
-          repoOwner: "example-org",
-          repoName: "example-repo",
-          packageDescription: "Example description",
-          isPrivateRepo: true,
-        })
-        .run();
+      await runGenerator({
+        repoOwner: "example-org",
+        repoName: "example-repo",
+        packageDescription: "Example description",
+        isPrivateRepo: true,
+      });
 
       repoOptions = (createRepoSpy.mock.calls[0] as any[])[0] as RepoOptions;
     });
@@ -90,7 +90,7 @@ describe("GitHubGenerator", () => {
         "enableVulnerabilityAlerts"
       );
 
-      await YeomanTest.create(__dirname).run();
+      await runGenerator();
 
       repoOptions = (createRepoSpy.mock.calls[0] as any[])[0] as RepoOptions;
       branchProtectionOptions = (
@@ -229,7 +229,7 @@ describe("GitHubGenerator", () => {
       });
 
       it("creates a new GitHub repo if one doesn't already exist", async () => {
-        await YeomanTest.create(__dirname).run();
+        await runGenerator();
 
         expect(createRepoSpy).toHaveBeenCalled();
         expect(updateRepoSpy).not.toHaveBeenCalled();
@@ -242,7 +242,7 @@ describe("GitHubGenerator", () => {
       });
 
       it("updates settings of an existing GitHub repo", async () => {
-        await YeomanTest.create(__dirname).run();
+        await runGenerator();
 
         expect(createRepoSpy).not.toHaveBeenCalled();
         expect(updateRepoSpy).toHaveBeenCalled();
@@ -285,7 +285,7 @@ describe("GitHubGenerator", () => {
     describe("when no labels exist", () => {
       beforeEach(async () => {
         labelExistsSpy.mockResolvedValue(false);
-        await YeomanTest.create(__dirname).run();
+        await runGenerator();
       });
 
       it("never attempts to update a label", () => {
@@ -326,7 +326,7 @@ describe("GitHubGenerator", () => {
     describe("when all labels exist", () => {
       beforeEach(async () => {
         labelExistsSpy.mockResolvedValue(true);
-        await YeomanTest.create(__dirname).run();
+        await runGenerator();
       });
 
       it("never attempts to create a label", () => {
@@ -384,7 +384,7 @@ describe("GitHubGenerator", () => {
         labelExistsSpy.mockImplementation((_repoOwner, _repoName, name) => {
           return Promise.resolve(name === ":warning: P2");
         });
-        await YeomanTest.create(__dirname).run();
+        await runGenerator();
       });
 
       it("updates the labels that exist", () => {
@@ -406,4 +406,42 @@ describe("GitHubGenerator", () => {
       });
     });
   });
+
+  it("adds the GitHub repo as a git remote origin", async () => {
+    const result = await runGenerator();
+    const commandResult = result.env.spawnCommandSync(
+      "git",
+      ["config", "--get", "remote.origin.url"],
+      { stdio: ["ignore", "pipe", "pipe"] }
+    );
+
+    const remoteOriginUrl = commandResult.stdout;
+
+    expect(remoteOriginUrl).toBe(
+      `git@github.com:chiubaka/generated-typescript-package.git`
+    );
+  });
 });
+
+const runGenerator = (options: Partial<GitHubGeneratorOptions> = {}) => {
+  return YeomanTest.create(GitHubTestGenerator, { namespace: "test:github" })
+    .withOptions({
+      ...options,
+    })
+    .run();
+};
+
+class GitHubTestGenerator extends BaseGenerator {
+  public getSubGeneratorOptions() {
+    return [
+      {
+        Generator: GitHubGenerator,
+        path: __dirname,
+      },
+    ];
+  }
+
+  public writing() {
+    this.spawnCommandSync("git", ["init"]);
+  }
+}
