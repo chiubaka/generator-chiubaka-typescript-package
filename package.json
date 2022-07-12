@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc && yarn run build:copy",
     "build:copy": "yarn run build:copy:templates",
-    "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' generators",
+    "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' 'src/**/__tests__/__fixtures__/**' generators",
     "clean": "rimraf -rf ./generators /tmp/generated-package",
     "deploy": "yarn run build && yarn run deploy:npm && yarn run deploy:generated",
     "deploy:generated": "",
