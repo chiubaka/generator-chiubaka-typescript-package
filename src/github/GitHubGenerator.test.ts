@@ -55,6 +55,62 @@ describe("GitHubGenerator", () => {
     });
   });
 
+  describe("repo settings", () => {
+    let repoExistsSpy: jest.SpyInstance;
+    let createRepoSpy: jest.SpyInstance;
+    let repoOptions: RepoOptions;
+
+    beforeAll(async () => {
+      repoExistsSpy = jest
+        .spyOn(GitHubApiAdapter.prototype as any, "repoExists")
+        .mockResolvedValue(false);
+      createRepoSpy = jest.spyOn(
+        GitHubApiAdapter.prototype as any,
+        "createRepo"
+      );
+      await YeomanTest.create(__dirname).run();
+
+      repoOptions = (createRepoSpy.mock.calls[0] as any[])[0] as RepoOptions;
+    });
+
+    afterAll(() => {
+      repoExistsSpy.mockReset();
+      createRepoSpy.mockReset();
+    });
+
+    it("enables auto merge", () => {
+      expect(repoOptions.allowAutoMerge).toBe(true);
+    });
+
+    it("disables merge commits", () => {
+      expect(repoOptions.allowMergeCommit).toBe(false);
+    });
+
+    it("enables rebase merges", () => {
+      expect(repoOptions.allowRebaseMerge).toBe(true);
+    });
+
+    it("enables squash merges", () => {
+      expect(repoOptions.allowSquashMerge).toBe(true);
+    });
+
+    it("enables branch updates", () => {
+      expect(repoOptions.allowUpdateBranch).toBe(true);
+    });
+
+    it("enables deleting branches after merge", () => {
+      expect(repoOptions.deleteBranchOnMerge).toBe(true);
+    });
+
+    it("enables issue tracking", () => {
+      expect(repoOptions.hasIssues).toBe(true);
+    });
+
+    it("enables using squash PR title as default", () => {
+      expect(repoOptions.useSquashPrTitleAsDefault).toBe(true);
+    });
+  });
+
   describe("repo", () => {
     let repoExistsSpy: jest.SpyInstance;
     let createRepoSpy: jest.SpyInstance;
