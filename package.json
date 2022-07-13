@@ -20,7 +20,7 @@
     "prestart": "yarn run clean && yarn run build && npm link",
     "pretest": "yarn run clean && yarn run build",
     "start": "yarn run prestart && yo chiubaka-typescript-package --destination-root /tmp/generated-package",
-    "test": "yarn run pretest && jest",
+    "test": "yarn run pretest && jest --runInBand",
     "test:ci": "yarn run test --ci --runInBand --coverage --reporters=default --reporters=jest-junit && mkdir -p reports/junit && mv junit.xml reports/junit/junit.xml",
     "test:typescript": "yarn run clean && jest"
   },
