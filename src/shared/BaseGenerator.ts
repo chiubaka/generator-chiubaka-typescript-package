@@ -1,3 +1,4 @@
+import yaml from "js-yaml";
 import Generator, {
   GeneratorFeatures,
   GeneratorOptions,
@@ -132,6 +133,16 @@ export abstract class BaseGenerator<
     this.writeOrAppendDestination(".gitignore", content, {
       leadingNewlineOnAppend: true,
     });
+  }
+
+  protected loadConfig(configFilePath: string) {
+    const configContents = this.fs.read(configFilePath);
+    const config = yaml.load(configContents) as T;
+
+    this.options = {
+      ...this.options,
+      ...config,
+    };
   }
 
   protected configureSubGenerators(): SubGeneratorCompositionConfig<any>[] {
