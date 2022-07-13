@@ -1,6 +1,6 @@
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import PackageJson from "../package.json";
+import PackageJson from "../package.symlink.json";
 
 describe("GitGenerator", () => {
   let result: RunResult;
