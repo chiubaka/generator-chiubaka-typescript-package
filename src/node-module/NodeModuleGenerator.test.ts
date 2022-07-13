@@ -134,7 +134,7 @@ describe("NodeModuleGenerator", () => {
       result.assertJsonFileContent("package.json", {
         repository: {
           type: "git",
-          url: "git+https://github.com/chiubaka/test-package.git",
+          url: "git+https://github.com/chiubaka/generated-typescript-package.git",
         },
       });
     });
@@ -188,14 +188,15 @@ describe("NodeModuleGenerator", () => {
     it("fills in the bugs section of the package", () => {
       result.assertJsonFileContent("package.json", {
         bugs: {
-          url: "https://github.com/chiubaka/test-package/issues",
+          url: "https://github.com/chiubaka/generated-typescript-package/issues",
         },
       });
     });
 
     it("fills in the homepage of the package", () => {
       result.assertJsonFileContent("package.json", {
-        homepage: "https://github.com/chiubaka/test-package#readme",
+        homepage:
+          "https://github.com/chiubaka/generated-typescript-package#readme",
       });
     });
   });

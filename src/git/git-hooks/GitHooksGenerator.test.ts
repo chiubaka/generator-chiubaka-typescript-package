@@ -16,8 +16,6 @@ describe("GitHooksGenerator", () => {
         expect(result).toHaveDevDependencyWithComment("husky");
       });
 
-      it.todo("adds a comment describing why husky was installed");
-
       it("adds a prepare script to install husky in package.json", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {

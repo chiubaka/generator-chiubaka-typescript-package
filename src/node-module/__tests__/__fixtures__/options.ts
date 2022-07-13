@@ -6,5 +6,5 @@ export const NODE_MODULE_GENERATOR_TEST_OPTIONS: NodeModuleGeneratorOptions = {
   packageKeywords: "test chiubaka-technologies",
   authorName: "Jon Smith",
   authorEmail: "jon@example.com",
-  githubUrl: "https://github.com/chiubaka/test-package",
+  repoName: "generated-typescript-package",
 };

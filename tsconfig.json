@@ -4,5 +4,6 @@
     "rootDir": "./src"
   },
   "extends": "@chiubaka/tsconfig/tsconfig.json",
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/__mocks__/*"]
 }
