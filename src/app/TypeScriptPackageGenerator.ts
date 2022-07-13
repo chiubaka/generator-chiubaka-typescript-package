@@ -16,9 +16,11 @@ import { TypeScriptGenerator } from "../typescript";
 
 export interface TypeScriptPackageGeneratorOptions
   extends NodeModuleGeneratorOptions,
-    GitHubGeneratorOptions {}
+    GitHubGeneratorOptions {
+  config?: string;
+}
 
-export class TypeScriptPackageGenerator extends BaseGenerator {
+export class TypeScriptPackageGenerator extends BaseGenerator<TypeScriptPackageGeneratorOptions> {
   public static getQuestions(): Question<TypeScriptPackageGeneratorOptions>[] {
     return [
       ...NodeModuleGenerator.getQuestions(),
@@ -26,8 +28,15 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
     ];
   }
 
-  constructor(args: string | string[], options: GeneratorOptions) {
+  constructor(
+    args: string | string[],
+    options: Partial<TypeScriptPackageGeneratorOptions> & GeneratorOptions
+  ) {
     super(args, options, { customInstallTask: true });
+
+    if (this.options.config) {
+      this.loadConfig(this.options.config);
+    }
   }
 
   public install() {

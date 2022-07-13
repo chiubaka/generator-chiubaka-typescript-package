@@ -1,11 +1,27 @@
 import Generator from "yeoman-generator";
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import { OptionsTestGenerator } from "../__tests__/__utils__";
+import {
+  LoadConfigTestGenerator,
+  OptionsTestGenerator,
+} from "../__tests__/__utils__";
 import { ComposeWithSubGeneratorTestGenerator } from "../__tests__/__utils__";
 
 describe("BaseGenerator", () => {
   let result: RunResult;
+
+  describe("#loadConfig", () => {
+    beforeAll(async () => {
+      result = await YeomanTest.create(LoadConfigTestGenerator).run();
+    });
+
+    it("loads generator prompt answers from a provided YML file", () => {
+      result.assertJsonFileContent("answers.json", {
+        packageName: "load-config-test",
+        packageDescription: "Loaded description from config",
+      });
+    });
+  });
 
   describe("#composeWithSubGenerator", () => {
     describe("subgenerator", () => {
