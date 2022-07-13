@@ -5,9 +5,10 @@
     "path": "/repos/chiubaka/test-repo/branches/master/protection/required_signatures",
     "body": "",
     "status": 200,
-    "response": [
-      "1f8b080000000000000315cb310ec2300c05d0bb78867acf6590935a8d459b04fb7b42dc1d589ff4de947e52a10eac28ccb26c3b0c3debd6e6c5ae6b06b76e59e5290c0ddcffc6d565b4aec19704d479f98436d81cbff34a73dd1f61c710a46bd08d74483d75a7024ffd7c0164ef2d2177000000"
-    ],
+    "response": {
+      "url": "https://api.github.com/repos/chiubaka/test-repo/branches/master/protection/required_signatures",
+      "enabled": true
+    },
     "responseIsBinary": false
   }
 ]

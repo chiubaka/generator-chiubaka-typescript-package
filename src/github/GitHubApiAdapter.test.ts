@@ -22,83 +22,104 @@ describe("GitHubApiAdapter", () => {
   };
 
   beforeAll(() => {
+    nock.disableNetConnect();
     github = new GitHubApiAdapter();
   });
 
   afterEach(() => {
-    nock.restore();
+    nock.cleanAll();
+  });
+
+  afterAll(() => {
+    nock.enableNetConnect();
   });
 
   describe("#createOrUpdateRepo", () => {
-    beforeEach(() => {
-      loadGitHubNockScope("createOrUpdateRepo.nock.json");
-    });
-
-    it("creates a new repo when one doesn't exist", async () => {
-      const response = await github.createOrUpdateRepo(TEST_REPO);
-
-      const { status, data } = response;
-
-      expect(status).toBe(201);
-      expect(data.name).toEqual(TEST_REPO.name);
-      expect(data.description).toEqual(TEST_REPO.description);
-      expect(data.private).toEqual(TEST_REPO.isPrivate);
-    });
-
-    it("updates the existing repo when one exists", async () => {
-      const response = await github.createOrUpdateRepo({
-        ...TEST_REPO,
-        description: "Updated description",
-        allowAutoMerge: true,
-        allowMergeCommit: false,
-        allowRebaseMerge: true,
-        allowSquashMerge: true,
+    describe("when there is no existing repo", () => {
+      beforeEach(() => {
+        loadGitHubNockScope("createOrUpdateRepo.nock.json");
       });
 
-      const { status, data } = response;
+      it("creates one", async () => {
+        const response = await github.createOrUpdateRepo(TEST_REPO);
 
-      expect(status).toBe(200);
-      expect(data.description).toBe("Updated description");
-      expect(data.allow_auto_merge).toBe(true);
-      expect(data.allow_merge_commit).toBe(false);
-      expect(data.allow_rebase_merge).toBe(true);
-      expect(data.allow_squash_merge).toBe(true);
+        const { status, data } = response;
+
+        expect(status).toBe(201);
+        expect(data.name).toEqual(TEST_REPO.name);
+        expect(data.description).toEqual(TEST_REPO.description);
+        expect(data.private).toEqual(TEST_REPO.isPrivate);
+      });
+    });
+
+    describe("when there is an existing repo", () => {
+      beforeEach(() => {
+        loadGitHubNockScope("createOrUpdateRepoExisting.nock.json");
+      });
+
+      it("updates the existing repo", async () => {
+        const response = await github.createOrUpdateRepo({
+          ...TEST_REPO,
+          description: "Updated description",
+          allowAutoMerge: true,
+          allowMergeCommit: false,
+          allowRebaseMerge: true,
+          allowSquashMerge: true,
+        });
+
+        const { status, data } = response;
+
+        expect(status).toBe(200);
+        expect(data.description).toBe("Updated description");
+        expect(data.allow_auto_merge).toBe(true);
+        expect(data.allow_merge_commit).toBe(false);
+        expect(data.allow_rebase_merge).toBe(true);
+        expect(data.allow_squash_merge).toBe(true);
+      });
     });
   });
 
   describe("#createOrUpdateLabel", () => {
-    beforeEach(() => {
-      loadGitHubNockScope("createOrUpdateLabel.nock.json");
-    });
-
-    it("creates a new label when one doesn't exist", async () => {
-      const response = await github.createOrUpdateLabel(TEST_LABEL);
-
-      const { status, data } = response;
-
-      expect(status).toBe(201);
-      expect(data.name).toBe(TEST_LABEL.name);
-      expect(data.description).toBe(TEST_LABEL.description);
-      expect(data.color).toBe(TEST_LABEL.color);
-    });
-
-    it("updates the existing label when one already exists", async () => {
-      const response = await github.createOrUpdateLabel({
-        ...TEST_LABEL,
-        description: "Updated description",
+    describe("when the label doesn't already exist", () => {
+      beforeEach(() => {
+        loadGitHubNockScope("createOrUpdateLabel.nock.json");
       });
 
-      const { status, data } = response;
+      it("creates a new label", async () => {
+        const response = await github.createOrUpdateLabel(TEST_LABEL);
 
-      expect(status).toBe(200);
-      expect(data.description).toBe("Updated description");
+        const { status, data } = response;
+
+        expect(status).toBe(201);
+        expect(data.name).toBe(TEST_LABEL.name);
+        expect(data.description).toBe(TEST_LABEL.description);
+        expect(data.color).toBe(TEST_LABEL.color);
+      });
+    });
+
+    describe("when the label already exists", () => {
+      beforeEach(() => {
+        loadGitHubNockScope("createOrUpdateLabelExisting.nock.json");
+      });
+
+      it("updates the existing label", async () => {
+        const response = await github.createOrUpdateLabel({
+          ...TEST_LABEL,
+          description: "Updated description",
+        });
+
+        const { status, data } = response;
+
+        expect(status).toBe(200);
+        expect(data.description).toBe("Updated description");
+      });
     });
   });
 
   describe("#deleteLabel", () => {
     describe("when the label exists", () => {
       beforeEach(() => {
-        loadGitHubNockScope("deleteLabel.nock.json");
+        loadGitHubNockScope("deleteLabelExisting.nock.json");
       });
 
       it("deletes an existing label", async () => {
@@ -119,7 +140,7 @@ describe("GitHubApiAdapter", () => {
 
     describe("when the label does not exist", () => {
       beforeEach(() => {
-        loadGitHubNockScope("deleteLabelExisting.nock.json");
+        loadGitHubNockScope("deleteLabel.nock.json");
       });
 
       it("returns nothing", async () => {
@@ -151,10 +172,7 @@ describe("GitHubApiAdapter", () => {
       const { status, data } = response;
 
       expect(status).toBe(200);
-      expect(data.required_linear_history).toEqual({ enabled: true });
-      expect(data.required_conversation_resolution).toEqual({
-        enabled: true,
-      });
+      expect(data).toBe("");
     });
   });
 
