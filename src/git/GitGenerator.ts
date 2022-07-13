@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import PackageJson from "../package.json";
+import PackageJson from "../package.symlink.json";
 import { BaseGenerator } from "../shared";
 import GitHooksGenerator from "./git-hooks";
 
