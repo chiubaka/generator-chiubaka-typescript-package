@@ -4,7 +4,7 @@ import { BaseGenerator } from "../../shared/index";
 import { CodeCovGenerator } from "./codecov/index";
 
 export class TestCoverageGenerator extends BaseGenerator {
-  protected getSubGeneratorOptions() {
+  protected configureSubGenerators() {
     return [
       {
         Generator: CodeCovGenerator,

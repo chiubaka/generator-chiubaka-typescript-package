@@ -39,7 +39,7 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
     this.spawnCommandSync("yarn", yarnArgs);
   }
 
-  protected getSubGeneratorOptions() {
+  protected configureSubGenerators = () => {
     return [
       {
         Generator: GitignoreGenerator,
@@ -74,5 +74,5 @@ export class TypeScriptPackageGenerator extends BaseGenerator {
         path: path.join(__dirname, "../github"),
       },
     ];
-  }
+  };
 }

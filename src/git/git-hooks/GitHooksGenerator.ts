@@ -34,7 +34,7 @@ export class GitHooksGenerator extends BaseGenerator {
     ]);
   }
 
-  private async writePackageJson() {
+  private writePackageJson = async () => {
     const scripts = {
       prepare: "husky install",
     };
@@ -45,5 +45,5 @@ export class GitHooksGenerator extends BaseGenerator {
       name: "husky",
       comment: "Modern native Git hooks made easy",
     });
-  }
+  };
 }

@@ -432,7 +432,7 @@ const runGenerator = (options: Partial<GitHubGeneratorOptions> = {}) => {
 };
 
 class GitHubTestGenerator extends BaseGenerator {
-  public getSubGeneratorOptions() {
+  public configureSubGenerators() {
     return [
       {
         Generator: GitHubGenerator,
