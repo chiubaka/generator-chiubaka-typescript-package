@@ -27,12 +27,12 @@ export class GitGenerator extends BaseGenerator {
     ]);
   }
 
-  protected getSubGeneratorOptions() {
+  protected configureSubGenerators = () => {
     return [
       {
         Generator: GitHooksGenerator,
         path: path.join(__dirname, "./git-hooks"),
       },
     ];
-  }
+  };
 }

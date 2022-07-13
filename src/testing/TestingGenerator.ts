@@ -5,7 +5,7 @@ import { JestGenerator } from "./jest";
 import { TestCoverageGenerator } from "./test-coverage";
 
 export class TestingGenerator extends BaseGenerator {
-  protected getSubGeneratorOptions() {
+  protected configureSubGenerators() {
     return [
       {
         Generator: JestGenerator,

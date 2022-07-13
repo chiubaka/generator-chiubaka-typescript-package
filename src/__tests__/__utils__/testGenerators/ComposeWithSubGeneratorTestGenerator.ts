@@ -32,7 +32,7 @@ export class ComposeWithSubGeneratorTestGenerator extends BaseGenerator<ComposeW
     this.writeDestinationJSON("parentOptions.json", options);
   }
 
-  protected getSubGeneratorOptions() {
+  protected configureSubGenerators() {
     return [
       {
         Generator: InheritedOptionsSubGeneratorTestGenerator,

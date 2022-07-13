@@ -13,7 +13,7 @@ export class TypeScriptGenerator extends BaseGenerator {
     });
   }
 
-  protected getSubGeneratorOptions() {
+  protected configureSubGenerators() {
     return [
       {
         Generator: TsConfigGenerator,

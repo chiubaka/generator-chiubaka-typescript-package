@@ -52,20 +52,24 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
     this.writePackageJson();
   }
 
-  protected getSubGeneratorOptions() {
+  public install() {
+    this.spawnCommandSync("yarn", ["set", "version", "3.2.1"]);
+  }
+
+  protected configureSubGenerators = () => {
     return [
       {
         Generator: ReadmeGenerator,
         path: path.join(__dirname, "./readme"),
       },
     ];
-  }
+  };
 
-  private writeGitignore() {
+  private writeGitignore = () => {
     this.writeOrAppendGitignore(".gitignore.ejs");
-  }
+  };
 
-  private writePackageJson() {
+  private writePackageJson = () => {
     const keywordTokens = this.answers.packageKeywords?.split(" ") || [];
     const keywords = keywordTokens.map((token) => `"${token}"`).join(", ");
 
@@ -76,9 +80,5 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
       keywords,
       githubUrl,
     });
-  }
-
-  public install() {
-    this.spawnCommandSync("yarn", ["set", "version", "3.2.1"]);
-  }
+  };
 }

@@ -14,7 +14,7 @@ interface WriteOrAppendOptions {
   leadingNewlineOnAppend?: boolean;
 }
 
-interface SubGeneratorCompositionOptions<T> {
+interface SubGeneratorCompositionConfig<T> {
   Generator: SubGeneratorConstructor<T>;
   path: string;
 }
@@ -108,8 +108,8 @@ export abstract class BaseGenerator<
 
     this.extendPackageJson({ devDependenciesComments: dependencyComments });
 
-    await this.addDevDependencies(dependenciesWithVersions);
-    await this.addDevDependencies(dependenciesWithoutVersions);
+    await super.addDevDependencies(dependenciesWithVersions);
+    await super.addDevDependencies(dependenciesWithoutVersions);
   }
 
   /**
@@ -134,7 +134,7 @@ export abstract class BaseGenerator<
     });
   }
 
-  protected getSubGeneratorOptions(): SubGeneratorCompositionOptions<any>[] {
+  protected configureSubGenerators(): SubGeneratorCompositionConfig<any>[] {
     return [];
   }
 
@@ -162,8 +162,8 @@ export abstract class BaseGenerator<
   }
 
   private initializeSubGenerators() {
-    const subGeneratorOptions = this.getSubGeneratorOptions();
-    this.composeWithSubGenerators(subGeneratorOptions);
+    const subGenerators = this.configureSubGenerators();
+    this.composeWithSubGenerators(subGenerators);
   }
 
   private addQuestions(questions: Question<T>[]) {
@@ -186,10 +186,10 @@ export abstract class BaseGenerator<
   }
 
   private composeWithSubGenerators(
-    subGeneratorOptions: SubGeneratorCompositionOptions<any>[]
+    subGenerators: SubGeneratorCompositionConfig<any>[]
   ): BaseGenerator<any>[] {
     return super.composeWith(
-      subGeneratorOptions,
+      subGenerators,
       {
         ...this.options,
         ...this.answers,

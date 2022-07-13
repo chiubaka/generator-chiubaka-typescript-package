@@ -1,7 +1,7 @@
 # Built files
 generators
 
-# Secrets
+# Environment Variables -- May Contain Secrets
 .env
 
 # Test Coverage
