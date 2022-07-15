@@ -42,6 +42,17 @@ describe("ReadmeGenerator", () => {
             `[![circleci](https://circleci.com/gh/${repoOwner}/${repoName}.svg?style=shield)](https://app.circleci.com/pipelines/github/${repoOwner}/${repoName}?filter=all`
           );
         });
+
+        // Regression test for https://github.com/chiubaka/generator-chiubaka-typescript-package/issues/106
+        it("does not leave a blank line between shields", () => {
+          const { packageName, repoOwner, repoName } =
+            README_GENERATOR_TEST_OPTIONS;
+
+          result.assertFileContent(
+            "README.md",
+            `[![npm](https://img.shields.io/npm/v/${packageName})](https://www.npmjs.com/package/${packageName})\n[![circleci](https://circleci.com/gh/${repoOwner}/${repoName}.svg?style=shield)](https://app.circleci.com/pipelines/github/${repoOwner}/${repoName}?filter=all`
+          );
+        });
       });
     });
   });
