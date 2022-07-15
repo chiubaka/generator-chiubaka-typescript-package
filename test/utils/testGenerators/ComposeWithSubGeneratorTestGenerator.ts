@@ -1,7 +1,7 @@
 import path from "node:path";
 import { Question } from "yeoman-generator";
 
-import { BaseGenerator } from "../../../shared";
+import { BaseGenerator } from "../../../src/shared";
 import {
   InheritedOptionsSubGeneratorTestGenerator,
   InheritedOptionsSubGeneratorTestGeneratorOptions,

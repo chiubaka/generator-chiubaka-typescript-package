@@ -2,7 +2,7 @@ import yaml from "js-yaml";
 import assert from "node:assert";
 import { Question } from "yeoman-generator";
 
-import { BaseGenerator } from "../../../shared/index";
+import { BaseGenerator } from "../../../src/shared";
 
 interface SimpleYamlTestGeneratorOptions {
   yamlFilePath: string;

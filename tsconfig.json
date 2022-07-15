@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "./generators",
-    "rootDir": "./src"
+    "outDir": "./build"
   },
   "extends": "@chiubaka/tsconfig/tsconfig.json",
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["**/__mocks__/*"]
 }

@@ -1,7 +1,7 @@
 import path from "node:path";
 import { GeneratorOptions, Question } from "yeoman-generator";
 
-import { BaseGenerator } from "../../../shared";
+import { BaseGenerator } from "../../../src/shared";
 
 export interface LoadConfigTestGeneratorOptions {
   packageName: string;

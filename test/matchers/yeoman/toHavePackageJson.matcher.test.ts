@@ -3,7 +3,7 @@ import YeomanHelpers, { RunResult } from "yeoman-test";
 import {
   EmptyTestGenerator,
   NoDevDependenciesTestGenerator,
-} from "../../../__utils__";
+} from "../../utils";
 
 describe("toHavePackageJson", () => {
   it("fails if given something other than a YeomanTest.RunResult", () => {

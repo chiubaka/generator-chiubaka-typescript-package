@@ -1,9 +1,6 @@
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import {
-  EmptyTestGenerator,
-  SimpleYamlTestGenerator,
-} from "../../../__utils__";
+import { EmptyTestGenerator, SimpleYamlTestGenerator } from "../../utils";
 
 describe("toHaveYaml", () => {
   let result: RunResult;

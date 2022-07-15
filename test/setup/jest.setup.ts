@@ -1,4 +1,4 @@
-import { matchers } from "./matchers";
+import { matchers } from "../matchers";
 
 // We are actually running full yarn installs in the generated project in tests, and
 // that does take some time on CI

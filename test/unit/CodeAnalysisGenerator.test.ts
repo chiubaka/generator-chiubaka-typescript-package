@@ -1,10 +1,13 @@
+import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
 describe("CodeAnalysisGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanTest.create(__dirname).run();
+    result = await YeomanTest.create(
+      path.join(__dirname, "../../src/code-analysis")
+    ).run();
   });
 
   describe("Codacy", () => {

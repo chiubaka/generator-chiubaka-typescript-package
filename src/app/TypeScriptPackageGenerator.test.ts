@@ -1,6 +1,6 @@
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { RunResultUtils } from "../__tests__/__utils__";
+import { RunResultUtils } from "../../test/utils";
 import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../node-module/__tests__/__fixtures__/index";
 
 describe("TypeScriptPackageGenerator", () => {

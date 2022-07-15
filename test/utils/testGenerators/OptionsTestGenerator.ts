@@ -1,6 +1,6 @@
 import { Question } from "yeoman-generator";
 
-import { BaseGenerator } from "../../../shared";
+import { BaseGenerator } from "../../../src/shared";
 
 interface OptionsTestGeneratorOptions {
   name: string;

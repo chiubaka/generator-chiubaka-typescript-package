@@ -7,9 +7,10 @@
   ],
   "scripts": {
     "build": "tsc && yarn run build:copy",
-    "build:copy": "yarn run build:copy:templates",
-    "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' 'src/**/__tests__/__fixtures__/**' generators",
-    "clean": "rimraf -rf ./generators /tmp/generated-package",
+    "build:copy": "yarn run build:copy:templates && yarn run build:copy:generators",
+    "build:copy:generators": "copyfiles --up 2 --all 'build/src/**/*' generators",
+    "build:copy:templates": "copyfiles --up 1 --all 'src/**/templates/**' 'src/**/__tests__/__fixtures__/**' build/src",
+    "clean": "rimraf -rf ./build ./generators /tmp/generated-package",
     "deploy": "yarn run build && yarn run deploy:npm && yarn run deploy:generated",
     "deploy:generated": "",
     "deploy:npm": "npm publish --access public",

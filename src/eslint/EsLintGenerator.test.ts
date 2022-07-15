@@ -2,7 +2,7 @@ import yaml from "js-yaml";
 import micromatch from "micromatch";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { RunResultUtils } from "../__tests__/__utils__";
+import { RunResultUtils } from "../../test/utils";
 
 describe("EsLintGenerator", () => {
   let result: RunResult;

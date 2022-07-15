@@ -1,6 +1,6 @@
 import { RunResult } from "yeoman-test";
 
-import { RunResultUtils } from "../../../__utils__";
+import { RunResultUtils } from "../../utils";
 
 export const toHaveDevDependencyComment = (
   result: RunResult,

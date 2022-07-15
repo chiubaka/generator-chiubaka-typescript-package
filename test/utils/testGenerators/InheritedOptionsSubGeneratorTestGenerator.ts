@@ -1,6 +1,6 @@
 import { Question } from "yeoman-generator";
 
-import { BaseGenerator } from "../../../shared";
+import { BaseGenerator } from "../../../src/shared";
 
 export interface InheritedOptionsSubGeneratorTestGeneratorOptions {
   packageName: string;

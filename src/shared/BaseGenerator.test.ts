@@ -2,10 +2,10 @@ import Generator from "yeoman-generator";
 import YeomanTest, { RunResult } from "yeoman-test";
 
 import {
+  ComposeWithSubGeneratorTestGenerator,
   LoadConfigTestGenerator,
   OptionsTestGenerator,
-} from "../__tests__/__utils__";
-import { ComposeWithSubGeneratorTestGenerator } from "../__tests__/__utils__";
+} from "../../test/utils";
 
 describe("BaseGenerator", () => {
   let result: RunResult;

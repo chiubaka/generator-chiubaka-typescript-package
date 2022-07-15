@@ -1,5 +1,6 @@
 extends:
   - "@chiubaka/eslint-config"
 ignorePatterns:
+  - build
   - generators
   - reports

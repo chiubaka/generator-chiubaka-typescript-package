@@ -1,4 +1,4 @@
-import { BaseGenerator } from "../../../shared/index";
+import { BaseGenerator } from "../../../src/shared";
 
 export class NoDevDependenciesTestGenerator extends BaseGenerator {
   public async writing() {
