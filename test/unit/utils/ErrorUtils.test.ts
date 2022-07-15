@@ -1,4 +1,4 @@
-import { ErrorUtils, ExecException } from "./ErrorUtils";
+import { ErrorUtils, ExecException } from "../../../src/shared/";
 
 describe("ErrorUtils", () => {
   describe(".isExecException", () => {
