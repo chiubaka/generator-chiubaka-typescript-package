@@ -71,9 +71,9 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     const existingRemoteUrl = await this.getRemoteOriginUrl();
 
     if (existingRemoteUrl === "") {
-      this.spawnCommandSync("git", ["remote", "add", "origin", githubUrl]);
+      await this.exec(`git remote add origin ${githubUrl}`);
     } else if (existingRemoteUrl !== githubUrl) {
-      this.spawnCommandSync("git", ["remote", "set-url", "origin", githubUrl]);
+      await this.exec(`git remote set-url origin ${githubUrl}`);
     }
 
     const createdRepository = await this.createOrUpdateRepository();
@@ -271,6 +271,6 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
    * @param dryRun whether or not to run the push in dry run
    */
   private async _gitPush() {
-    await this.spawnCommandSync("git", ["push", "-u", "origin", "master"]);
+    await this.exec("git push -u origin master");
   }
 }
