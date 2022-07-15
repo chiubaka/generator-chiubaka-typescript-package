@@ -12,7 +12,7 @@ export interface GitHubGeneratorOptions {
   repoName: string;
   packageDescription: string;
   isPrivateRepo: boolean;
-  gitPushDryRun?: boolean;
+  disableGitPush?: boolean;
 }
 
 interface LabelOptions {
@@ -64,13 +64,6 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     this.github = new GitHubApiAdapter();
   }
 
-  public async writing() {
-    await this.createOrUpdateRepository();
-    await this.protectMasterBranch();
-    await this.enableVulnerabilityAlerts();
-    await this.createOrUpdateLabels();
-  }
-
   public async end() {
     const { repoOwner, repoName } = this.answers;
     const githubUrl = `git@github.com:${repoOwner}/${repoName}.git`;
@@ -82,9 +75,22 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     } else if (existingRemoteUrl !== githubUrl) {
       this.spawnCommandSync("git", ["remote", "set-url", "origin", githubUrl]);
     }
+
+    const createdRepository = await this.createOrUpdateRepository();
+
+    if (createdRepository && this.options.disableGitPush !== true) {
+      await this._gitPush();
+    }
+
+    await this.protectMasterBranch();
+    await this.enableVulnerabilityAlerts();
+    await this.createOrUpdateLabels();
   }
 
-  private createOrUpdateRepository = async () => {
+  /**
+   * @return Promise<boolean> true if a new repository was created, false otherwise
+   */
+  private createOrUpdateRepository = async (): Promise<boolean> => {
     const {
       isPrivateRepo,
       packageDescription: description,
@@ -92,7 +98,7 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
       repoOwner: owner,
     } = this.answers;
 
-    await this.github.createOrUpdateRepo({
+    const response = await this.github.createOrUpdateRepo({
       owner,
       name,
       description,
@@ -106,6 +112,8 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
       deleteBranchOnMerge: true,
       useSquashPrTitleAsDefault: true,
     });
+
+    return response.status === 201;
   };
 
   private protectMasterBranch = async () => {
@@ -248,4 +256,15 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     const result = await this.exec("git config --get remote.origin.url");
     return result.stdout;
   };
+
+  /**
+   * This method needs to be a real function of the class otherwise
+   * it cannot be mocked easily in tests. However, we don't want it to
+   * be run automatically, so it must be prefixed by a "_" despite internal
+   * conventions
+   * @param dryRun whether or not to run the push in dry run
+   */
+  private async _gitPush() {
+    await this.spawnCommandSync("git", ["push", "-u", "origin", "master"]);
+  }
 }

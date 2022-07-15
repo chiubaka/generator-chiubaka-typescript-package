@@ -11,6 +11,7 @@ describe("TypeScriptPackageGenerator", () => {
       .withPrompts(NODE_MODULE_GENERATOR_TEST_OPTIONS)
       .withOptions({
         configGitUser: true,
+        disableGitPush: true,
       })
       .run();
   });

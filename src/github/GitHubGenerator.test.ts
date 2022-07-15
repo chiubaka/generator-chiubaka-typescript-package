@@ -14,6 +14,22 @@ const DEFAULT_REPO_OPTIONS = {
 };
 
 describe("GitHubGenerator", () => {
+  let gitPushSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    gitPushSpy = jest
+      .spyOn(GitHubGenerator.prototype as any, "_gitPush")
+      .mockReturnValue(Promise.resolve());
+  });
+
+  afterEach(() => {
+    gitPushSpy.mockReset();
+  });
+
+  afterAll(() => {
+    gitPushSpy.mockRestore();
+  });
+
   describe("generator options", () => {
     let repoExistsSpy: jest.SpyInstance;
     let createRepoSpy: jest.SpyInstance;
@@ -38,8 +54,8 @@ describe("GitHubGenerator", () => {
     });
 
     afterAll(() => {
-      repoExistsSpy.mockReset();
-      createRepoSpy.mockReset();
+      repoExistsSpy.mockRestore();
+      createRepoSpy.mockRestore();
     });
 
     it("respects the repoOrganization option", () => {
@@ -99,11 +115,11 @@ describe("GitHubGenerator", () => {
     });
 
     afterAll(() => {
-      repoExistsSpy.mockReset();
-      createRepoSpy.mockReset();
-      updateBranchProtectionSpy.mockReset();
-      createCommitSignatureProtectionSpy.mockReset();
-      enableVulnerabilityAlertsSpy.mockReset();
+      repoExistsSpy.mockRestore();
+      createRepoSpy.mockRestore();
+      updateBranchProtectionSpy.mockRestore();
+      createCommitSignatureProtectionSpy.mockRestore();
+      enableVulnerabilityAlertsSpy.mockRestore();
     });
 
     describe("repo", () => {
@@ -218,9 +234,9 @@ describe("GitHubGenerator", () => {
     });
 
     afterEach(() => {
-      repoExistsSpy.mockReset();
-      createRepoSpy.mockReset();
-      updateRepoSpy.mockReset();
+      repoExistsSpy.mockRestore();
+      createRepoSpy.mockRestore();
+      updateRepoSpy.mockRestore();
     });
 
     describe("when a GitHub repo doesn't already exist", () => {
@@ -276,10 +292,10 @@ describe("GitHubGenerator", () => {
     });
 
     afterEach(() => {
-      labelExistsSpy.mockReset();
-      createLabelSpy.mockReset();
-      updateLabelSpy.mockReset();
-      deleteLabelSpy.mockReset();
+      labelExistsSpy.mockRestore();
+      createLabelSpy.mockRestore();
+      updateLabelSpy.mockRestore();
+      deleteLabelSpy.mockRestore();
     });
 
     describe("when no labels exist", () => {
@@ -407,25 +423,66 @@ describe("GitHubGenerator", () => {
     });
   });
 
-  it("adds the GitHub repo as a git remote origin", async () => {
-    const result = await runGenerator();
-
-    const remoteOriginUrl = getRemoteOriginUrl(result);
-
-    expect(remoteOriginUrl).toBe(
-      `git@github.com:chiubaka/generated-typescript-package.git`
-    );
-  });
-
-  describe("when a git remote origin already exists", () => {
-    it("updates the remote origin url", async () => {
-      const result = await runGenerator({ addRemoteOrigin: true });
+  describe("remote origin", () => {
+    it("adds the GitHub repo as a git remote origin", async () => {
+      const result = await runGenerator();
 
       const remoteOriginUrl = getRemoteOriginUrl(result);
 
       expect(remoteOriginUrl).toBe(
         `git@github.com:chiubaka/generated-typescript-package.git`
       );
+    });
+
+    describe("when a git remote origin already exists", () => {
+      it("updates the remote origin url", async () => {
+        const result = await runGenerator({ addRemoteOrigin: true });
+
+        const remoteOriginUrl = getRemoteOriginUrl(result);
+
+        expect(remoteOriginUrl).toBe(
+          `git@github.com:chiubaka/generated-typescript-package.git`
+        );
+      });
+    });
+  });
+
+  describe("git push", () => {
+    let repoExistsSpy: jest.SpyInstance;
+
+    beforeAll(() => {
+      repoExistsSpy = jest.spyOn(
+        GitHubApiAdapter.prototype as any,
+        "repoExists"
+      );
+    });
+
+    afterAll(() => {
+      repoExistsSpy.mockRestore();
+    });
+
+    describe("when a GitHub repo doesn't already exist", () => {
+      beforeEach(() => {
+        repoExistsSpy.mockResolvedValue(false);
+      });
+
+      it("creates a new GitHub repo if one doesn't already exist", async () => {
+        await runGenerator();
+
+        expect(gitPushSpy).toHaveBeenCalled();
+      });
+    });
+
+    describe("when a GitHub repo already exists", () => {
+      beforeEach(() => {
+        repoExistsSpy.mockResolvedValue(true);
+      });
+
+      it("updates settings of an existing GitHub repo", async () => {
+        await runGenerator();
+
+        expect(gitPushSpy).not.toHaveBeenCalled();
+      });
     });
   });
 });
