@@ -1,13 +1,14 @@
+import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../../test/fixtures";
-import { RunResultUtils } from "../../test/utils";
+import { NODE_MODULE_GENERATOR_TEST_OPTIONS } from "../fixtures/index";
+import { RunResultUtils } from "../utils/index";
 
 describe("TypeScriptPackageGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(__dirname)
+    result = await YeomanHelpers.create(path.join(__dirname, "../../src/app"))
       .withPrompts(NODE_MODULE_GENERATOR_TEST_OPTIONS)
       .withOptions({
         configGitUser: true,
