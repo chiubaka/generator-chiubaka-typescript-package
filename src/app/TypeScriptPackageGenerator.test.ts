@@ -208,4 +208,12 @@ describe("TypeScriptPackageGenerator", () => {
       it.todo("rejects push when tests fail");
     });
   });
+
+  describe("code analysis", () => {
+    describe("Codacy", () => {
+      it("creates a .codacy.yml file", () => {
+        result.assertFile(".codacy.yml");
+      });
+    });
+  });
 });
