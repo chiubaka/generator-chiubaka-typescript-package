@@ -1,4 +1,4 @@
-import { ReadmeGeneratorOptions } from "../../ReadmeGenerator";
+import { ReadmeGeneratorOptions } from "../../../src/node-module";
 
 export const README_GENERATOR_TEST_OPTIONS: ReadmeGeneratorOptions = {
   repoOwner: "chiubaka",

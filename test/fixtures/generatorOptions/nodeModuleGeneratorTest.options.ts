@@ -1,5 +1,5 @@
-import { NodeModuleGeneratorOptions } from "../../NodeModuleGenerator";
-import { README_GENERATOR_TEST_OPTIONS } from "../../readme/__tests__/__fixtures__";
+import { NodeModuleGeneratorOptions } from "../../../src/node-module";
+import { README_GENERATOR_TEST_OPTIONS } from "./readmeGeneratorTest.options";
 
 export const NODE_MODULE_GENERATOR_TEST_OPTIONS: NodeModuleGeneratorOptions = {
   ...README_GENERATOR_TEST_OPTIONS,

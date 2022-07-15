@@ -1,15 +1,15 @@
+import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import { README_GENERATOR_TEST_OPTIONS } from "./__tests__/__fixtures__/";
+import { ReadmeGeneratorOptions } from "../../../src/node-module";
+import { README_GENERATOR_TEST_OPTIONS } from "../../fixtures";
 
 describe("ReadmeGenerator", () => {
   let result: RunResult;
 
   describe("when all shields are enabled", () => {
     beforeAll(async () => {
-      result = await YeomanTest.create(__dirname)
-        .withOptions(README_GENERATOR_TEST_OPTIONS)
-        .run();
+      result = await runGenerator(README_GENERATOR_TEST_OPTIONS);
     });
 
     describe("README.md", () => {
@@ -59,12 +59,10 @@ describe("ReadmeGenerator", () => {
 
   describe("when includeNpmShield option is false", () => {
     beforeAll(async () => {
-      result = await YeomanTest.create(__dirname)
-        .withOptions({
-          ...README_GENERATOR_TEST_OPTIONS,
-          includeNpmShield: false,
-        })
-        .run();
+      result = await runGenerator({
+        ...README_GENERATOR_TEST_OPTIONS,
+        includeNpmShield: false,
+      });
     });
 
     it("does not write the NPM shield", () => {
@@ -78,12 +76,10 @@ describe("ReadmeGenerator", () => {
 
   describe("when includeCircleCiShield option is false", () => {
     beforeAll(async () => {
-      result = await YeomanTest.create(__dirname)
-        .withOptions({
-          ...README_GENERATOR_TEST_OPTIONS,
-          includeCircleCiShield: false,
-        })
-        .run();
+      result = await runGenerator({
+        ...README_GENERATOR_TEST_OPTIONS,
+        includeCircleCiShield: false,
+      });
     });
 
     it("does not write the CircleCI shield", () => {
@@ -97,3 +93,11 @@ describe("ReadmeGenerator", () => {
     });
   });
 });
+
+const runGenerator = (options?: ReadmeGeneratorOptions) => {
+  return YeomanTest.create(
+    path.join(__dirname, "../../../src/node-module/readme")
+  )
+    .withOptions(options || {})
+    .run();
+};
