@@ -113,7 +113,7 @@
     "yeoman-test": "Test helpers for yeoman generators"
   },
   "jest-junit": {
-    "addFileAttribute": true,
+    "addFileAttribute": "true",
     "classNameTemplate": "{suitename}"
   }
 }
