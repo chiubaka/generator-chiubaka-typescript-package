@@ -1,14 +1,17 @@
 import yaml from "js-yaml";
 import micromatch from "micromatch";
+import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { RunResultUtils } from "../../test/utils";
+import { RunResultUtils } from "../utils/index";
 
 describe("EsLintGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(__dirname)
+    result = await YeomanHelpers.create(
+      path.join(__dirname, "../../src/eslint")
+    )
       .withOptions({
         skipLintFix: true,
         yarnInstall: true,
