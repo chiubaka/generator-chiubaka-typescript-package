@@ -1,12 +1,13 @@
+import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import PackageJson from "../package.symlink.json";
+import PackageJson from "../../../package.json";
 
 describe("GitGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanTest.create(__dirname)
+    result = await YeomanTest.create(path.join(__dirname, "../../../src/git"))
       .withOptions({ yarnInstall: true, configGitUser: true })
       .run();
   });
