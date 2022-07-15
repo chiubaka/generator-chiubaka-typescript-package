@@ -39,6 +39,10 @@ export class TypeScriptPackageGenerator extends BaseGenerator<TypeScriptPackageG
     }
   }
 
+  public writing() {
+    return;
+  }
+
   protected configureSubGenerators = () => {
     return [
       {
