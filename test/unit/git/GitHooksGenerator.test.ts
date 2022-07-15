@@ -5,7 +5,7 @@ describe("GitHooksGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanTest.create(path.join(__dirname, "../"))
+    result = await YeomanTest.create(path.join(__dirname, "../../../src/git"))
       .withOptions({ yarnInstall: true, configGitUser: true })
       .run();
   });
