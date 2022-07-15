@@ -6,7 +6,7 @@ describe("CodeAnalysisGenerator", () => {
 
   beforeAll(async () => {
     result = await YeomanTest.create(
-      path.join(__dirname, "../../src/code-analysis")
+      path.join(__dirname, "../../../src/code-analysis")
     ).run();
   });
 

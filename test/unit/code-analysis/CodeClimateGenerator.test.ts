@@ -8,7 +8,7 @@ describe("CodeClimate", () => {
 
   beforeAll(async () => {
     result = await YeomanTest.create(
-      path.join(__dirname, "../../src/code-analysis/code-climate")
+      path.join(__dirname, "../../../src/code-analysis/code-climate")
     ).run();
   });
 

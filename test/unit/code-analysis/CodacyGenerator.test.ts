@@ -1,12 +1,15 @@
 import yaml from "js-yaml";
 import micromatch from "micromatch";
+import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
 describe("CodacyGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanTest.create(__dirname).run();
+    result = await YeomanTest.create(
+      path.join(__dirname, "../../../src/code-analysis/codacy")
+    ).run();
   });
 
   describe("config", () => {
