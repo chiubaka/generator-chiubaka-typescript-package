@@ -47,15 +47,15 @@ export class EsLintGenerator extends BaseGenerator {
     ]);
   }
 
-  public install() {
+  public async install() {
     if (this.options.yarnInstall === true) {
-      this.spawnCommandSync("yarn", ["install"]);
+      await this.exec("yarn install");
     }
   }
 
-  public end() {
+  public async end() {
     if (this.options.skipLintFix !== true) {
-      this.spawnCommandSync("yarn", ["run", "lint:fix"]);
+      await this.exec("yarn run lint:fix");
     }
   }
 }
