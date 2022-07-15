@@ -215,5 +215,11 @@ describe("TypeScriptPackageGenerator", () => {
         result.assertFile(".codacy.yml");
       });
     });
+
+    describe("Code Climate", () => {
+      it("creates a .codeclimate.yml file", () => {
+        result.assertFile(".codeclimate.yml");
+      });
+    });
   });
 });
