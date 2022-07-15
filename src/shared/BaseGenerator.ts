@@ -1,9 +1,15 @@
 import yaml from "js-yaml";
+import { exec as standardExec } from "node:child_process";
+import util from "node:util";
 import Generator, {
   GeneratorFeatures,
   GeneratorOptions,
   Question,
 } from "yeoman-generator";
+
+import { ErrorUtils } from "./utils";
+
+const exec = util.promisify(standardExec);
 
 interface DependencyDefinition {
   name: string;
@@ -147,6 +153,19 @@ export abstract class BaseGenerator<
 
   protected configureSubGenerators(): SubGeneratorCompositionConfig<any>[] {
     return [];
+  }
+
+  protected async exec(command: string) {
+    try {
+      const result = await exec(command);
+      return result;
+    } catch (error: any) {
+      if (ErrorUtils.isExecException(error)) {
+        return error;
+      }
+
+      throw error;
+    }
   }
 
   /**

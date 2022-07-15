@@ -1,4 +1,4 @@
-import YeomanTest from "yeoman-test";
+import YeomanTest, { RunResult } from "yeoman-test";
 
 import { BaseGenerator } from "../shared";
 import {
@@ -409,27 +409,48 @@ describe("GitHubGenerator", () => {
 
   it("adds the GitHub repo as a git remote origin", async () => {
     const result = await runGenerator();
-    const commandResult = result.env.spawnCommandSync(
-      "git",
-      ["config", "--get", "remote.origin.url"],
-      { stdio: ["ignore", "pipe", "pipe"] }
-    );
 
-    const remoteOriginUrl = commandResult.stdout;
+    const remoteOriginUrl = getRemoteOriginUrl(result);
 
     expect(remoteOriginUrl).toBe(
       `git@github.com:chiubaka/generated-typescript-package.git`
     );
   });
+
+  describe("when a git remote origin already exists", () => {
+    it("updates the remote origin url", async () => {
+      const result = await runGenerator({ addRemoteOrigin: true });
+
+      const remoteOriginUrl = getRemoteOriginUrl(result);
+
+      expect(remoteOriginUrl).toBe(
+        `git@github.com:chiubaka/generated-typescript-package.git`
+      );
+    });
+  });
 });
 
-const runGenerator = (options: Partial<GitHubGeneratorOptions> = {}) => {
+const runGenerator = (options: Partial<GitHubTestGeneratorOptions> = {}) => {
   return YeomanTest.create(GitHubTestGenerator, { namespace: "test:github" })
     .withOptions({
       ...options,
     })
     .run();
 };
+
+const getRemoteOriginUrl = (result: RunResult) => {
+  const commandResult = result.env.spawnCommandSync(
+    "git",
+    ["config", "--get", "remote.origin.url"],
+    { stdio: ["ignore", "pipe", "pipe"] }
+  );
+
+  return commandResult.stdout;
+};
+
+interface GitHubTestGeneratorOptions extends GitHubGeneratorOptions {
+  addRemoteOrigin: boolean;
+}
 
 class GitHubTestGenerator extends BaseGenerator {
   public configureSubGenerators() {
@@ -443,5 +464,14 @@ class GitHubTestGenerator extends BaseGenerator {
 
   public writing() {
     this.spawnCommandSync("git", ["init"]);
+
+    if (this.options.addRemoteOrigin) {
+      this.spawnCommandSync("git", [
+        "remote",
+        "add",
+        "origin",
+        "git@github.com:chiubaka/test-repo.git",
+      ]);
+    }
   }
 }

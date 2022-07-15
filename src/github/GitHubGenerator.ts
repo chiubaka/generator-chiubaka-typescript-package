@@ -71,11 +71,17 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     await this.createOrUpdateLabels();
   }
 
-  public end() {
+  public async end() {
     const { repoOwner, repoName } = this.answers;
     const githubUrl = `git@github.com:${repoOwner}/${repoName}.git`;
 
-    this.spawnCommandSync("git", ["remote", "add", "origin", githubUrl]);
+    const existingRemoteUrl = await this.getRemoteOriginUrl();
+
+    if (!existingRemoteUrl) {
+      this.spawnCommandSync("git", ["remote", "add", "origin", githubUrl]);
+    } else if (existingRemoteUrl !== githubUrl) {
+      this.spawnCommandSync("git", ["remote", "set-url", "origin", githubUrl]);
+    }
   }
 
   private createOrUpdateRepository = async () => {
@@ -236,5 +242,10 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
       repoName,
       ...options,
     });
+  };
+
+  private getRemoteOriginUrl = async () => {
+    const result = await this.exec("git config --get remote.origin.url");
+    return result.stdout;
   };
 }
