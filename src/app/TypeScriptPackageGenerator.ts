@@ -2,6 +2,7 @@ import path from "node:path";
 import { GeneratorOptions, Question } from "yeoman-generator";
 
 import { CircleCiGenerator } from "../circleci";
+import { CodeAnalysisGenerator } from "../code-analysis";
 import { EsLintGenerator } from "../eslint";
 import { GitGenerator } from "../git";
 import { GitHubGenerator, GitHubGeneratorOptions } from "../github/index";
@@ -72,6 +73,10 @@ export class TypeScriptPackageGenerator extends BaseGenerator<TypeScriptPackageG
       {
         Generator: CircleCiGenerator,
         path: path.join(__dirname, "../circleci"),
+      },
+      {
+        Generator: CodeAnalysisGenerator,
+        path: path.join(__dirname, "../code-analysis"),
       },
       {
         Generator: GitHubGenerator,
