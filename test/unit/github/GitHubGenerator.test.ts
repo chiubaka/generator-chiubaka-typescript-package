@@ -1,12 +1,14 @@
+import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
-import { BaseGenerator } from "../shared";
 import {
   BranchProtectionOptions,
   GitHubApiAdapter,
+  GitHubGenerator,
+  GitHubGeneratorOptions,
   RepoOptions,
-} from "./GitHubApiAdapter";
-import { GitHubGenerator, GitHubGeneratorOptions } from "./GitHubGenerator";
+} from "../../../src/github";
+import { BaseGenerator } from "../../../src/shared";
 
 const DEFAULT_REPO_OPTIONS = {
   repoOwner: "chiubaka",
@@ -516,7 +518,7 @@ class GitHubTestGenerator extends BaseGenerator {
     return [
       {
         Generator: GitHubGenerator,
-        path: __dirname,
+        path: path.join(__dirname, "../../../src/github"),
       },
     ];
   }
