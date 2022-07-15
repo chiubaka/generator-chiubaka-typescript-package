@@ -1,1 +1,2 @@
-export { ReadmeGenerator as default, ReadmeGenerator } from "./ReadmeGenerator";
+export { ReadmeGenerator as default } from "./ReadmeGenerator";
+export * from "./ReadmeGenerator";
