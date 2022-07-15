@@ -205,6 +205,20 @@ describe("NodeModuleGenerator", () => {
     it("sets the yarn version to 3.2.1", () => {
       result.assertFile(".yarn/releases/yarn-3.2.1.cjs");
     });
+
+    describe("installs the yarn editor SDK for VSCode", () => {
+      it("creates a .vscode/settings.json file", () => {
+        result.assertFile(".vscode/settings.json");
+      });
+
+      it("creates a .vscode/extensions.json file", () => {
+        result.assertFile(".vscode/extensions.json");
+      });
+
+      it("creates a .yarn/sdks/integrations.yml file", () => {
+        result.assertFile(".yarn/sdks/integrations.yml");
+      });
+    });
   });
 });
 
