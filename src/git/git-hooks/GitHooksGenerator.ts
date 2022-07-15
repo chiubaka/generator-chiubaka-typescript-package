@@ -12,26 +12,16 @@ export class GitHooksGenerator extends BaseGenerator {
     await this.writePackageJson();
   }
 
-  public install() {
+  public async install() {
     if (this.options.yarnInstall === true) {
-      this.spawnCommandSync("yarn", ["install"]);
+      await this.exec("yarn install");
     }
 
-    this.spawnCommandSync("yarn", ["run", "prepare"]);
+    await this.exec("yarn run prepare");
 
-    this.spawnCommandSync("yarn", [
-      "husky",
-      "add",
-      ".husky/pre-commit",
-      "yarn run lint:staged",
-    ]);
+    await this.exec('yarn husky add .husky/pre-commit "yarn run lint:staged"');
 
-    this.spawnCommandSync("yarn", [
-      "husky",
-      "add",
-      ".husky/pre-push",
-      "yarn run test",
-    ]);
+    await this.exec('yarn husky add .husky/pre-push "yarn run test"');
   }
 
   private writePackageJson = async () => {

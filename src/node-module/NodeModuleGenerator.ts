@@ -52,17 +52,17 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
     this.writePackageJson();
   }
 
-  public install() {
-    this.spawnCommandSync("yarn", ["set", "version", "3.2.1"]);
+  public async install() {
+    await this.exec("yarn set version 3.2.1");
 
-    const yarnArgs = ["install"];
+    let yarnArgs = "install";
     if (process.env.NODE_ENV === "test") {
-      yarnArgs.push("--no-immutable");
+      yarnArgs = `${yarnArgs} --no-immutable`;
     }
 
-    this.spawnCommandSync("yarn", yarnArgs);
+    await this.exec(`yarn ${yarnArgs}`);
 
-    this.spawnCommandSync("yarn", ["dlx", "@yarnpkg/sdks", "vscode"]);
+    await this.exec("yarn dlx @yarnpkg/sdks vscode");
   }
 
   protected configureSubGenerators = () => {
