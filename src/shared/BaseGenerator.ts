@@ -161,7 +161,10 @@ export abstract class BaseGenerator<
       return result;
     } catch (error: any) {
       if (ErrorUtils.isExecException(error)) {
-        return error;
+        throw {
+          ...error,
+          message: `${error.message}\n${error.stdout}\n${error.stderr}`,
+        };
       }
 
       throw error;

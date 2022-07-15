@@ -70,7 +70,7 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
 
     const existingRemoteUrl = await this.getRemoteOriginUrl();
 
-    if (!existingRemoteUrl) {
+    if (existingRemoteUrl === "") {
       this.spawnCommandSync("git", ["remote", "add", "origin", githubUrl]);
     } else if (existingRemoteUrl !== githubUrl) {
       this.spawnCommandSync("git", ["remote", "set-url", "origin", githubUrl]);
@@ -252,9 +252,15 @@ export class GitHubGenerator extends BaseGenerator<GitHubGeneratorOptions> {
     });
   };
 
+  /**
+   * Grabs the current remote origin URL from git configs
+   * @returns Promise<string> Empty string ("") when no remote origin exists, a git url otherwise
+   */
   private getRemoteOriginUrl = async () => {
-    const result = await this.exec("git config --get remote.origin.url");
-    return result.stdout;
+    const result = await this.exec(
+      'git config --default "" --get remote.origin.url'
+    );
+    return result.stdout.trim();
   };
 
   /**

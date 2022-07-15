@@ -424,14 +424,16 @@ describe("GitHubGenerator", () => {
   });
 
   describe("remote origin", () => {
-    it("adds the GitHub repo as a git remote origin", async () => {
-      const result = await runGenerator();
+    describe("when a git remote origin doesn't already exist", () => {
+      it("adds the GitHub repo as a git remote origin", async () => {
+        const result = await runGenerator();
 
-      const remoteOriginUrl = getRemoteOriginUrl(result);
+        const remoteOriginUrl = getRemoteOriginUrl(result);
 
-      expect(remoteOriginUrl).toBe(
-        `git@github.com:chiubaka/generated-typescript-package.git`
-      );
+        expect(remoteOriginUrl).toBe(
+          `git@github.com:chiubaka/generated-typescript-package.git`
+        );
+      });
     });
 
     describe("when a git remote origin already exists", () => {
