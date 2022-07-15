@@ -39,15 +39,6 @@ export class TypeScriptPackageGenerator extends BaseGenerator<TypeScriptPackageG
     }
   }
 
-  public install() {
-    const yarnArgs = ["install"];
-    if (process.env.NODE_ENV === "test") {
-      yarnArgs.push("--no-immutable");
-    }
-
-    this.spawnCommandSync("yarn", yarnArgs);
-  }
-
   protected configureSubGenerators = () => {
     return [
       {
