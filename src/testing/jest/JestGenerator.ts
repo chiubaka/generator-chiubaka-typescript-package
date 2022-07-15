@@ -23,7 +23,7 @@ export class JestGenerator extends BaseGenerator {
     };
 
     const jestJUnit = {
-      addFileAttribute: true,
+      addFileAttribute: "true",
       classNameTemplate: "{suitename}",
       outputDirectory: "reports/junit",
     };

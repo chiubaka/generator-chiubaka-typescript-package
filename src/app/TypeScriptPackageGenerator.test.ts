@@ -105,8 +105,14 @@ describe("TypeScriptPackageGenerator", () => {
         result.assertFile("reports/coverage/lcov-report/index.html");
       });
 
-      it("generates a junit.xml file", () => {
-        result.assertFile("reports/junit/junit.xml");
+      describe("with a working junit report for CircleCI testing tab", () => {
+        it("generates a junit.xml file", () => {
+          result.assertFile("reports/junit/junit.xml");
+        });
+
+        it("includes file attribute in junit.xml", () => {
+          result.assertFileContent("reports/junit/junit.xml", "file=");
+        });
       });
     });
   });
