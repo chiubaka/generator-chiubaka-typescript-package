@@ -52,83 +52,23 @@ describe("EsLintGenerator", () => {
     });
 
     describe("installs required devDependencies", () => {
+      it("installs @chiubaka/eslint-config", () => {
+        expect(result).toHaveDevDependencyWithComment(
+          "@chiubaka/eslint-config"
+        );
+      });
+
       it("installs @chiubaka/tsconfig", () => {
         expect(result).toHaveDevDependencyWithComment("@chiubaka/tsconfig");
-      });
-
-      it("installs @typescript-eslint/eslint-plugin", () => {
-        expect(result).toHaveDevDependencyWithComment(
-          "@typescript-eslint/eslint-plugin"
-        );
-      });
-
-      it("installs @typescript-eslint/parser", () => {
-        expect(result).toHaveDevDependencyWithComment(
-          "@typescript-eslint/parser"
-        );
       });
 
       it("installs eslint", () => {
         expect(result).toHaveDevDependencyWithComment("eslint");
       });
 
-      it("installs eslint-config-prettier", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-config-prettier");
-      });
-
-      it("installs eslint-plugin-eslint-comments", () => {
-        expect(result).toHaveDevDependencyWithComment(
-          "eslint-plugin-eslint-comments"
-        );
-      });
-
-      it("installs eslint-plugin-jest", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-plugin-jest");
-      });
-
-      it("installs eslint-plugin-jest-formatting", () => {
-        expect(result).toHaveDevDependencyWithComment(
-          "eslint-plugin-jest-formatting"
-        );
-      });
-
-      it("installs eslint-plugin-json", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-plugin-json");
-      });
-
-      it("installs eslint-plugin-package-json", () => {
-        expect(result).toHaveDevDependencyWithComment(
-          "eslint-plugin-package-json"
-        );
-      });
-
-      it("installs eslint-plugin-prettier", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-plugin-prettier");
-      });
-
-      it("installs eslint-plugin-promise", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-plugin-promise");
-      });
-
-      it("installs eslint-plugin-security", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-plugin-security");
-      });
-
-      it("installs eslint-plugin-simple-import-sort", () => {
-        expect(result).toHaveDevDependencyWithComment(
-          "eslint-plugin-simple-import-sort"
-        );
-      });
-
-      it("installs eslint-plugin-unicorn", () => {
-        expect(result).toHaveDevDependencyWithComment("eslint-plugin-unicorn");
-      });
-
       it("installs lint-staged", () => {
         expect(result).toHaveDevDependencyWithComment("lint-staged");
       });
-
-      it.todo("adds a comment describing why lint-staged was installed");
 
       it("installs prettier", () => {
         expect(result).toHaveDevDependencyWithComment("prettier");
@@ -136,10 +76,6 @@ describe("EsLintGenerator", () => {
 
       it("installs typescript", () => {
         expect(result).toHaveDevDependencyWithComment("prettier");
-      });
-
-      it("installs yaml-eslint-parser", () => {
-        expect(result).toHaveDevDependencyWithComment("yaml-eslint-parser");
       });
     });
   });
