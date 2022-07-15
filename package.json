@@ -47,6 +47,7 @@
     "yeoman-generator": "^5.6.1"
   },
   "devDependencies": {
+    "@chiubaka/eslint-config": "^0.1.0",
     "@chiubaka/tsconfig": "^0.0.3",
     "@types/jest": "^28.1.4",
     "@types/js-yaml": "^4.0.5",
@@ -96,6 +97,7 @@
     "yeoman-generator": "Core yeoman generator libraries"
   },
   "devDependenciesComments": {
+    "@chiubaka/eslint-config": "Shared linting configs for the Chiubaka Technologies ecosystem",
     "@chiubaka/tsconfig": "Shared TSConfig settings for the Chiubaka Technologies ecosystem",
     "@types/jest": "Types for jest",
     "@types/js-yaml": "Types for js-yaml",
