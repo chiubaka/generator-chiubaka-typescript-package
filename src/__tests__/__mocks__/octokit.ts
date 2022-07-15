@@ -33,51 +33,51 @@ class Rest {
 
 class Repos {
   public get(): Promise<any> {
-    return Promise.resolve({});
+    return createResponse();
   }
 
   public createForAuthenticatedUser(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse(201);
   }
 
   public update(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 
   public updateBranchProtection(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 
   public createCommitSignatureProtection(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 
   public enableVulnerabilityAlerts(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 }
 
 class Issues {
   public listLabelsForRepo(): Promise<Response<Label[]>> {
-    return createSuccessResponse([]);
+    return createResponse(200, []);
   }
 
   public createLabel(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 
   public updateLabel(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 
   public deleteLabel(): Promise<Response> {
-    return createSuccessResponse();
+    return createResponse();
   }
 }
 
-const createSuccessResponse = <T>(data?: T): Promise<Response<T>> => {
+const createResponse = <T>(status = 200, data?: T): Promise<Response<T>> => {
   return Promise.resolve({
-    status: 200,
+    status,
     data,
   });
 };
