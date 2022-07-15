@@ -121,10 +121,10 @@ describe("NodeModuleGenerator", () => {
         });
       });
 
-      it("stubs out a deploy script for the package", () => {
+      it("adds a default deploy script for the package", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {
-            deploy: "",
+            deploy: "npm publish --access public",
           },
         });
       });
