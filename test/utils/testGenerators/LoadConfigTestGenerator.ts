@@ -28,7 +28,7 @@ export class LoadConfigTestGenerator extends BaseGenerator<LoadConfigTestGenerat
     super(args, options);
 
     this.loadConfig(
-      path.join(__dirname, "../../__fixtures__/config/loadConfigTest.yml")
+      path.join(__dirname, "../../fixtures/config/loadConfigTest.yml")
     );
   }
 

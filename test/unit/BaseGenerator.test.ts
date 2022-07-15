@@ -5,7 +5,7 @@ import {
   ComposeWithSubGeneratorTestGenerator,
   LoadConfigTestGenerator,
   OptionsTestGenerator,
-} from "../../test/utils";
+} from "../utils/index";
 
 describe("BaseGenerator", () => {
   let result: RunResult;
