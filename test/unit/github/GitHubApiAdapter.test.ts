@@ -3,7 +3,7 @@ jest.unmock("octokit");
 import nock from "nock";
 import path from "node:path";
 
-import { GitHubApiAdapter } from "./GitHubApiAdapter";
+import { GitHubApiAdapter } from "../../../src/github";
 
 describe("GitHubApiAdapter", () => {
   let github: GitHubApiAdapter;
@@ -218,7 +218,5 @@ describe("GitHubApiAdapter", () => {
 });
 
 const loadGitHubNockScope = (fileName: string) => {
-  nock.load(
-    path.join(__dirname, `./__tests__/__fixtures__/nock/github/${fileName}`)
-  );
+  nock.load(path.join(__dirname, `../../fixtures/nock/github/${fileName}`));
 };
