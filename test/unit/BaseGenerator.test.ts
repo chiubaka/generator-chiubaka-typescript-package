@@ -1,11 +1,15 @@
+import crypto from "node:crypto";
+import path from "node:path";
+import tempDirectory from "temp-dir";
 import Generator from "yeoman-generator";
 import YeomanTest, { RunResult } from "yeoman-test";
 
 import {
   ComposeWithSubGeneratorTestGenerator,
+  DestinationRootExecTestGenerator,
   LoadConfigTestGenerator,
   OptionsTestGenerator,
-} from "../utils/index";
+} from "../utils";
 
 describe("BaseGenerator", () => {
   let result: RunResult;
@@ -20,6 +24,30 @@ describe("BaseGenerator", () => {
         packageName: "load-config-test",
         packageDescription: "Loaded description from config",
       });
+    });
+  });
+
+  describe("#exec", () => {
+    let destinationRoot: string;
+
+    beforeAll(async () => {
+      destinationRoot = path.join(
+        tempDirectory,
+        crypto.randomBytes(20).toString("hex")
+      );
+      result = await YeomanTest.create(DestinationRootExecTestGenerator)
+        .withOptions({
+          destinationRoot,
+        })
+        .run();
+    });
+
+    // Regression test for https://github.com/chiubaka/generator-chiubaka-typescript-package/issues/132
+    it("runs commands in the destinationRoot", () => {
+      result.assertFileContent(
+        path.join(destinationRoot, "cwd.txt"),
+        destinationRoot
+      );
     });
   });
 

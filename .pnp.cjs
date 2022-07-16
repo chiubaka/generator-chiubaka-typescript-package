@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/micromatch", "npm:4.0.2"],\
             ["@types/nock", "npm:11.1.0"],\
             ["@types/node", "npm:18.0.1"],\
+            ["@types/temp-dir", "npm:2.0.2"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
             ["@types/yeoman-test", "npm:4.0.3"],\
@@ -57,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["octokit", "npm:2.0.3"],\
             ["prettier", "npm:2.7.1"],\
             ["rimraf", "npm:3.0.2"],\
+            ["temp-dir", "npm:2.0.0"],\
             ["ts-jest", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:28.0.5"],\
             ["ts-node", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:10.8.2"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"],\
@@ -2456,6 +2458,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-stack-utils-npm-2.0.1-867718ab70-205fdbe332.zip/node_modules/@types/stack-utils/",\
           "packageDependencies": [\
             ["@types/stack-utils", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/temp-dir", [\
+        ["npm:2.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-temp-dir-npm-2.0.2-792a0a5015-6dfdf8e390.zip/node_modules/@types/temp-dir/",\
+          "packageDependencies": [\
+            ["@types/temp-dir", "npm:2.0.2"],\
+            ["temp-dir", "npm:2.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5138,6 +5150,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/micromatch", "npm:4.0.2"],\
             ["@types/nock", "npm:11.1.0"],\
             ["@types/node", "npm:18.0.1"],\
+            ["@types/temp-dir", "npm:2.0.2"],\
             ["@types/yeoman-assert", "npm:3.1.1"],\
             ["@types/yeoman-generator", "npm:5.2.10"],\
             ["@types/yeoman-test", "npm:4.0.3"],\
@@ -5155,6 +5168,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["octokit", "npm:2.0.3"],\
             ["prettier", "npm:2.7.1"],\
             ["rimraf", "npm:3.0.2"],\
+            ["temp-dir", "npm:2.0.0"],\
             ["ts-jest", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:28.0.5"],\
             ["ts-node", "virtual:c4017ac13a3eeb2b2054bba0c09d22aabeeccee4f647e3f445d8f63083c5c78b8c5e6cd2286f547bc64d4e9e21cb2f18ee480f44f7c478bdfd3cc0710c283a9b#npm:10.8.2"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"],\
