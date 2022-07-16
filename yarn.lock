@@ -1807,6 +1807,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/temp-dir@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@types/temp-dir@npm:2.0.2"
+  dependencies:
+    temp-dir: "*"
+  checksum: 6dfdf8e3901f76381f2e925a98e399940d5518d22f4fe715458960fe3c8a594f7009d92563950b5b6f242e2da9d6e0e44aa8c5889e060aa348ddfec17959d139
+  languageName: node
+  linkType: hard
+
 "@types/text-table@npm:*":
   version: 0.2.2
   resolution: "@types/text-table@npm:0.2.2"
@@ -3964,6 +3973,7 @@ __metadata:
     "@types/micromatch": ^4.0.2
     "@types/nock": ^11.1.0
     "@types/node": ^18.0.1
+    "@types/temp-dir": ^2.0.2
     "@types/yeoman-assert": ^3.1.1
     "@types/yeoman-generator": ^5.2.10
     "@types/yeoman-test": ^4.0.3
@@ -3981,6 +3991,7 @@ __metadata:
     octokit: ^2.0.3
     prettier: ^2.7.1
     rimraf: ^3.0.2
+    temp-dir: ^2.0.0
     ts-jest: ^28.0.5
     ts-node: ^10.8.2
     typescript: ^4.7.4
@@ -7427,7 +7438,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"temp-dir@npm:^2.0.0":
+"temp-dir@npm:*, temp-dir@npm:^2.0.0":
   version: 2.0.0
   resolution: "temp-dir@npm:2.0.0"
   checksum: cc4f0404bf8d6ae1a166e0e64f3f409b423f4d1274d8c02814a59a5529f07db6cd070a749664141b992b2c1af337fa9bb451a460a43bb9bcddc49f235d3115aa
