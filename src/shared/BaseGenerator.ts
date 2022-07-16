@@ -1,5 +1,5 @@
 import yaml from "js-yaml";
-import { exec as standardExec } from "node:child_process";
+import { exec as nodeExec } from "node:child_process";
 import util from "node:util";
 import Generator, {
   GeneratorFeatures,
@@ -9,7 +9,7 @@ import Generator, {
 
 import { ErrorUtils } from "./utils";
 
-const exec = util.promisify(standardExec);
+const exec = util.promisify(nodeExec);
 
 interface DependencyDefinition {
   name: string;
@@ -157,7 +157,7 @@ export abstract class BaseGenerator<
 
   protected async exec(command: string) {
     try {
-      const result = await exec(command);
+      const result = await exec(command, { cwd: this.destinationRoot() });
       return result;
     } catch (error: any) {
       if (ErrorUtils.isExecException(error)) {
