@@ -33,6 +33,7 @@ workflows:
           filters:
             <<: *semver-tags
       - chiubaka/publish:
+          init-submodules: true
           context:
             - npm-publishing
           requires:
