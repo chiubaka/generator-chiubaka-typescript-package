@@ -225,5 +225,8 @@ describe("NodeModuleGenerator", () => {
 const runWithAnswers = (answers: Record<string, any>): Promise<RunResult> => {
   return YeomanHelpers.create(path.join(__dirname, "../../../src/node-module"))
     .withPrompts(answers)
+    .withOptions({
+      disableImmutableInstalls: true,
+    })
     .run();
 };

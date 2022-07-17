@@ -2,11 +2,6 @@ import { BaseGenerator } from "../shared";
 
 export class EsLintGenerator extends BaseGenerator {
   public configuring() {
-    if (process.env.NODE_ENV === "test") {
-      // Required to disable immutable installs for the generated package in tests
-      this.copyTemplate(".yarnrc.yml", ".yarnrc.yml");
-    }
-
     this.copyTemplate(".eslintrc.yml", ".eslintrc.yml");
     this.copyTemplate("tsconfig.eslint.json", "tsconfig.eslint.json");
     this.copyTemplate(".lintstagedrc.yml", ".lintstagedrc.yml");
@@ -45,12 +40,6 @@ export class EsLintGenerator extends BaseGenerator {
         comment: "TypeScript support for this project",
       },
     ]);
-  }
-
-  public async install() {
-    if (this.options.yarnInstall === true) {
-      await this.exec("yarn install");
-    }
   }
 
   public async end() {

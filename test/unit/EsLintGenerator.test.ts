@@ -3,18 +3,17 @@ import micromatch from "micromatch";
 import path from "node:path";
 import YeomanHelpers, { RunResult } from "yeoman-test";
 
-import { RunResultUtils } from "../utils/index";
+import EsLintGenerator from "../../src/eslint";
+import { BaseGenerator } from "../../src/shared";
+import { RunResultUtils, YarnInstallTestGenerator } from "../utils";
 
 describe("EsLintGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(
-      path.join(__dirname, "../../src/eslint")
-    )
+    result = await YeomanHelpers.create(EsLintTestGenerator)
       .withOptions({
         skipLintFix: true,
-        yarnInstall: true,
       })
       .run();
   });
@@ -247,3 +246,21 @@ const writeFileWithLintErrors = (
     "console.warn('Hello, world!')"
   );
 };
+
+class EsLintTestGenerator extends BaseGenerator {
+  public configureSubGenerators() {
+    return [
+      {
+        Generator: YarnInstallTestGenerator,
+        path: path.join(
+          __dirname,
+          "../utils/testGenerators/YarnInstallTestGenerator"
+        ),
+      },
+      {
+        Generator: EsLintGenerator,
+        path: path.join(__dirname, "../../src/eslint"),
+      },
+    ];
+  }
+}

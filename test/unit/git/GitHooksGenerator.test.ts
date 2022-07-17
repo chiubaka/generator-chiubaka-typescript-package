@@ -1,12 +1,16 @@
 import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
+import { GitHooksGenerator } from "../../../src/git";
+import { BaseGenerator } from "../../../src/shared";
+import { YarnInstallTestGenerator } from "../../utils";
+
 describe("GitHooksGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanTest.create(path.join(__dirname, "../../../src/git"))
-      .withOptions({ yarnInstall: true, configGitUser: true })
+    result = await YeomanTest.create(GitHooksTestGenerator)
+      .withOptions({ configGitUser: true })
       .run();
   });
 
@@ -46,3 +50,25 @@ describe("GitHooksGenerator", () => {
     });
   });
 });
+
+class GitHooksTestGenerator extends BaseGenerator {
+  public configureSubGenerators() {
+    return [
+      {
+        Generator: YarnInstallTestGenerator,
+        path: path.join(
+          __dirname,
+          "../../utils/testGenerators/YarnInstallTestGenerator"
+        ),
+      },
+      {
+        Generator: GitHooksGenerator,
+        path: path.join(__dirname, "../../../src/git/git-hooks"),
+      },
+    ];
+  }
+
+  public async writing() {
+    await this.exec("git init");
+  }
+}

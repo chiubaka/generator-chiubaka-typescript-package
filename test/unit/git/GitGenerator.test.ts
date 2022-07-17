@@ -2,13 +2,16 @@ import path from "node:path";
 import YeomanTest, { RunResult } from "yeoman-test";
 
 import PackageJson from "../../../package.json";
+import GitGenerator from "../../../src/git";
+import { BaseGenerator } from "../../../src/shared";
+import { YarnInstallTestGenerator } from "../../utils";
 
 describe("GitGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanTest.create(path.join(__dirname, "../../../src/git"))
-      .withOptions({ yarnInstall: true, configGitUser: true })
+    result = await YeomanTest.create(GitTestGenerator)
+      .withOptions({ configGitUser: true })
       .run();
   });
 
@@ -16,6 +19,30 @@ describe("GitGenerator", () => {
     expect(() => {
       result.env.spawnCommandSync("git", ["status"], {});
     }).not.toThrow();
+  });
+
+  describe("configures the git user", () => {
+    it("sets the git user's name", () => {
+      const commandResult = result.env.spawnCommandSync(
+        "git",
+        ["config", "--get", "user.name"],
+        { stdio: ["ignore", "pipe", "pipe"] }
+      );
+
+      const userEmail = commandResult.stdout;
+      expect(userEmail).toBe("Daniel Chiu");
+    });
+
+    it("sets the git user's email", () => {
+      const commandResult = result.env.spawnCommandSync(
+        "git",
+        ["config", "--get", "user.email"],
+        { stdio: ["ignore", "pipe", "pipe"] }
+      );
+
+      const userEmail = commandResult.stdout;
+      expect(userEmail).toBe("daniel@chiubaka.com");
+    });
   });
 
   it("creates a commit for the generated files", () => {
@@ -44,3 +71,21 @@ describe("GitGenerator", () => {
     expect(gitStatus).toBe("");
   });
 });
+
+class GitTestGenerator extends BaseGenerator {
+  public configureSubGenerators() {
+    return [
+      {
+        Generator: YarnInstallTestGenerator,
+        path: path.join(
+          __dirname,
+          "../../utils/testGenerators/YarnInstallTestGenerator"
+        ),
+      },
+      {
+        Generator: GitGenerator,
+        path: path.join(__dirname, "../../../src/git"),
+      },
+    ];
+  }
+}

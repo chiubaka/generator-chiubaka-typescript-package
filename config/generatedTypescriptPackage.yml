@@ -1,3 +1,6 @@
+configGitUser: true
+disableImmutableYarnInstalls: true
+
 repoOwner: chiubaka
 repoName: generated-typescript-package
 packageName: "@chiubaka/generated-typescript-package"

@@ -11,12 +11,9 @@ export class GitGenerator extends BaseGenerator {
 
   public async writing() {
     await this.exec("git init");
-    if (
-      process.env.NODE_ENV === "test" &&
-      this.options.configGitUser === true
-    ) {
-      await this.exec("git config user.email testing@jest.io");
-      await this.exec("git config user.name Jest");
+    if (this.options.configGitUser === true) {
+      await this.exec("git config user.email daniel@chiubaka.com");
+      await this.exec('git config user.name "Daniel Chiu"');
     }
   }
 
