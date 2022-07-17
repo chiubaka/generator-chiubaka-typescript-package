@@ -84,7 +84,8 @@
     "typescript": "^4.7.4",
     "yeoman-assert": "^3.1.1",
     "yeoman-environment": "^3.9.1",
-    "yeoman-test": "^6.3.0"
+    "yeoman-test": "^6.3.0",
+    "yo": "^4.3.0"
   },
   "dependenciesComments": {
     "octokit": "Official lib for interacting with GitHub APIs",
@@ -123,7 +124,8 @@
     "typescript": "TypeScript support for this project",
     "yeoman-assert": "Yeoman extensions for native assert module for utility in tests",
     "yeoman-environment": "Peer dependency for yeoman-test",
-    "yeoman-test": "Test helpers for yeoman generators"
+    "yeoman-test": "Test helpers for yeoman generators",
+    "yo": "Running Yeoman generators. Required in order to run generators to update canonical generated packages."
   },
   "jest-junit": {
     "addFileAttribute": "true",
