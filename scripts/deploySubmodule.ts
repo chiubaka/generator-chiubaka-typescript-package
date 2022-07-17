@@ -14,6 +14,12 @@ function main() {
 
   const commitMessage = GitGenerator.generateCommitMessage();
 
+  runInSubmodule(submodule, "git", ["config", "user.name", "Daniel Chiu"]);
+  runInSubmodule(submodule, "git", [
+    "config",
+    "user.email",
+    "daniel@chiubaka.com",
+  ]);
   runInSubmodule(submodule, "git", ["add", "."]);
   runInSubmodule(submodule, "git", ["commit", "-m", commitMessage]);
   runInSubmodule(submodule, "git", ["tag", `v${PackageJson.version}`]);
