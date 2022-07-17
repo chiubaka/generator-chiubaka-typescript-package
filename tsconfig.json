@@ -3,6 +3,6 @@
     "outDir": "./build"
   },
   "extends": "@chiubaka/tsconfig/tsconfig.json",
-  "include": ["src", "test"],
+  "include": ["src", "scripts", "test"],
   "exclude": ["**/__mocks__/*"]
 }
