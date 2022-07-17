@@ -7,6 +7,9 @@ import packageJson from "../package.json";
 import { GitGenerator } from "../src/git";
 
 class SubmoduleDeployer {
+  private static PROJECT_ROOT = path.join(__dirname, "../");
+
+  private submodule: string;
   private submodulePath: string;
 
   constructor() {
@@ -15,15 +18,21 @@ class SubmoduleDeployer {
     const { args } = program;
     const [submodule] = args;
 
+    this.submodule = submodule;
     this.submodulePath = path.join(__dirname, `../generated`, submodule);
   }
 
   public run() {
-    this.updateSubmoduleVersion();
     this.configureGitUser();
-    this.gitCommit();
-    this.gitTag();
-    this.gitPush();
+
+    this.updateSubmoduleVersion();
+
+    this.gitCommitSubmodule();
+    this.gitTagSubmodule();
+    this.gitPushSubmodule();
+
+    this.gitCommitProjectRoot();
+    this.gitPushProjectRoot();
   }
 
   private updateSubmoduleVersion() {
@@ -45,27 +54,48 @@ class SubmoduleDeployer {
   }
 
   private configureGitUser() {
-    this.runInSubmodule("git", ["config", "user.name", "Daniel Chiu"]);
-    this.runInSubmodule("git", ["config", "user.email", "daniel@chiubaka.com"]);
+    this.spawnInProjectRoot("git", ["config", "user.name", "Daniel Chiu"]);
+    this.spawnInProjectRoot("git", [
+      "config",
+      "user.email",
+      "daniel@chiubaka.com",
+    ]);
   }
 
-  private gitCommit() {
+  private gitCommitSubmodule() {
     const commitMessage = GitGenerator.generateCommitMessage();
 
-    this.runInSubmodule("git", ["add", "."]);
-    this.runInSubmodule("git", ["commit", "-m", commitMessage]);
+    this.spawnInSubmodule("git", ["add", "."]);
+    this.spawnInSubmodule("git", ["commit", "-m", commitMessage]);
   }
 
-  private gitTag() {
-    this.runInSubmodule("git", ["tag", `v${packageJson.version}`]);
+  private gitTagSubmodule() {
+    this.spawnInSubmodule("git", ["tag", `v${packageJson.version}`]);
   }
 
-  private gitPush() {
-    this.runInSubmodule("git", ["push"]);
-    this.runInSubmodule("git", ["push", "--tags"]);
+  private gitPushSubmodule() {
+    this.spawnInSubmodule("git", ["push"]);
+    this.spawnInSubmodule("git", ["push", "--tags"]);
   }
 
-  private runInSubmodule(command: string, args: string[]) {
+  private gitCommitProjectRoot() {
+    const commitMessage = `Update submodule ${this.submodule} to latest commit`;
+    this.spawnInProjectRoot("git", ["add", "."]);
+    this.spawnInProjectRoot("git", ["commit", "-m", commitMessage]);
+  }
+
+  private gitPushProjectRoot() {
+    this.spawnInSubmodule("git", ["push"]);
+  }
+
+  private spawnInProjectRoot(command: string, args: string[]) {
+    spawnSync(command, args, {
+      cwd: SubmoduleDeployer.PROJECT_ROOT,
+      stdio: "inherit",
+    });
+  }
+
+  private spawnInSubmodule(command: string, args: string[]) {
     spawnSync(command, args, {
       cwd: this.submodulePath,
       stdio: "inherit",
