@@ -81,11 +81,16 @@ class SubmoduleDeployer {
   private gitCommitProjectRoot() {
     const commitMessage = `Update submodule ${this.submodule} to latest commit`;
     this.spawnInProjectRoot("git", ["add", "."]);
-    this.spawnInProjectRoot("git", ["commit", "-m", commitMessage]);
+    this.spawnInProjectRoot("git", [
+      "commit",
+      "-m",
+      commitMessage,
+      "--no-verify",
+    ]);
   }
 
   private gitPushProjectRoot() {
-    this.spawnInSubmodule("git", ["push"]);
+    this.spawnInSubmodule("git", ["push", "--no-verify"]);
   }
 
   private spawnInProjectRoot(command: string, args: string[]) {
