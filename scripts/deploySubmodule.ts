@@ -54,9 +54,15 @@ class SubmoduleDeployer {
   }
 
   private configureGitUser() {
-    this.spawnInProjectRoot("git", ["config", "user.name", "Daniel Chiu"]);
     this.spawnInProjectRoot("git", [
       "config",
+      "--global",
+      "user.name",
+      "Daniel Chiu",
+    ]);
+    this.spawnInProjectRoot("git", [
+      "config",
+      "--global",
       "user.email",
       "daniel@chiubaka.com",
     ]);
@@ -74,7 +80,7 @@ class SubmoduleDeployer {
   }
 
   private gitPushSubmodule() {
-    this.spawnInSubmodule("git", ["push"]);
+    this.spawnInSubmodule("git", ["push", "-u", "origin", "master"]);
     this.spawnInSubmodule("git", ["push", "--tags"]);
   }
 
@@ -90,7 +96,13 @@ class SubmoduleDeployer {
   }
 
   private gitPushProjectRoot() {
-    this.spawnInSubmodule("git", ["push", "--no-verify"]);
+    this.spawnInSubmodule("git", [
+      "push",
+      "-u",
+      "origin",
+      "master",
+      "--no-verify",
+    ]);
   }
 
   private spawnInProjectRoot(command: string, args: string[]) {
