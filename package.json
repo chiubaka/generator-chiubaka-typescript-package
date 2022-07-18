@@ -1,6 +1,6 @@
 {
   "name": "generator-chiubaka-typescript-package",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Yeoman generator for standard Chiubaka Technologies TypeScript packages for libraries and other such things.",
   "files": [
     "generators"
