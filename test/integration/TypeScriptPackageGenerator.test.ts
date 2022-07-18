@@ -13,6 +13,7 @@ describe("TypeScriptPackageGenerator", () => {
       .withOptions({
         configGitUser: true,
         disableGitPush: true,
+        disableImmutableYarnInstalls: true,
       })
       .run();
   });
