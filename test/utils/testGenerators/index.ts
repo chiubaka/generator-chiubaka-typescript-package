@@ -6,3 +6,4 @@ export * from "./LoadConfigTestGenerator";
 export * from "./NoDevDependenciesTestGenerator";
 export * from "./OptionsTestGenerator";
 export * from "./SimpleYamlTestGenerator";
+export * from "./YarnInstallTestGenerator";

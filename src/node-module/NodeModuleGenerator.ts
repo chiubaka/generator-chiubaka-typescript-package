@@ -10,6 +10,7 @@ export interface NodeModuleGeneratorOptions extends ReadmeGeneratorOptions {
   packageKeywords: string;
   authorName: string;
   authorEmail: string;
+  disableImmutableYarnInstalls?: boolean;
 }
 
 export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOptions> {
@@ -56,7 +57,7 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
     await this.exec("yarn set version 3.2.1");
 
     let yarnArgs = "install";
-    if (process.env.NODE_ENV === "test") {
+    if (this.options.disableImmutableYarnInstalls === true) {
       yarnArgs = `${yarnArgs} --no-immutable`;
     }
 
