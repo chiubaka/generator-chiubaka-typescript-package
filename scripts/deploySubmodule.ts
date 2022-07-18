@@ -72,6 +72,7 @@ class SubmoduleDeployer {
     const commitMessage = GitGenerator.generateCommitMessage();
 
     this.spawnInSubmodule("git", ["add", "."]);
+    this.spawnInSubmodule("git", ["checkout", "master"]);
     this.spawnInSubmodule("git", ["commit", "-m", commitMessage]);
   }
 
@@ -87,6 +88,7 @@ class SubmoduleDeployer {
   private gitCommitProjectRoot() {
     const commitMessage = `Update submodule ${this.submodule} to latest commit`;
     this.spawnInProjectRoot("git", ["add", "."]);
+    this.spawnInProjectRoot("git", ["checkout", "master"]);
     this.spawnInProjectRoot("git", [
       "commit",
       "-m",
