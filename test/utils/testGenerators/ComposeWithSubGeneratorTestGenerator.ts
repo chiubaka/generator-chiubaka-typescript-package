@@ -40,6 +40,9 @@ export class ComposeWithSubGeneratorTestGenerator extends BaseGenerator<ComposeW
           __dirname,
           "./InheritedOptionsSubGeneratorTestGenerator"
         ),
+        options: {
+          customTestOption: "foobar",
+        },
       },
     ];
   }

@@ -155,6 +155,30 @@ describe("BaseGenerator", () => {
           expect(promptSpy).toHaveBeenCalledTimes(1);
         });
       });
+
+      describe("when passed custom options from parent generator", () => {
+        beforeAll(async () => {
+          result = await YeomanTest.create(
+            ComposeWithSubGeneratorTestGenerator,
+            {
+              namespace: "test:compose-with-sub-generator",
+            }
+          )
+            .withOptions({
+              packageName: "test-package",
+              packageDescription: "Test package description",
+              packageKeywords: "test foo bar",
+              yarnInstall: true,
+            })
+            .run();
+        });
+
+        it("receives and can work with custom options", () => {
+          result.assertJsonFileContent("inheritedOptions.json", {
+            customTestOption: "foobar",
+          });
+        });
+      });
     });
   });
 
