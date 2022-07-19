@@ -21,9 +21,10 @@ interface WriteOrAppendOptions {
   leadingNewlineOnAppend?: boolean;
 }
 
-interface SubGeneratorCompositionConfig<T> {
+export interface SubGeneratorCompositionConfig<T> {
   Generator: SubGeneratorConstructor<T>;
   path: string;
+  options?: Partial<T>;
 }
 
 interface SubGeneratorConstructor<T> {
@@ -64,7 +65,7 @@ export abstract class BaseGenerator<
     this.queueMethod(
       this.initializeSubGenerators.bind(this),
       "initializeSubGenerators",
-      "prompting"
+      "default"
     );
   }
 
@@ -221,14 +222,20 @@ export abstract class BaseGenerator<
   private composeWithSubGenerators(
     subGenerators: SubGeneratorCompositionConfig<any>[]
   ): BaseGenerator<any>[] {
-    return super.composeWith(
-      subGenerators,
-      {
-        ...this.options,
-        ...this.answers,
-      },
-      true
-    ) as BaseGenerator<any>[];
+    return subGenerators.map((subGenerator) => {
+      return super.composeWith(
+        {
+          Generator: subGenerator.Generator,
+          path: subGenerator.path,
+        },
+        {
+          ...this.options,
+          ...this.answers,
+          ...subGenerator.options,
+        },
+        true
+      ) as BaseGenerator<any>;
+    });
   }
 
   private writeOrAppendDestination(
