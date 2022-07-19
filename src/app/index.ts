@@ -1,1 +1,1 @@
-export { TypeScriptPackageGenerator as default } from "./TypeScriptPackageGenerator";
+export { RootGenerator as default, RootGenerator } from "./RootGenerator";

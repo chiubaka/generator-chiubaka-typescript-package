@@ -8,7 +8,9 @@ describe("TypeScriptPackageGenerator", () => {
   let result: RunResult;
 
   beforeAll(async () => {
-    result = await YeomanHelpers.create(path.join(__dirname, "../../src/app"))
+    result = await YeomanHelpers.create(
+      path.join(__dirname, "../../src/typescript-package")
+    )
       .withPrompts(NODE_MODULE_GENERATOR_TEST_OPTIONS)
       .withOptions({
         configGitUser: true,
