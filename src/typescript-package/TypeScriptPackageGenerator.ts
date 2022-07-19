@@ -1,25 +1,23 @@
 import path from "node:path";
-import { GeneratorOptions, Question } from "yeoman-generator";
+import { Question } from "yeoman-generator";
 
-import { CircleCiGenerator } from "../circleci";
-import { CodeAnalysisGenerator } from "../code-analysis";
-import { EsLintGenerator } from "../eslint";
-import { GitGenerator } from "../git";
+import { CircleCiGenerator } from "../circleci/index";
+import { CodeAnalysisGenerator } from "../code-analysis/index";
+import { EsLintGenerator } from "../eslint/index";
+import { GitGenerator } from "../git/index";
 import { GitHubGenerator, GitHubGeneratorOptions } from "../github/index";
-import { GitignoreGenerator } from "../gitignore";
+import { GitignoreGenerator } from "../gitignore/index";
 import {
   NodeModuleGenerator,
   NodeModuleGeneratorOptions,
-} from "../node-module";
-import { BaseGenerator } from "../shared";
-import { TestingGenerator } from "../testing";
-import { TypeScriptGenerator } from "../typescript";
+} from "../node-module/index";
+import { BaseGenerator } from "../shared/index";
+import { TestingGenerator } from "../testing/index";
+import { TypeScriptGenerator } from "../typescript/index";
 
 export interface TypeScriptPackageGeneratorOptions
   extends NodeModuleGeneratorOptions,
-    GitHubGeneratorOptions {
-  config?: string;
-}
+    GitHubGeneratorOptions {}
 
 export class TypeScriptPackageGenerator extends BaseGenerator<TypeScriptPackageGeneratorOptions> {
   public static getQuestions(): Question<TypeScriptPackageGeneratorOptions>[] {
@@ -27,17 +25,6 @@ export class TypeScriptPackageGenerator extends BaseGenerator<TypeScriptPackageG
       ...NodeModuleGenerator.getQuestions(),
       ...GitHubGenerator.getQuestions(),
     ];
-  }
-
-  constructor(
-    args: string | string[],
-    options: Partial<TypeScriptPackageGeneratorOptions> & GeneratorOptions
-  ) {
-    super(args, options, { customInstallTask: true });
-
-    if (this.options.config) {
-      this.loadConfig(this.options.config);
-    }
   }
 
   public writing() {
