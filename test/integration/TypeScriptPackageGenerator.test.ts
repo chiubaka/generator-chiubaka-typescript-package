@@ -59,8 +59,8 @@ describe("TypeScriptPackageGenerator", () => {
   });
 
   describe("installs dependencies with yarn", () => {
-    it("sets the yarn version to 3.2.1", () => {
-      result.assertFile(".yarn/releases/yarn-3.2.1.cjs");
+    it("sets the yarn version to 3.2.2", () => {
+      result.assertFile(".yarn/releases/yarn-3.2.2.cjs");
     });
 
     it("creates a yarn.lock file", () => {

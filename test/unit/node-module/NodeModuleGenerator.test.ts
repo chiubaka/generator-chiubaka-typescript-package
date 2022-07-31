@@ -97,10 +97,26 @@ describe("NodeModuleGenerator", () => {
         });
       });
 
+      it("stubs out a lint:ci script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            "lint:ci": "yarn run lint",
+          },
+        });
+      });
+
       it("stubs out a build script for the package", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {
             build: "",
+          },
+        });
+      });
+
+      it("stubs out a build:ci script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            "build:ci": "yarn run build",
           },
         });
       });
@@ -116,7 +132,7 @@ describe("NodeModuleGenerator", () => {
       it("stubs out a test:ci script for the package", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {
-            "test:ci": "",
+            "test:ci": "yarn run test",
           },
         });
       });
@@ -125,6 +141,14 @@ describe("NodeModuleGenerator", () => {
         result.assertJsonFileContent("package.json", {
           scripts: {
             deploy: "npm publish --access public",
+          },
+        });
+      });
+
+      it("stubs out a deploy:ci script for the package", () => {
+        result.assertJsonFileContent("package.json", {
+          scripts: {
+            "deploy:ci": "yarn run deploy",
           },
         });
       });
@@ -202,8 +226,8 @@ describe("NodeModuleGenerator", () => {
   });
 
   describe("yarn", () => {
-    it("sets the yarn version to 3.2.1", () => {
-      result.assertFile(".yarn/releases/yarn-3.2.1.cjs");
+    it("sets the yarn version to 3.2.2", () => {
+      result.assertFile(".yarn/releases/yarn-3.2.2.cjs");
     });
 
     describe("installs the yarn editor SDK for VSCode", () => {
