@@ -22,17 +22,21 @@ workflows:
     jobs:
       - chiubaka/lint:
           name: lint
+          yarn-berry: true
           filters:
             <<: *semver-tags
       - chiubaka/build:
           name: build
+          yarn-berry: true
           filters:
             <<: *semver-tags
       - chiubaka/test:
           name: test
+          yarn-berry: true
           filters:
             <<: *semver-tags
       - chiubaka/publish:
+          yarn-berry: true
           context:
             - npm-publishing
           requires:
