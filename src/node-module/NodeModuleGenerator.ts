@@ -54,7 +54,7 @@ export class NodeModuleGenerator extends BaseGenerator<NodeModuleGeneratorOption
   }
 
   public async install() {
-    await this.exec("yarn set version 3.2.1");
+    await this.exec("yarn set version 3.2.2");
 
     let yarnArgs = "install";
     if (this.options.disableImmutableYarnInstalls === true) {

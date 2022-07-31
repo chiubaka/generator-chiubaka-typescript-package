@@ -130,5 +130,6 @@
   "jest-junit": {
     "addFileAttribute": "true",
     "classNameTemplate": "{suitename}"
-  }
+  },
+  "packageManager": "yarn@3.2.2"
 }

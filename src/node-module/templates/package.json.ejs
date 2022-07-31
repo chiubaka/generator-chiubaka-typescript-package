@@ -4,10 +4,13 @@
   "description": "<%= packageDescription %>",
   "scripts": {
     "build": "",
+    "build:ci": "yarn run build",
     "deploy": "npm publish --access public",
+    "deploy:ci": "yarn run deploy",
     "lint": "",
+    "lint:ci": "yarn run lint",
     "test": "",
-    "test:ci": ""
+    "test:ci": "yarn run test"
   },
   "repository": {
     "type": "git",
